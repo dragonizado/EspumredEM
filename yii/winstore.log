@@ -1,0 +1,373 @@
+﻿2014-07-14 06:57:06.596, _Info_                WS   [00005516:00005844] ***********************************************************************
+2014-07-14 06:57:06.596, _Info_                WS   [00005516:00005844] Process name: C:\WINDOWS\Explorer.EXE
+2014-07-14 06:57:06.596, _Info_                WS   [00005516:00005844] DLL name: C:\WINDOWS\system32\WSShared.dll
+2014-07-14 06:57:06.596, _Info_                WS   [00005516:00005844] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 06:57:06.596, _Info_                WS   [00005516:00005844] WinStoreUI QFE version: 0
+2014-07-14 06:57:06.596, _Info_                WS   [00005516:00005844] ***********************************************************************
+2014-07-14 06:57:34.021, _Info_                WS   [00005476:00004736] ***********************************************************************
+2014-07-14 06:57:34.021, _Info_                WS   [00005476:00004736] Process name: C:\Windows\System32\RuntimeBroker.exe
+2014-07-14 06:57:34.021, _Info_                WS   [00005476:00004736] DLL name: C:\Windows\System32\WSShared.dll
+2014-07-14 06:57:34.021, _Info_                WS   [00005476:00004736] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 06:57:34.021, _Info_                WS   [00005476:00004736] WinStoreUI QFE version: 0
+2014-07-14 06:57:34.021, _Info_                WS   [00005476:00004736] ***********************************************************************
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00005064] ***********************************************************************
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00005064] Process name: C:\WINDOWS\WinStore\WSHost.exe
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00005064] DLL name: C:\WINDOWS\winstore\WinStoreUI.dll
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00005064] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00005064] WinStoreUI QFE version: 0
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00005064] ***********************************************************************
+2014-07-14 06:57:34.505, _Info_                WS   [00002136:00004368] WinStoreBroker::GetParentalControlSettings: Entering
+2014-07-14 06:57:34.521, _Info_                WS   [00002136:00004368] CNetworkState: Connected = true, Overage = false, MaxDownloadSize = -1
+2014-07-14 06:57:34.521, _Info_                WS   [00002136:00004368] WinStoreBroker::GetParentalControlSettings: SID for current user is S-1-5-21-3693394281-3829146402-814412587-1132
+2014-07-14 06:57:34.521, _Info_                WS   [00002136:00004368] WinStoreBroker::GetParentalControlSettings: not enabled; IsWPCEnabled returned 0x00000000
+2014-07-14 06:57:34.521, _Info_                WS   [00002136:00004368] WinStoreBroker::GetParentalControlSettings: Leaving with a result of 0x0
+2014-07-14 06:57:34.693, _Info_                WS   [00002136:00004368] WinStoreBroker::QosSessionSetEnvironmentStr: Entering.
+2014-07-14 06:57:34.693, _Info_                WS   [00002136:00004368] WinStoreBroker::QosSessionSetEnvironmentStr: Leaving with a result of 0x0
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::QosSessionSetChannelPartnerId: Entering.
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::QosSessionSetChannelPartnerId: Leaving with a result of 0x0
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::SetChromeLocale: Entering for [es-ES].
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] DiscoveryService::SetChromeLocale(): ChromeLocale is set to 'es-ES'
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::SetChromeLocale: Leaving with a result of 0x0
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::SetPageVersion: Entering for [190].
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] Globals::SetPageVersion: Setting PageVersion to: [190]
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::SetPageVersion: Leaving with a result of 0x0
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::GetInstallControl: Entering
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] WinStoreBroker::GetInstallControl: Leaving with a result of 0x0
+2014-07-14 06:57:34.740, _Info_                WS   [00002136:00004368] ProgressDispatcher::RegisterHandler: registered handler {49994037-4161-4F16-BA5E-486AC49C7D3A} (cookie=1, git=513)
+2014-07-14 06:57:34.771, _Info_                WS   [00002136:00004368] WinStoreBroker::QosLaunchScenarioSuccess: Entering.
+2014-07-14 06:57:34.771, _Info_                WS   [00002136:00004368] WinStoreBroker::QosLaunchScenarioSuccess: Leaving with a result of 0x0
+2014-07-14 06:57:35.771, _Info_                WS   [00002136:00004368] WinStoreBroker::UpdateLiveTile: Entering.
+2014-07-14 06:57:35.771, _Info_                WS   [00002136:00005064] CNetworkState: Connected = true, Overage = false, MaxDownloadSize = -1
+2014-07-14 06:57:35.802, _Info_                WS   [00002136:00004616] ***********************************************************************
+2014-07-14 06:57:35.802, _Info_                WS   [00002136:00004616] Process name: C:\WINDOWS\WinStore\WSHost.exe
+2014-07-14 06:57:35.802, _Info_                WS   [00002136:00004616] DLL name: C:\Windows\System32\WSShared.dll
+2014-07-14 06:57:35.802, _Info_                WS   [00002136:00004616] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 06:57:35.802, _Info_                WS   [00002136:00004616] WinStoreUI QFE version: 0
+2014-07-14 06:57:35.802, _Info_                WS   [00002136:00004616] ***********************************************************************
+2014-07-14 06:57:35.834, _Info_                WS   [00002136:00005064] Globals::InitializePhase1: user is opted in to BI
+2014-07-14 06:57:35.834, _Info_                WS   [00002136:00004160] WinStoreBroker::GetParentalControlSettings: Entering
+2014-07-14 06:57:35.834, _Info_                WS   [00002136:00004160] WinStoreBroker::GetParentalControlSettings: SID for current user is S-1-5-21-3693394281-3829146402-814412587-1132
+2014-07-14 06:57:35.834, _Info_                WS   [00002136:00004160] WinStoreBroker::GetParentalControlSettings: not enabled; IsWPCEnabled returned 0x00000000
+2014-07-14 06:57:35.834, _Info_                WS   [00002136:00004160] WinStoreBroker::GetParentalControlSettings: Leaving with a result of 0x0
+2014-07-14 06:57:35.834, _Info_                WS   [00002136:00004160] WinStoreCache::DoQuery:  Provider 2 returned 32 bytes (0xb98d99c0) for GetParentalControls
+2014-07-14 06:57:35.849, _Error_               WS   [00002136:00005064] DiscoveryService::InstalledLocales: GetApplicationLanguages failed, hr=0x80073d54
+2014-07-14 06:57:35.849, _Info_                WS   [00002136:00005064] DiscoveryService::InstalledLocales: set to en-us
+2014-07-14 06:57:35.849, _Info_                WS   [00002136:00005064] DiscoveryService::Country(): set to ES
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] DiscoveryService::SetMarket(): Market is set to 'ES'
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] DiscoveryService::SetChromeLocale(): ChromeLocale is set to 'en-US'
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] WinStoreBroker::SetChromeLocale: Entering for [en-US].
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] DiscoveryService::SetChromeLocale(): ChromeLocale is set to 'en-US'
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] WinStoreBroker::SetChromeLocale: Leaving with a result of 0x0
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] Globals::ExtractPageVersion: Setting PageVersion to [190]
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] WinStoreBroker::SetPageVersion: Entering for [190].
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] Globals::SetPageVersion: Setting PageVersion to: [190]
+2014-07-14 06:57:35.865, _Info_                WS   [00002136:00005064] WinStoreBroker::SetPageVersion: Leaving with a result of 0x0
+2014-07-14 06:57:35.880, _Info_                WS   [00002136:00004368] DiscoveryService::SetOSInfo(): Edition: edition, Type: type
+2014-07-14 06:57:35.880, _Info_                WS   [00002136:00004368] DiscoveryService::PreferredLocales: set to es-ES.en-US.en.es-MX.es-CO.es
+2014-07-14 06:57:35.880, _Info_                WS   [00002136:00004368] DiscoveryService::ProcessorTypeFilter(): processor is x64
+2014-07-14 06:57:35.880, _Info_                WS   [00002136:00004368] SQR::GetHomePageData: querying cache, fAllowExpired = 0, fIsLiveTile = 1
+2014-07-14 06:57:35.880, _Info_                WS   [00002136:00004368] WinStoreBroker::UpdateLiveTile: Leaving with a result of 0x0
+2014-07-14 06:57:36.162, _Info_                WS   [00002136:00004020] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 06:57:36.162, _Info_                WS   [00002136:00004020] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 06:57:36.162, _Info_                WS   [00002136:00004020] CUpdateCountDispatcher::RegisterHandler - subscribed to WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 06:57:36.177, _Info_                WS   [00002136:00004368] CUpdateCountDispatcher::OnUpdateCountEvent: 20 updates available
+2014-07-14 06:57:36.177, _Info_                WS   [00002136:00004368] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 06:57:36.177, _Info_                WS   [00002136:00004368] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 06:57:36.193, _Info_                WS   [00002136:00004368] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 06:57:36.193, _Info_                WS   [00002136:00004368] UpdateStoreBadge - Exiting.
+2014-07-14 06:57:36.443, _Info_                WS   [00002136:00004160] DownloadUrl - OK (200) for https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/HomePageData/pt/x64/lf/1/os/edition/type
+2014-07-14 06:57:36.458, _Info_                WS   [00002136:00004160] WinStoreCache::DoQuery:  Provider 0 returned 2640 bytes (0xb98af230) for HomePageData
+2014-07-14 06:57:36.474, _Info_                WS   [00002136:00004020] WindowsStoreCache::DoCheckCacheDiskUsage: Disk usage is 0.000025 percent
+2014-07-14 06:57:36.615, _Info_                WS   [00002136:00004160] DownloadUrl - OK (200) for https://wscont.apps.microsoft.com/winstore/6.3.0.1/100/ES/es-es/MS/65/featuresbe0e9faf-3f22-41ac-9594-8a41468fc0c4.json
+2014-07-14 06:57:36.615, _Info_                WS   [00002136:00004160] WinStoreCache::DoQuery:  Provider 4 returned 4016 bytes (0xbc714df0) for https://wscont.apps.microsoft.com/winstore/6.3.0.1/100/ES/es-es/MS/65/featuresbe0e9faf-3f22-41ac-9594-8a41468fc0c4.json
+2014-07-14 06:57:36.646, _Info_                WS   [00002136:00004160] CHttpRequest::UploadAndFetchResourceByUrl: https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/Apps/p/yourapps
+2014-07-14 06:57:36.755, _Info_                WS   [00002136:00004160] PostDataToUrl - OK (200) for https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/Apps/p/yourapps
+2014-07-14 06:57:36.755, _Info_                WS   [00002136:00004160] ResolutionScale is 100; using 1x image folder
+2014-07-14 06:57:36.771, _Info_                WS   [00002136:00004160] WinStoreCache::DoQuery:  Provider 0 returned 17782 bytes (0xbc77f6e0) for MyApps
+2014-07-14 06:57:37.474, _Info_                WS   [00002136:00004368] WinStoreBroker::UpdateLiveTile: Entering.
+2014-07-14 06:57:37.474, _Info_                WS   [00002136:00004160] WinStoreBroker::QosSessionSetClientGeo: Entering.
+2014-07-14 06:57:37.474, _Info_                WS   [00002136:00004160] Globals::SetGeoName: Setting GeoName to: [CO]
+2014-07-14 06:57:37.474, _Info_                WS   [00002136:00004160] WinStoreBroker::QosSessionSetClientGeo: Leaving with a result of 0x0
+2014-07-14 06:57:37.490, _Info_                WS   [00002136:00004368] WinStoreBroker::UpdateLiveTile: Leaving with a result of 0x1
+2014-07-14 06:57:37.693, _Info_                WS   [00002136:00004020] WinStoreBroker::SetBISessionId: Entering for [d6d8747d04904a50b7f98ee349e8f504].
+2014-07-14 06:57:37.693, _Info_                WS   [00002136:00004020] WinStoreBroker::SetBISessionId: Leaving with a result of 0x0
+2014-07-14 06:57:42.959, _Info_                WS   [00002136:00004020] WinStoreBroker::RecordStoreActivity: Entering.
+2014-07-14 06:57:42.959, _Info_                WS   [00002136:00004020] WinStoreBroker::RecordStoreActivity: Leaving with a result of 0x0
+2014-07-14 06:57:42.959, _Info_                WS   [00002136:00004020] WinStoreBroker::GetDigitalMarker: Entering
+2014-07-14 06:57:43.818, _Info_                WS   [00002136:00004020] WinStoreBroker::GetDigitalMarker: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] CUpdateCountDispatcher::UnregisterHandler - unsubscribing from WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] WinStoreBroker::QosCloseSession: Entering.
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004020] WinStoreBroker::QosCloseSession: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] WinStoreBroker::RecordStoreActivity: Entering.
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] WinStoreBroker::RecordStoreActivity: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004160] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004160] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004160] CUpdateCountDispatcher::RegisterHandler - subscribed to WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] CUpdateCountDispatcher::OnUpdateCountEvent: 20 updates available
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004160] WinStoreBroker::GetInstallControl: Entering
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004160] WinStoreBroker::GetInstallControl: Leaving with a result of 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004160] CProgressDispatcher::UnregisterHandler: Unregistered handler {49994037-4161-4F16-BA5E-486AC49C7D3A} (cookie=1, git=513)
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 06:57:55.850, _Info_                WS   [00002136:00004368] UpdateStoreBadge - Exiting.
+2014-07-14 07:04:08.172, _Info_                WS   [00002136:00007936] CUpdateCountDispatcher::OnUpdateCountEvent: 20 updates available
+2014-07-14 07:04:08.172, _Info_                WS   [00002136:00007936] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 07:04:08.173, _Info_                WS   [00002136:00007936] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 07:04:08.174, _Info_                WS   [00002136:00007936] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 07:04:08.174, _Info_                WS   [00002136:00007936] UpdateStoreBadge - Exiting.
+2014-07-14 07:04:08.194, _Info_                WS   [00004232:00004836] ***********************************************************************
+2014-07-14 07:04:08.194, _Info_                WS   [00004232:00004836] Process name: C:\WINDOWS\system32\taskhost.exe
+2014-07-14 07:04:08.194, _Info_                WS   [00004232:00004836] DLL name: C:\WINDOWS\winstore\WinStoreUI.dll
+2014-07-14 07:04:08.195, _Info_                WS   [00004232:00004836] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 07:04:08.195, _Info_                WS   [00004232:00004836] WinStoreUI QFE version: 0
+2014-07-14 07:04:08.195, _Info_                WS   [00004232:00004836] ***********************************************************************
+2014-07-14 07:04:08.195, _Info_                WS   [00004232:00002724] CWSTileUpdateHandler::Worker: Broker is handling badge updates.
+2014-07-14 07:07:51.223, _Info_                WS   [00003000:00006500] ***********************************************************************
+2014-07-14 07:07:51.224, _Info_                WS   [00003000:00006500] Process name: C:\WINDOWS\system32\taskhost.exe
+2014-07-14 07:07:51.224, _Info_                WS   [00003000:00006500] DLL name: C:\WINDOWS\winstore\WinStoreUI.dll
+2014-07-14 07:07:51.225, _Info_                WS   [00003000:00006500] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 07:07:51.225, _Info_                WS   [00003000:00006500] WinStoreUI QFE version: 0
+2014-07-14 07:07:51.225, _Info_                WS   [00003000:00006500] ***********************************************************************
+2014-07-14 07:07:51.225, _Info_                WS   [00003000:00007084] CWSTileUpdateHandler::Worker: Broker is handling badge updates.
+2014-07-14 07:07:55.848, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 07:12:50.878, _Info_                WS   [00002136:00005096] WinStoreBroker::GetParentalControlSettings: Entering
+2014-07-14 07:12:50.879, _Info_                WS   [00002136:00005096] WinStoreBroker::GetParentalControlSettings: SID for current user is S-1-5-21-3693394281-3829146402-814412587-1132
+2014-07-14 07:12:50.880, _Info_                WS   [00002136:00005096] WinStoreBroker::GetParentalControlSettings: not enabled; IsWPCEnabled returned 0x00000000
+2014-07-14 07:12:50.880, _Info_                WS   [00002136:00005096] WinStoreBroker::GetParentalControlSettings: Leaving with a result of 0x0
+2014-07-14 07:12:50.880, _Info_                WS   [00002136:00005096] WinStoreCache::DoQuery:  Provider 2 returned 32 bytes (0xb992d7d0) for GetParentalControls
+2014-07-14 07:12:50.885, _Info_                WS   [00002136:00005064] DiscoveryService::SetMarket(): Market is set to 'ES'
+2014-07-14 07:12:50.885, _Info_                WS   [00002136:00005064] DiscoveryService::SetChromeLocale(): ChromeLocale is set to 'en-US'
+2014-07-14 07:12:50.886, _Info_                WS   [00002136:00005064] WinStoreBroker::SetChromeLocale: Entering for [en-US].
+2014-07-14 07:12:50.886, _Info_                WS   [00002136:00005064] DiscoveryService::SetChromeLocale(): ChromeLocale is set to 'en-US'
+2014-07-14 07:12:50.886, _Info_                WS   [00002136:00005064] WinStoreBroker::SetChromeLocale: Leaving with a result of 0x0
+2014-07-14 07:12:50.886, _Info_                WS   [00002136:00005064] Globals::ExtractPageVersion: Setting PageVersion to [190]
+2014-07-14 07:12:50.887, _Info_                WS   [00002136:00005064] WinStoreBroker::SetPageVersion: Entering for [190].
+2014-07-14 07:12:50.887, _Info_                WS   [00002136:00005064] Globals::SetPageVersion: Setting PageVersion to: [190]
+2014-07-14 07:12:50.887, _Info_                WS   [00002136:00005064] WinStoreBroker::SetPageVersion: Leaving with a result of 0x0
+2014-07-14 07:17:55.846, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 07:27:55.848, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 07:37:55.851, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 07:47:55.849, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 07:57:55.847, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 08:07:55.847, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 08:17:55.853, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 08:27:55.846, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 08:37:55.852, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 08:47:55.847, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 08:57:55.847, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 09:07:55.856, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 09:17:55.848, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 09:22:42.657, _Info_                WS   [00002136:00007308] WinStoreBroker::GetInstallControl: Entering
+2014-07-14 09:22:42.657, _Info_                WS   [00002136:00007308] WinStoreBroker::GetInstallControl: Leaving with a result of 0x0
+2014-07-14 09:22:42.657, _Info_                WS   [00002136:00007308] ProgressDispatcher::RegisterHandler: registered handler {49994037-4161-4F16-BA5E-486AC49C7D3A} (cookie=2, git=769)
+2014-07-14 09:22:42.819, _Info_                WS   [00002136:00007936] CUpdateCountDispatcher::OnUpdateCountEvent: 0 updates available
+2014-07-14 09:22:42.819, _Info_                WS   [00002136:00007936] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 09:22:42.823, _Info_                WS   [00002136:00007308] WinStoreBroker::RecordStoreActivity: Entering.
+2014-07-14 09:22:42.823, _Info_                WS   [00002136:00007308] WinStoreBroker::RecordStoreActivity: Leaving with a result of 0x0
+2014-07-14 09:22:42.824, _Info_                WS   [00002136:00007936] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 09:22:42.826, _Info_                WS   [00002136:00007936] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 09:22:42.827, _Info_                WS   [00002136:00007936] UpdateStoreBadge - Exiting.
+2014-07-14 09:22:43.307, _Info_                WS   [00002136:00007308] WinStoreBroker::SetBISessionId: Entering for [71042ac9998a442b8a64c2b98df0c04c].
+2014-07-14 09:22:43.307, _Info_                WS   [00002136:00007308] WinStoreBroker::SetBISessionId: Leaving with a result of 0x0
+2014-07-14 09:22:43.307, _Info_                WS   [00002136:00007936] WinStoreBroker::QosSessionSetLatestCaller: Entering.
+2014-07-14 09:22:43.307, _Info_                WS   [00002136:00007936] WinStoreBroker::QosSessionSetLatestCaller: Leaving with a result of 0x0
+2014-07-14 09:22:43.362, _Info_                WS   [00002136:00007308] WinStoreBroker::UpdateLiveTile: Entering.
+2014-07-14 09:22:43.367, _Info_                WS   [00002136:00007308] DiscoveryService::Country(): set to ES
+2014-07-14 09:22:43.367, _Info_                WS   [00002136:00007308] DiscoveryService::ProcessorTypeFilter(): processor is x64
+2014-07-14 09:22:43.367, _Info_                WS   [00002136:00007308] SQR::GetHomePageData: querying cache, fAllowExpired = 0, fIsLiveTile = 1
+2014-07-14 09:22:43.367, _Info_                WS   [00002136:00007308] WinStoreBroker::UpdateLiveTile: Leaving with a result of 0x0
+2014-07-14 09:22:43.374, _Info_                WS   [00002136:00001696] WinStoreBroker::QosSessionSetClientGeo: Entering.
+2014-07-14 09:22:43.374, _Info_                WS   [00002136:00001696] Globals::SetGeoName: Setting GeoName to: [CO]
+2014-07-14 09:22:43.374, _Info_                WS   [00002136:00001696] WinStoreBroker::QosSessionSetClientGeo: Leaving with a result of 0x0
+2014-07-14 09:22:43.881, _Info_                WS   [00002136:00007936] DownloadUrl - OK (200) for https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/HomePageData/pt/x64/lf/1/os/edition/type
+2014-07-14 09:22:43.882, _Info_                WS   [00002136:00007936] WinStoreCache::DoQuery:  Provider 0 returned 2640 bytes (0xbcab0400) for HomePageData
+2014-07-14 09:22:43.995, _Info_                WS   [00002136:00007936] CHttpRequest::UploadAndFetchResourceByUrl: https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/Apps/p/yourapps
+2014-07-14 09:22:44.107, _Info_                WS   [00002136:00007936] PostDataToUrl - OK (200) for https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/Apps/p/yourapps
+2014-07-14 09:22:44.108, _Info_                WS   [00002136:00007936] WinStoreCache::DoQuery:  Provider 0 returned 17782 bytes (0xbc755da0) for MyApps
+2014-07-14 09:22:44.166, _Info_                WS   [00002136:00007308] WinStoreBroker::QosSessionSetCDNInfo: Entering.
+2014-07-14 09:22:44.167, _Info_                WS   [00002136:00007308] WinStoreBroker::QosSessionSetCDNInfo: Leaving with a result of 0x0
+2014-07-14 09:22:47.619, _Info_                WS   [00002136:00007936] WinStoreBroker::StartWUService: Entering.
+2014-07-14 09:22:47.621, _Info_                WS   [00002136:00007936] WinStoreBroker::StartWUService: Leaving with a result of 0x0
+2014-07-14 09:22:47.621, _Info_                WS   [00002136:00007308] WinStoreBroker::IsInstalledInPackageManager: Entering for pfn Microsoft.SkypeApp_kzf8qxf38zg5c
+2014-07-14 09:22:47.664, _Info_                WS   [00002136:00007308] WinStoreBroker::IsInstalledInPackageManager: Leaving with result of 0x00000000, fInstalled is 1, fHasShortcut is 1
+2014-07-14 09:22:58.126, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 09:22:58.126, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 09:22:58.127, _Info_                WS   [00002136:00007308] CUpdateCountDispatcher::UnregisterHandler - unsubscribing from WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 09:22:58.128, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 09:22:58.128, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 09:22:58.144, _Info_                WS   [00002136:00007936] WinStoreBroker::RecordStoreActivity: Entering.
+2014-07-14 09:22:58.144, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 09:22:58.144, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 09:22:58.144, _Info_                WS   [00002136:00001696] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 09:22:58.144, _Info_                WS   [00002136:00001696] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 09:22:58.144, _Info_                WS   [00002136:00007936] WinStoreBroker::RecordStoreActivity: Leaving with a result of 0x0
+2014-07-14 09:22:58.145, _Info_                WS   [00002136:00007308] CUpdateCountDispatcher::RegisterHandler - subscribed to WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 09:22:58.145, _Info_                WS   [00002136:00007936] CUpdateCountDispatcher::OnUpdateCountEvent: 0 updates available
+2014-07-14 09:22:58.145, _Info_                WS   [00002136:00007936] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 09:22:58.145, _Info_                WS   [00002136:00007308] WinStoreBroker::GetInstallControl: Entering
+2014-07-14 09:22:58.145, _Info_                WS   [00002136:00007308] WinStoreBroker::GetInstallControl: Leaving with a result of 0x0
+2014-07-14 09:22:58.146, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 09:22:58.146, _Info_                WS   [00002136:00007308] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 09:22:58.146, _Info_                WS   [00002136:00001696] CProgressDispatcher::UnregisterHandler: Unregistered handler {49994037-4161-4F16-BA5E-486AC49C7D3A} (cookie=2, git=769)
+2014-07-14 09:22:58.146, _Info_                WS   [00002136:00001696] CUpdateCountDispatcher::UnregisterHandler - unsubscribing from WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 09:22:58.146, _Info_                WS   [00002136:00001696] WinStoreBroker::QosCloseSession: Entering.
+2014-07-14 09:22:58.146, _Info_                WS   [00002136:00001696] WinStoreBroker::QosCloseSession: Leaving with a result of 0x0
+2014-07-14 09:22:58.147, _Info_                WS   [00002136:00007936] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 09:22:58.149, _Info_                WS   [00002136:00007936] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 09:22:58.149, _Info_                WS   [00002136:00007936] UpdateStoreBadge - Exiting.
+2014-07-14 09:32:58.128, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 09:42:58.128, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 09:52:58.133, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 10:02:58.128, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 10:12:58.128, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 10:13:49.307, _Info_                WS   [00002136:00002928] WinStoreBroker::GetInstallControl: Entering
+2014-07-14 10:13:49.307, _Info_                WS   [00002136:00002928] WinStoreBroker::GetInstallControl: Leaving with a result of 0x0
+2014-07-14 10:13:49.307, _Info_                WS   [00002136:00002928] ProgressDispatcher::RegisterHandler: registered handler {49994037-4161-4F16-BA5E-486AC49C7D3A} (cookie=3, git=1795)
+2014-07-14 10:13:49.313, _Info_                WS   [00002136:00002928] WinStoreBroker::RecordStoreActivity: Entering.
+2014-07-14 10:13:49.313, _Info_                WS   [00002136:00002928] WinStoreBroker::RecordStoreActivity: Leaving with a result of 0x0
+2014-07-14 10:13:49.429, _Info_                WS   [00002136:00006168] WinStoreBroker::QosSessionSetLatestCaller: Entering.
+2014-07-14 10:13:49.429, _Info_                WS   [00002136:00006168] WinStoreBroker::QosSessionSetLatestCaller: Leaving with a result of 0x0
+2014-07-14 10:13:49.429, _Info_                WS   [00002136:00002928] WinStoreBroker::SetBISessionId: Entering for [].
+2014-07-14 10:13:49.430, _Info_                WS   [00002136:00002928] WinStoreBroker::SetBISessionId: Leaving with a result of 0x0
+2014-07-14 10:13:49.744, _Info_                WS   [00002136:00002928] WinStoreBroker::UpdateLiveTile: Entering.
+2014-07-14 10:13:49.744, _Info_                WS   [00002136:00006356] WinStoreBroker::QosSessionSetClientGeo: Entering.
+2014-07-14 10:13:49.744, _Info_                WS   [00002136:00006356] Globals::SetGeoName: Setting GeoName to: [CO]
+2014-07-14 10:13:49.744, _Info_                WS   [00002136:00006356] WinStoreBroker::QosSessionSetClientGeo: Leaving with a result of 0x0
+2014-07-14 10:13:49.756, _Info_                WS   [00002136:00002928] SQR::GetHomePageData: querying cache, fAllowExpired = 0, fIsLiveTile = 1
+2014-07-14 10:13:49.756, _Info_                WS   [00002136:00002928] WinStoreBroker::UpdateLiveTile: Leaving with a result of 0x0
+2014-07-14 10:13:49.812, _Info_                WS   [00002136:00006356] CHttpRequest::UploadAndFetchResourceByUrl: https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/Apps/p/yourapps
+2014-07-14 10:13:49.904, _Info_                WS   [00002136:00006168] WinStoreBroker::StartWUService: Entering.
+2014-07-14 10:13:49.904, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: Entering for pfn Microsoft.SkypeApp_kzf8qxf38zg5c
+2014-07-14 10:13:49.917, _Info_                WS   [00002136:00006168] WinStoreBroker::StartWUService: Leaving with a result of 0x0
+2014-07-14 10:13:49.976, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: Leaving with result of 0x00000000, fInstalled is 1, fHasShortcut is 1
+2014-07-14 10:13:50.399, _Info_                WS   [00002136:00006356] PostDataToUrl - OK (200) for https://next-services.apps.microsoft.com/browse/6.3.9600-0/776/en-US_es-ES.en-US.en.es-MX.es-CO.es/c/ES/cp/10010878/Apps/p/yourapps
+2014-07-14 10:13:50.401, _Info_                WS   [00002136:00006356] WinStoreCache::DoQuery:  Provider 0 returned 17782 bytes (0xbcb780b0) for MyApps
+2014-07-14 10:13:54.948, _Info_                WS   [00002136:00002928] WinStoreBroker::StartWUService: Entering.
+2014-07-14 10:13:54.948, _Info_                WS   [00002136:00002928] WinStoreBroker::StartWUService: Leaving with a result of 0x0
+2014-07-14 10:13:54.948, _Info_                WS   [00002136:00002928] WinStoreBroker::IsInstalledInPackageManager: Entering for pfn Microsoft.SkypeWiFi_kzf8qxf38zg5c
+2014-07-14 10:13:54.959, _Info_                WS   [00002136:00002928] WinStoreBroker::IsInstalledInPackageManager: PackageIdFromPackageFamilyName failed with 0x80070490, but the error is ignored
+2014-07-14 10:13:54.959, _Info_                WS   [00002136:00002928] WinStoreBroker::IsInstalledInPackageManager: Leaving with result of 0x00000000, fInstalled is 0, fHasShortcut is 0
+2014-07-14 10:13:57.051, _Info_                WS   [00002136:00002928] WinStoreBroker::StartWUService: Entering.
+2014-07-14 10:13:57.051, _Info_                WS   [00002136:00002928] WinStoreBroker::StartWUService: Leaving with a result of 0x0
+2014-07-14 10:13:57.051, _Info_                WS   [00002136:00002928] WinStoreBroker::IsInstalledInPackageManager: Entering for pfn Microsoft.SkypeApp_kzf8qxf38zg5c
+2014-07-14 10:13:57.070, _Info_                WS   [00002136:00002928] WinStoreBroker::IsInstalledInPackageManager: Leaving with result of 0x00000000, fInstalled is 1, fHasShortcut is 1
+2014-07-14 10:14:01.615, _Info_                WS   [00002136:00006152] WinStoreBroker::StartWUService: Entering.
+2014-07-14 10:14:01.615, _Info_                WS   [00002136:00006152] WinStoreBroker::StartWUService: Leaving with a result of 0x0
+2014-07-14 10:14:01.615, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: Entering for pfn Microsoft.SkypeWiFi_kzf8qxf38zg5c
+2014-07-14 10:14:01.626, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: PackageIdFromPackageFamilyName failed with 0x80070490, but the error is ignored
+2014-07-14 10:14:01.626, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: Leaving with result of 0x00000000, fInstalled is 0, fHasShortcut is 0
+2014-07-14 10:14:05.207, _Info_                WS   [00002136:00006152] WinStoreBroker::CheckApplicability: Entering for appId 47588cf4-d990-42f5-8d47-1c9061d56b3e, releaseId 5ca39e7d-4cec-49d6-9466-4fda12cfe848
+2014-07-14 10:14:05.207, _Info_                WS   [00002136:00006152] SearchUpdatePackages: Entering. AppId = 47588cf4-d990-42f5-8d47-1c9061d56b3e, WU Installed Flag = 2, OnlineSearch = 1, Force = 0, Scope = 2, Client ID = WSAcquisition
+2014-07-14 10:14:05.207, _Info_                WS   [00002136:00006152] SearchUpdatePackages: online scan = 1, query = "AppCategoryIDs contains '47588cf4-d990-42f5-8d47-1c9061d56b3e'", CallerId = WSAcquisition
+2014-07-14 10:14:05.207, _Info_                WS   [00002136:00006152] GetUpdateSearcher: Entering.  Scope = 2, ClientApplicationID = WSAcquisition
+2014-07-14 10:14:05.209, _Info_                WS   [00002136:00006168] WinStoreBroker::QosScenarioAddHint: Entering.
+2014-07-14 10:14:05.209, _Info_                WS   [00002136:00006168] WinStoreBroker::QosScenarioAddHint: Leaving with a result of 0x0
+2014-07-14 10:14:07.368, _Info_                WS   [00002136:00006152] SearchUpdatePackages: ISearchResult::ResultCode: 2
+2014-07-14 10:14:07.368, _Info_                WS   [00002136:00006152] SearchUpdatePackages result: 0x00000000
+2014-07-14 10:14:07.368, _Info_                WS   [00002136:00006152] CheckApplicability: Found 4 update packages for appID 47588cf4-d990-42f5-8d47-1c9061d56b3e
+2014-07-14 10:14:07.369, _Info_                WS   [00002136:00006152] WinStoreBroker::CheckApplicability: Leaving with a result of 0x0, download size 9480019, release id 
+2014-07-14 10:14:10.559, _Info_                WS   [00002136:00006152] WinStoreBroker::StartWUService: Entering.
+2014-07-14 10:14:10.560, _Info_                WS   [00002136:00006152] WinStoreBroker::StartWUService: Leaving with a result of 0x0
+2014-07-14 10:14:10.560, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: Entering for pfn Microsoft.SkypeApp_kzf8qxf38zg5c
+2014-07-14 10:14:10.576, _Info_                WS   [00002136:00006152] WinStoreBroker::IsInstalledInPackageManager: Leaving with result of 0x00000000, fInstalled is 1, fHasShortcut is 1
+2014-07-14 10:14:10.928, _Info_                WS   [00005992:00005304] ***********************************************************************
+2014-07-14 10:14:10.928, _Info_                WS   [00005992:00005304] Process name: C:\WINDOWS\system32\taskhost.exe
+2014-07-14 10:14:10.928, _Info_                WS   [00005992:00005304] DLL name: C:\WINDOWS\winstore\WinStoreUI.dll
+2014-07-14 10:14:10.928, _Info_                WS   [00005992:00005304] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-14 10:14:10.928, _Info_                WS   [00005992:00005304] WinStoreUI QFE version: 0
+2014-07-14 10:14:10.928, _Info_                WS   [00005992:00005304] ***********************************************************************
+2014-07-14 10:14:10.929, _Info_                WS   [00005992:00001292] CWSTileUpdateHandler::Worker: Not showing badge because Store is disabled, SAU is enabled, or current user is LocalAdmin.
+2014-07-14 10:14:10.929, _Info_                WS   [00005992:00001292] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 10:14:10.933, _Info_                WS   [00005992:00001292] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 10:14:10.935, _Info_                WS   [00005992:00001292] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 10:14:10.935, _Info_                WS   [00005992:00001292] UpdateStoreBadge - Exiting.
+2014-07-14 10:14:11.770, _Info_                WS   [00002136:00006152] WinStoreBroker::UpdateLiveTile: Entering.
+2014-07-14 10:14:11.771, _Info_                WS   [00002136:00006168] WinStoreBroker::QosSessionSetClientGeo: Entering.
+2014-07-14 10:14:11.771, _Info_                WS   [00002136:00006168] Globals::SetGeoName: Setting GeoName to: [CO]
+2014-07-14 10:14:11.771, _Info_                WS   [00002136:00006168] WinStoreBroker::QosSessionSetClientGeo: Leaving with a result of 0x0
+2014-07-14 10:14:11.773, _Info_                WS   [00002136:00006152] WinStoreBroker::UpdateLiveTile: Leaving with a result of 0x1
+2014-07-14 10:14:24.770, _Info_                WS   [00002136:00006152] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 10:14:24.770, _Info_                WS   [00002136:00006152] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 10:14:24.771, _Info_                WS   [00002136:00006152] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 10:14:24.771, _Info_                WS   [00002136:00006152] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 10:14:24.772, _Info_                WS   [00002136:00006152] WinStoreBroker::QosCloseSession: Entering.
+2014-07-14 10:14:24.772, _Info_                WS   [00002136:00006152] WinStoreBroker::QosCloseSession: Leaving with a result of 0x0
+2014-07-14 10:14:24.773, _Info_                WS   [00002136:00006168] WinStoreBroker::GetInstallControl: Entering
+2014-07-14 10:14:24.773, _Info_                WS   [00002136:00006168] WinStoreBroker::GetInstallControl: Leaving with a result of 0x0
+2014-07-14 10:14:24.773, _Info_                WS   [00002136:00006168] WinStoreBroker::GetUpdateCountSource: Entering
+2014-07-14 10:14:24.773, _Info_                WS   [00002136:00006168] WinStoreBroker::GetUpdateCountSource: Leaving with a result of 0x0
+2014-07-14 10:14:24.773, _Info_                WS   [00002136:00006168] CUpdateCountDispatcher::RegisterHandler - subscribed to WNF_WUA_NUM_PER_USER_UPDATES notifications.
+2014-07-14 10:14:24.773, _Info_                WS   [00002136:00002928] CUpdateCountDispatcher::OnUpdateCountEvent: 0 updates available
+2014-07-14 10:14:24.774, _Info_                WS   [00002136:00002928] UpdateStoreBadge - Entering for 0 updates.
+2014-07-14 10:14:24.774, _Info_                WS   [00002136:00006168] WinStoreBroker::RecordStoreActivity: Entering.
+2014-07-14 10:14:24.774, _Info_                WS   [00002136:00006168] WinStoreBroker::RecordStoreActivity: Leaving with a result of 0x0
+2014-07-14 10:14:24.774, _Info_                WS   [00002136:00006152] CProgressDispatcher::UnregisterHandler: Unregistered handler {49994037-4161-4F16-BA5E-486AC49C7D3A} (cookie=3, git=1795)
+2014-07-14 10:14:24.775, _Info_                WS   [00002136:00002928] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-14 10:14:24.776, _Info_                WS   [00002136:00002928] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-14 10:14:24.776, _Info_                WS   [00002136:00002928] UpdateStoreBadge - Exiting.
+2014-07-14 10:24:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 10:34:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 10:44:24.771, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 10:54:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 11:04:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 11:14:24.772, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 11:24:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 11:34:24.775, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 11:44:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 11:54:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 12:04:24.776, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 12:14:24.771, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 12:24:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 12:34:24.774, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 12:44:24.775, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 12:54:24.769, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 13:04:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 13:14:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 13:24:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 13:34:24.771, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 13:44:24.771, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 13:54:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 14:04:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 14:14:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 14:24:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 14:34:24.771, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 14:44:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 14:54:24.769, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 15:04:24.777, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 15:14:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 15:24:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 15:34:24.772, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 15:44:24.776, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 15:54:24.776, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 16:04:24.768, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 16:14:24.770, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 16:24:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 16:34:24.774, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 16:44:24.775, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 16:54:24.773, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 17:04:24.775, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 17:14:24.774, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 17:24:24.774, _Info_                WS   [00002136:00005064] HostWndProc: New or outstanding ref's, aborting shutdown
+2014-07-14 17:28:25.393, _Info_                WS   [00002136:00005064] WinStoreBroker::HostCallback: installingosupdate = 0
+2014-07-15 06:48:05.223, _Info_                WS   [00007520:00003360] ***********************************************************************
+2014-07-15 06:48:05.238, _Info_                WS   [00007520:00003360] Process name: C:\WINDOWS\Explorer.EXE
+2014-07-15 06:48:05.238, _Info_                WS   [00007520:00003360] DLL name: C:\WINDOWS\system32\WSShared.dll
+2014-07-15 06:48:05.238, _Info_                WS   [00007520:00003360] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-15 06:48:05.238, _Info_                WS   [00007520:00003360] WinStoreUI QFE version: 0
+2014-07-15 06:48:05.238, _Info_                WS   [00007520:00003360] ***********************************************************************
+2014-07-15 06:54:14.782, _Info_                WS   [00004080:00001188] ***********************************************************************
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00001188] Process name: C:\WINDOWS\system32\taskhost.exe
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00001188] DLL name: C:\WINDOWS\winstore\WinStoreUI.dll
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00001188] Client version: 776, Windows build: 9600.16384.amd64fre.winblue_rtm.130821-1623
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00001188] WinStoreUI QFE version: 0
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00001188] ***********************************************************************
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00007384] CWSTileUpdateHandler::Worker: Not showing badge because Store is disabled, SAU is enabled, or current user is LocalAdmin.
+2014-07-15 06:54:14.783, _Info_                WS   [00004080:00007384] UpdateStoreBadge - Entering for 0 updates.
+2014-07-15 06:54:15.038, _Info_                WS   [00004080:00007384] UpdateStoreBadge: loadXML returned 0x0 for [<badge value="0"/>]
+2014-07-15 06:54:15.048, _Info_                WS   [00004080:00007384] UpdateStoreBadge: Return value from badge updater is 0x0
+2014-07-15 06:54:15.048, _Info_                WS   [00004080:00007384] UpdateStoreBadge - Exiting.

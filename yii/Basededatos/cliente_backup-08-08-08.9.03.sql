@@ -1,0 +1,59 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.12
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 08-08-2014 a las 09:05:18
+-- Versión del servidor: 5.6.16
+-- Versión de PHP: 5.5.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `proyectodespacho`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `id` varchar(45) NOT NULL,
+  `Nombre` varchar(45) DEFAULT NULL,
+  `Apellido` varchar(45) DEFAULT NULL,
+  `CC` int(11) DEFAULT NULL,
+  `Direccion` varchar(45) DEFAULT NULL,
+  `Telefono` int(11) DEFAULT NULL,
+  `Fecha_Creacion` datetime DEFAULT NULL,
+  `Fecha_Modificacion` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `Nombre`, `Apellido`, `CC`, `Direccion`, `Telefono`, `Fecha_Creacion`, `Fecha_Modificacion`) VALUES
+('2292464d-a1db-1952-f371-71157ecbf950', 'FABIO', ' ARISTIZABAL ANGEL', NULL, 'CRA 17 # 24-46 APTO 402 ED. FADIA', 2147483647, '2014-08-06 13:16:55', '2014-08-06 13:16:55'),
+('5556231b-fc18-383a-055c-5f91eb1f21ed', 'LAURA ', 'BEARD SARRAZOLA', 4002681, 'CALLE 10 # 4-24', 8533023, '2014-08-05 14:10:35', '2014-08-05 14:10:35'),
+('5cc108c8-4c68-e554-8a33-c14fd9ab1d5b', 'HUMBERTO', 'MONSALVE GAVIRIA', 701614251, 'CALLE 11 # 10-63', 8304295, '2014-08-01 14:57:12', '2014-08-01 14:57:12'),
+('9e56ad65-e92b-fb6b-9ffc-d5135e89ab35', 'JOSE FERNANDO', 'ARANGO GOMEZ', 718780551, 'CRA 50 # 2-143', 2147483647, '2014-08-04 18:19:35', '2014-08-04 18:19:35'),
+('b411e16c-e681-6f11-3da5-e6a9a14855f6', 'MARTIN EMILIO', ' PALACIOS ', NULL, 'CR 40', 26588771, '2014-08-05 15:33:51', '2014-08-05 15:33:51'),
+('c32ed17b-0c72-047e-987d-db94e2e0ec31', 'German Dario', 'Restrepo Andrades', 1568931, 'cr 48 89-87', 8523641, '2014-07-21 16:56:14', '2014-07-21 16:56:14'),
+('d4adb4f2-42a5-6cf7-6e47-fd7ce55636f8', 'ANTONIO DE JESUS', 'TORRES BORJA', 84121274, 'CALLE 99 # 95H-53 BARRIO LA UNION', 8256886, '2014-08-01 07:21:38', '2014-08-01 07:21:38'),
+('d845ba3c-9b68-ec31-fa8a-18a7874083b8', 'ISMAEL ANTONIO', 'ARROYAVE ESCOBAR', 15521739, 'CRA10# 11-54', 8494569, '2014-07-30 15:10:39', '2014-07-30 15:10:39'),
+('f2aa1c08-4217-cd45-80cf-9fc28ff70e6b', 'LUZ ENITH', ' SIMANCA TORRECILLA', NULL, '', NULL, '2014-08-06 12:41:22', '2014-08-06 12:41:22'),
+('f87cf679-04f5-4054-7e99-4f5d40c9c947', 'MIGUEL ANGEL', 'GOMEZ ACEVEDO', 153271520, 'CALLE 20 # 21-47', 8538714, '2014-08-04 17:17:45', '2014-08-04 17:17:45');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

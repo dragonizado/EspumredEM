@@ -1,0 +1,39 @@
+Log started 07/21/2014 at 09:30:53
+Preferred installation mode : qt
+Mode qt successfully initialized
+Executing C:\Bitnami\wampstack-5.4.30-0/servicerun.bat STOP
+Script exit code: 0
+
+Script output:
+ "Stopping services ..."
+
+Script stderr:
+ 
+
+Executing C:\Bitnami\wampstack-5.4.30-0/serviceinstall.bat REMOVE
+Script exit code: 0
+
+Script output:
+ 
+
+Script stderr:
+ 
+
+Executing C:\Bitnami\wampstack-5.4.30-0/servicerun.bat all stop
+Script exit code: 0
+
+Script output:
+ "Stopping services ..."
+
+Script stderr:
+ 
+
+Error reading file C:/Windows/System32/***unknown variable web_server_configuration_directory***/httpd.conf
+Error reading file C:/Windows/System32/***unknown variable web_server_configuration_directory***/httpd.conf
+Error reading file C:/Windows/System32/***unknown variable web_server_configuration_directory***/httpd.conf
+Error reading file C:/Windows/System32/***unknown variable web_server_configuration_directory***/httpd.conf
+Error reading file C:/Windows/System32/***unknown variable web_server_configuration_directory***/httpd.conf
+Error reading file C:/Windows/System32/***unknown variable web_server_configuration_directory***/httpd.conf
+Uninstalling Files
+Deleting registry keys
+Uninstallation completed
