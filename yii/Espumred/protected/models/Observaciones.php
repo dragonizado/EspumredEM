@@ -23,15 +23,15 @@ class Observaciones extends CActiveRecord
 		return array(
 
 		//array('id', 'required'),          //es comentario pero se va a activar  // //-----------		
-		array('id, gerente_comercial, gerente_cartera, gerente_general, correo, fecha, NombreCliente', 'length', 'max'=>45),				
+		array('gerente_comercial, gerente_cartera, gerente_general, correo, fecha, NombreCliente, NombreAsesor,fechautorizacion, fechautorizacion1, fechautorizacion2', 'length', 'max'=>45),				
 		array('observaciones', 'length', 'max'=>900),
 
-		array('fecha, fechautorizacion, fechautorizacion1, fechautorizacion2', 'safe'),
+		// array('fecha, fechautorizacion, fechautorizacion1, fechautorizacion2', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 		array('id, observaciones, gerente_comercial, gerente_cartera, gerente_general, fechautorizacion,
-			fechautorizacion1,fechautorizacion2 correo, fecha, codigo', 'safe', 'on'=>'search'), 				 
-		array('id','default','value'=>Yii::app()->utils->guid,'setOnEmpty'=>false,'on'=>'insert'),
+			fechautorizacion1,fechautorizacion2 correo, fecha, codigo, NombreAsesor', 'safe', 'on'=>'search'), 				 
+		// array('id','default','value'=>Yii::app()->utils->guid,'setOnEmpty'=>false,'on'=>'insert'),
 
 		);
 		
@@ -70,6 +70,7 @@ class Observaciones extends CActiveRecord
 			'fechautorizacion2' => 'Fechautorizacion2',
 			'correo' => 'Correo Electronico',
 			'NombreCliente' => 'Nombre Cliente',
+			'NombreAsesor'=>'NombreAsesor',
 			
 		);
 	}
@@ -101,6 +102,8 @@ class Observaciones extends CActiveRecord
 		$criteria->compare('fechautorizacion1',$this->fechautorizacion1,true);
 		$criteria->compare('fechautorizacion2',$this->fechautorizacion2,true);
 		$criteria->compare('NombreCliente',$this->NombreCliente,true);
+		$criteria->compare('NombreAsesor',$this->NombreAsesor,true);
+
 
 		
 		return new CActiveDataProvider($this, array(

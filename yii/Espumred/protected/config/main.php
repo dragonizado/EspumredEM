@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'EspumRed',
-	'theme'=>"classic",
+	'theme'=>"classic2",
 
 	// preloading 'log' component
 	'preload'=>array('log'),

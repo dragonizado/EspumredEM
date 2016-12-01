@@ -27,7 +27,7 @@ class PrestamosController extends Controller
 	public function accessRules()
 	{
 		return array(
-			
+
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
@@ -78,19 +78,19 @@ class PrestamosController extends Controller
 			$model->attributes=$_POST['Prestamos'];
 
 			 $arrArticulos = Yii::app()->session['Articulo'];
-            for ($i=0; $i <count($arrArticulos) ; $i++) { 
+            for ($i=0; $i <count($arrArticulos) ; $i++) {
             	 $model->descripcion.= $arrArticulos[$i][0]."-".$arrArticulos[$i][1]."-".$arrArticulos[$i][2]."#";
-            	    //se recorrera el arreglo  para asignarle a la descripcion la cantidad de articulos que 
+            	    //se recorrera el arreglo  para asignarle a la descripcion la cantidad de articulos que
                  //seleciono el usuario
             }
            $models = Prestamos::model()->findAll();
            $mayor=0;
 
-           for ($i=0; $i <count($models) ; $i++) { 
+           for ($i=0; $i <count($models) ; $i++) {
 		           	if ($models[$i]['consecutivo']>$mayor) {
 		           		$mayor=$models[$i]['consecutivo'];
 		           	}
-        		  //se recorrera el arreglo  para crear el consecutivo se crea con el ultimo que este luego se 
+        		  //se recorrera el arreglo  para crear el consecutivo se crea con el ultimo que este luego se
                     //le suma una unidad
         	}
 
@@ -129,12 +129,12 @@ class PrestamosController extends Controller
              $k=0;
              $campo="";
 
-             for ($i=0; $i <$variable ; $i++) { 
+             for ($i=0; $i <$variable ; $i++) {
                 $variable++;
                 $d=$model->descripcion[$i];
              if ($d!=="-" && $d!=="#" ) {
                      $campo.=$model->descripcion[$i];
-                }                               
+                }
                 if ($d==="-") {
                     $arrArticulos[$j][$k]=$campo;
                     $campo="";
@@ -145,16 +145,16 @@ class PrestamosController extends Controller
                   $campo="";
                   $j++;
                   $k=0;
-                  
+
                 }
                 if (!isset($model->descripcion[$i+1])) {
                     $variable=0;
                 }
 
-               }                             
+               }
 
           Yii::app()->session['Articulo'] = $arrArticulos;
-          
+
              if($model->save())
              $this->redirect(array('mostrarPlantillaPrestamos','id'=>$model->id));
 
@@ -185,7 +185,7 @@ class PrestamosController extends Controller
 	 */
 	public function actionIndex()
 	{
-		
+
 		  $dataProvider = new CActiveDataProvider('Prestamos', array(
        'criteria' => array('order' => 'consecutivo ASC',  ),
        'pagination' => array('pageSize' => 20,))
@@ -324,7 +324,7 @@ class PrestamosController extends Controller
         echo CJSON::encode($arr);
     }
 
- 
+
 /**En este metodo se ejecuta la funcion agregar item se inicia una variable de sesion
 y dependiendo que articulo se ingresaron busca si hay repetidos y aumenta el numero de cantidad
 .*/
@@ -333,9 +333,9 @@ y dependiendo que articulo se ingresaron busca si hay repetidos y aumenta el num
        	$contador=0;
         if (isset(Yii::app()->session['Articulo'])) {
             $arrArticulos = Yii::app()->session['Articulo'];
-			
+
         }
-        	for ($i=0; $i <count($arrArticulos) ; $i++) { 
+        	for ($i=0; $i <count($arrArticulos) ; $i++) {
         		$articulo=$_POST["articulo"];
 	        	$cantidadArticulo=$_POST["cantidad"];
 	        	$valor=$_POST["valor"];
@@ -347,7 +347,7 @@ y dependiendo que articulo se ingresaron busca si hay repetidos y aumenta el num
         			$contador=1;
         				echo $arrArticulos[$i][1];
         		}
-        		
+
         	}
         	if ($contador==0) {
 		        	$articulo=$_POST["articulo"];
@@ -357,7 +357,7 @@ y dependiendo que articulo se ingresaron busca si hay repetidos y aumenta el num
 		        	$item = array($articulo,$cantidadArticulo,$valor,$id);
 				  	array_push($arrArticulos, $item);
 				  	echo "contador 0";
-				  	
+
 
         	}
 
@@ -370,11 +370,11 @@ y dependiendo que articulo se ingresaron busca si hay repetidos y aumenta el num
 ya que el articulo por medio del autocompletar muestra en el nombre
 .*/
         public function actionGenerarValor() {
-        
+
         	$articulo=$_POST["articulo"];
         	$valor;
         	$models = Articulos::model()->findAll();
-        	for ($i=0; $i <count($models) ; $i++) { 
+        	for ($i=0; $i <count($models) ; $i++) {
 
         		if ($models [$i]["Nombre_Articulo"]==$articulo) {
         				$valor=($models [$i]["Valor"]);
@@ -389,23 +389,23 @@ ya que el articulo por medio del autocompletar muestra en el nombre
          public function actionGenerarTotal() {
         	if (isset(Yii::app()->session['Articulo'])) {
             $arrArticulos = Yii::app()->session['Articulo'];
-			
+
        		 }
        		 $Total=0;
-        	for ($i=0; $i <count($arrArticulos) ; $i++) { 
+        	for ($i=0; $i <count($arrArticulos) ; $i++) {
         		$Total=$Total+($arrArticulos[$i][2]*$arrArticulos[$i][1]);
-        	}       
+        	}
          echo $Total;
         }
-           
-/*metodo para visualizar que articulos se han agregado en sesion*/         
 
- 		public function actionVerArticulos(){ 
+/*metodo para visualizar que articulos se han agregado en sesion*/
+
+ 		public function actionVerArticulos(){
              if (isset(Yii::app()->session['Articulo'])) {
 
            echo json_encode(Yii::app()->session['Articulo']);
-       	 } 
-			
+       	 }
+
    		 }
 
 /* metodo para hacer el llamado ala vista mostrarplantillaPrestamos.php*/
@@ -417,26 +417,26 @@ ya que el articulo por medio del autocompletar muestra en el nombre
 		));
 	}
 
-/*metodo para actualizar la cantidad de articulos que estan en sesion ya que en el fomulario se puede borrar 
+/*metodo para actualizar la cantidad de articulos que estan en sesion ya que en el fomulario se puede borrar
   cualquier tipo de articulo
 */
 	 public function actionActualizar() {
 
             $arrArticulos = Yii::app()->session['Articulo'];
             $id=$_POST["idEliminar"];
-        	for ($i=0; $i <count($arrArticulos) ; $i++) { 
+        	for ($i=0; $i <count($arrArticulos) ; $i++) {
         		echo $id;
         		if ($arrArticulos[$i][3]."'"===$id) {
-        			
-        			unset($arrArticulos[$i]);//elimina el valor de la posicion enocntrada 
-        			$arrArticulos = array_values($arrArticulos);//ordena el vector 	
+
+        			unset($arrArticulos[$i]);//elimina el valor de la posicion enocntrada
+        			$arrArticulos = array_values($arrArticulos);//ordena el vector
         		}
-        		
-        	}   
+
+        	}
 
         Yii::app()->session['Articulo'] = $arrArticulos;
-        
-        
+
+
 
         }
 

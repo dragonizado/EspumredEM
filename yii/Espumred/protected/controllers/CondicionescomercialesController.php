@@ -30,6 +30,11 @@ class CondicionescomercialesController extends Controller
 	{
 		return array(
 
+array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update', 'view', 'update','updateTodo', 'admin','listarClientes','cargar','eliminar'),
+				'users'=>array('*'),
+                'expression'=>'Yii::app()->user->rol==="Test"'
+			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'update','updateTodo', 'admin','listarClientes','cargar','eliminar'),
 				'users'=>array('*'),
@@ -96,7 +101,7 @@ class CondicionescomercialesController extends Controller
 			//se utiliza strtoupper para que guarde el campo en mayuscula
 
 			$model->nombreAsesor=strtoupper ($model->nombreAsesor);
-			//$model->TipologiaCliente=strtoupper ($model->TipologiaCliente);
+			$model->TipologiaCliente=strtoupper ($model->TipologiaCliente);
 
       		$Registro[0]= $model;
       		Yii::app()->session['Registro'] = $Registro;//se crea un array en sesion para conservar los datos hasta el final donde se guardaran
@@ -118,9 +123,9 @@ class CondicionescomercialesController extends Controller
 					}
 				}
 
-				if ($cont=="0") {                                          //cod
+				if ($cont=="0") {                                  
 					$this->redirect(array('descripcion/create','id'=>$model->cod));
-									echo"no envio condiciones comerciales";
+									
 				}else{
 
 					Yii::app()->clientScript->registerScript(1, 'alert("Por Favor, Asignar Una Tipologia de Cliente Distinta")');
@@ -131,7 +136,7 @@ class CondicionescomercialesController extends Controller
 
 		}
 
-		$this->render('admin',array(
+		$this->render('create',array(
 			'model'=>$model,
 		));
 
@@ -259,6 +264,7 @@ class CondicionescomercialesController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+
 	}
 
 	    /**En este metodo se ejecuta la funcion autocompletar del formulario, el cual

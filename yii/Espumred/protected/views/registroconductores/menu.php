@@ -3,7 +3,7 @@
 /* @var $model Ingresopersonal */
 
 $this->breadcrumbs=array(
-	'Registro Conductrores'=>array('index'),
+	'Registro Conductores'=>array('index'),
 	'Menu',
 );
 ?>

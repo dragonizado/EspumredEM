@@ -54,6 +54,9 @@ class Informacionvivienda extends CActiveRecord
 	 */
 	public function rules()
 	{
+		$my_var = Yii::app()->utils->guid;
+
+		
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
@@ -67,7 +70,7 @@ class Informacionvivienda extends CActiveRecord
 				numeroDeHabitacion, cocina, bañoComun, bañoPrivado, sala, comedor, salaComedor, zonaDeRopa, 
 				agua, electricidad, gas, telefono, internet, televisionPorCable, otros, television, equipoDeSonido, 
 				lavadora, estufa, dvd, microondas, pc, piso,techo,paredes,nevera', 'safe', 'on'=>'search'),
-			array('id','default','value'=>Yii::app()->utils->guid,'setOnEmpty'=>false,'on'=>'insert'),
+			array('id','default','value'=>$my_var,'setOnEmpty'=>false,'on'=>'insert'),
 		);
 	}
 

@@ -27,6 +27,12 @@ class DescripcionController extends Controller
 	public function accessRules()
 	{
 		return array(
+
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','createNuevo','update','updateTodo', 'view', 'admin','eliminar','AgregarFamiliar','VerFamiliar','action','actualizar','regresar'),
+				'users'=>array('@'),
+                'expression'=>'Yii::app()->user->rol==="Test"'
+			),
 		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','createNuevo','update','updateTodo', 'view', 'admin','eliminar','AgregarFamiliar','VerFamiliar','action','actualizar','regresar'),

@@ -36,13 +36,6 @@
   <center><p class="note">Los campos con <span class="required">*</span> son requeridos</p></center>
 
 
-  <div class="col-md-4 CTX" >      
-     <?php echo $form->labelEx($model,'Codigo*'); ?>
-     <?php echo $form->textField($model,'cod' ,array('size'=>10,'maxlength'=>45 ,'class'=>'form-control','id'=>'cod' , )); ?>
-     <?php echo $form->error($model,'cod'); ?>
-  </div>
-
-
   <div class="col-md-4 CTX">
     <?php echo $form->labelEx($model,'NombreCliente*'); ?>
     <?php //echo $form->textField($model,'provedor',array( 'size'=>45,'maxlength'=>45 ,'class'=>'form-control')); ?>
@@ -78,24 +71,28 @@
     
     <?php echo $form->error($model,'nombreCliente'); ?>
     </div>
-  
 
+    <div class="col-md-4 CTX" >      
+     <?php echo $form->labelEx($model,'Codigo*'); ?>
+     <?php echo $form->textField($model,'cod' ,array('size'=>10,'maxlength'=>45 ,'class'=>'form-control','id'=>'cod' ,'readonly' => "readonly" )); ?>
+     <?php echo $form->error($model,'cod'); ?>
+  </div>
+  
    <div>
    
-
   </div>
 
   
     <div class="col-md-4 CTX">
       <?php echo $form->labelEx($model,'Nombre Asesor*'); ?>
-      <?php echo $form->textField($model,'nombreAsesor' ,array('size'=>45,'maxlength'=>45 ,'class'=>'form-control','id'=>'nombreAsesor', )); ?>
+      <?php echo $form->textField($model,'nombreAsesor' ,array('size'=>45,'maxlength'=>45 ,'class'=>'form-control','id'=>'nombreAsesor','value'=> Yii::app()->user->Nombre . Yii::app()->user->Apellido,'readonly' => "readonly" )); ?>
       <?php echo $form->error($model,'nombreAsesor'); ?> 
     </div>
 
     
     <div class="col-md-4 CTX">
      <?php echo $form->labelEx($model,'Tipologia Cliente*'); ?>
-     <?php echo $form->textField($model,'TipologiaCliente' ,array('size'=>45,'maxlength'=>45 ,'class'=>'form-control','id'=>'TipologiaCliente', )); ?>
+     <?php echo $form->textField($model,'TipologiaCliente' ,array('size'=>45,'maxlength'=>45 ,'class'=>'form-control','id'=>'TipologiaCliente',"style"=>"text-transform:uppercase;" )); ?>
      <?php echo $form->error($model,'TipologiaCliente'); ?>
     </div>        
 
@@ -119,7 +116,7 @@
                                           'autoSize' => true,
                                           'defaultDate' => $model->vigenciadesde,
                                           'dateFormat' => 'yy-mm-dd',
-                                           'buttonImage' => Yii::app()->baseUrl . '/images/caalendar.jpg',
+                                          'buttonImage' => Yii::app()->baseUrl . '/images/caalendar.jpg',
                                           'buttonImageOnly' => false,
                                           'buttonText' => 'Fecha',  
                                           'selectOtherMonths' => true,
@@ -141,7 +138,7 @@
                                   </div>
                      </div>
                      
-          <div class="col-md-4 CTX">
+          <div class="col-md-4 CTX vhasta hidden">
          <?php echo $form->labelEx($model,'VigenciaHasta* '); ?>
          <div class="form-inline">
          <?php 
@@ -185,15 +182,15 @@
 
   <div class="col-md-2 CTX">
       <?php echo $form->labelEx($model,'Cambio*'); ?>
-       <?php echo $form->checkbox($model,'Cambio' ,array('size'=>2,'maxlength'=>2 ,'class'=>'form-control','id'=>'Cambio', )); ?>
+       <?php echo $form->checkbox($model,'Cambio' ,array('size'=>2,'maxlength'=>2 ,'class'=>'form-control oblcampos','onclick'=>'validad_campos();','id'=>'Cambio', )); ?>
        <?php echo $form->error($model,'Cambio'); ?>              
   </div>
    
   </tr>
 
-  <div class="col-md-2 CTX">
+  <div class="col-md-2 CTX ">
       <?php echo $form->labelEx($model,'NegPuntual*'); ?>
-       <?php echo $form->checkbox($model,'negPuntual' ,array('size'=>2,'maxlength'=>2 ,'class'=>'form-control','id'=>'negPuntual', )); ?>
+       <?php echo $form->checkbox($model,'negPuntual' ,array('size'=>2,'maxlength'=>2 ,'class'=>'form-control oblcampos','onclick'=>'validad_campos();','id'=>'negPuntual', )); ?>
        <?php echo $form->error($model,'negPuntual'); ?>              
   </div>
 
@@ -204,7 +201,8 @@
    <div class="buttons col-md-24" align="center">
          <br><br>
         <td>
-       <?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente >>' : 'Guardar', array("class"=>"btn btn-primary btn-large")); ?>
+        <div id="btnvalidar" class="btn btn-primary btn-large">Validar Datos</div>
+       <?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente >>' : 'Guardar', array("class"=>"btn btn-primary btn-large hidden","id" => "btnsiguiente")); ?>
       
       </div>
       
@@ -232,6 +230,39 @@
 
 //   $('#cod').val(codigo);
 // });
+
+$("#btnvalidar").click(function(){
+  validad_campos();
+});
+
+function validad_campos(){
+  var p = 0;
+  $(".oblcampos").each(function(index){
+      if($(this).is(':checked')){
+        console.log("El campo "+ $(this).attr("id") + "Ha sido llenado correctamente");
+      }else{
+        p = p + 1;
+      }  
+      console.log("El valor de p es:"+ p);
+  });
+console.log("El valor de p al salir del for es:"+ p);
+  if(p == 2 ){
+        alert("Tienes que seleccionar si la condicon es Cambio o Neg Puntual.");
+        $("#btnvalidar").removeClass("hidden");
+        $("#btnsiguiente").addClass("hidden");
+      }else{
+        $("#btnsiguiente").removeClass("hidden");
+        $("#btnvalidar").addClass("hidden");
+      }
+}
+
+$("#negPuntual").click(function(){
+  if($("#negPuntual").is(':checked')){
+    $(".vhasta").removeClass("hidden");
+  }else{
+    $(".vhasta").addClass("hidden");
+  }
+});
 
 window.onload = cargarPagina;//cargar la primera funcion
 

@@ -32,7 +32,7 @@ class ObservacionesController extends Controller
 				'actions'=>array('create','update', 'view', 'admin','send','ejemplo','uploadProfilePicture','mostrarPlantilla',
 					'guardarId','generarExcel','generarExcelCarnet','generarExcelCuenta','mostrarEmpleado','buscar','guardarTexto',
 					'listarComercial','listarCartera','listarGeneral','mostrarRetiro','buscarRetiro','actualizar','actualizarVista','guardarTextoActualizar',
-					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado','regresar','Centro','Enviar','mail','Aceptacion','updateTodo','Upload',),
+					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado','regresar','Centro','Enviar','mail','Aceptacion','updateTodo','Upload','detalles'),
 				    'users'=>array('@'),
                     'expression'=>'Yii::app()->user->rol==="Comercio"'
 			),
@@ -41,22 +41,31 @@ class ObservacionesController extends Controller
 				'actions'=>array('create','update', 'view', 'admin','eliminar','ejemplo','uploadProfilePicture','mostrarPlantilla',
 					'guardarId','generarExcel','generarExcelCarnet','generarExcelCuenta','mostrarEmpleado','buscar','guardarTexto',
 					'listarArea','listarCargo','mostrarRetiro','buscarRetiro','actualizar','actualizarVista','guardarTextoActualizar',
-					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado'),
+					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado','detalles'),
 				    'users'=>array('@'),
                     'expression'=>'Yii::app()->user->rol==="admin"'
 
             ),
+            array('allow', // Permite al usuario autenticado a realizar "crean" y acciones "actualización"//
+				'actions'=>array('create','update', 'view', 'admin','eliminar','ejemplo','uploadProfilePicture','mostrarPlantilla',
+					'guardarId','generarExcel','generarExcelCarnet','generarExcelCuenta','mostrarEmpleado','buscar','guardarTexto',
+					'listarArea','listarCargo','mostrarRetiro','buscarRetiro','actualizar','actualizarVista','guardarTextoActualizar',
+					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado','upload','MostrarPlantilla','detalles','test','aceptarcondicion'),
+				    'users'=>array('@'),
+                    'expression'=>'Yii::app()->user->rol==="Test" || Yii::app()->user->rol==="Cartera"'
+
+            ),
             //permisos de Gerentes
-            array('allow',
-            'actions'=>array('update', 'view','admin','actualizar','Aceptacion'),   
-				    'users'=>array('*'),
-                    'expression'=>'Yii::app()->user->rol==="Gerente"'
+        //     array('allow',
+        //     'actions'=>array('update', 'view','admin','actualizar','Aceptacion','detalles','aceptarcondicion'),   
+				    // 'users'=>array('*'),
+        //             'expression'=>'Yii::app()->user->rol==="Gerente"'
 
 
-             ),
+        //      ),
             //permisos de Revisoria
              array('allow',
-            'actions'=>array('view','admin'),					
+            'actions'=>array('view','admin','GenerarExcel','detalles'),					
 				    'users'=>array('*'),
                      'expression'=>'Yii::app()->user->rol==="Revisoria"'
                                         
@@ -66,28 +75,28 @@ class ObservacionesController extends Controller
 				'actions'=>array('create','view', 'admin','send','ejemplo','uploadProfilePicture','mostrarPlantilla',
 					'guardarId','generarExcel','generarExcelCarnet','generarExcelCuenta','mostrarEmpleado','buscar','guardarTexto',
 					'listarComercial','listarCartera','listarGeneral','mostrarRetiro','buscarRetiro','guardarTextoActualizar',
-					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado','regresar','centro','Enviar','mail','updateTodo','Upload'),
+					'buscarFamiliar','mostrarFamiliar','mostrarError','mostrarErrorEmpleado','regresar','centro','Enviar','mail','updateTodo','Upload','detalles'),
 				    'users'=>array('*'),
                     'expression'=>'Yii::app()->user->rol==="Asesor"' 
             ),
 
               array('allow',
-            'actions'=>array('update', 'view','admin','actualizar','Aceptacion'),   
+            'actions'=>array('update', 'view','admin','actualizar','Aceptacion','detalles','aceptarcondicion'),   
 				    'users'=>array('*'),
-                    'expression'=>'Yii::app()->user->rol==="GerenteComercial"'
+                    'expression'=>'Yii::app()->user->rol==="GerenteComercial" || Yii::app()->user->rol==="GerenteCartera" || Yii::app()->user->rol==="Gerente"  '
             ),
             
-            array('allow',
-            'actions'=>array('update', 'view','admin','actualizar','Aceptacion'),   
-				    'users'=>array('*'),
-                    'expression'=>'Yii::app()->user->rol==="GerenteCartera"'
-            ),
-             array('allow',
-            'actions'=>array('update', 'view','admin'),   
-				    'users'=>array('*'),
-                    'expression'=>'Yii::app()->user->rol==="ServicioCliente"'        
+   //          array('allow',
+   //          'actions'=>array('update', 'view','admin','actualizar','Aceptacion','detalles','aceptarcondicion'),   
+			// 	    'users'=>array('*'),
+   //                  'expression'=>'Yii::app()->user->rol==="GerenteCartera"'
+   //          ),
+   //           array('allow',
+   //          'actions'=>array('update', 'view','admin'),   
+			// 	    'users'=>array('*'),
+   //                  'expression'=>'Yii::app()->user->rol==="ServicioCliente"'        
 
-			),			
+			// ),			
 			array('deny',// deny all users
 				'users'=>array('*'),
 
@@ -107,6 +116,7 @@ class ObservacionesController extends Controller
 		
     } 
     
+
     public function actionRev($id)
     {
 
@@ -129,6 +139,70 @@ class ObservacionesController extends Controller
 		$this->render('Aceptacion',array(
 			'model'=>$model,
 		));
+	}
+
+	public function ActionAceptarcondicion(){
+		
+		$fecha = date('Y-m-d');
+		if(isset($_GET['iden'])){
+			$id = $_GET['iden'];
+			$nombre = $_GET['nombre'];
+			$roll = Yii::app()->user->rol;
+			$condicion = Observaciones::model()->findByPk($id);
+			if($roll === "GerenteComercial"){
+				$condicion->gerente_comercial = $nombre ; 
+				$condicion->fechautorizacion = $fecha;
+				if($condicion['gerente_cartera'] == ""){
+					echo "Esta vacio el gerente cartera no ha firmado";
+				}else{
+					$this->SendEmailGG();
+				}
+			}elseif ($roll === "Gerente") {
+				$condicion->gerente_general = $nombre ;
+				$condicion->fechautorizacion2 = $fecha;
+			}elseif ($roll === "GerenteCartera") {
+				$condicion->gerente_cartera = $nombre ;
+				$condicion->fechautorizacion1 = $fecha;
+				if($condicion['gerente_comercial'] == ""){
+					echo "Esta vacio el gerente comercial no ha firmado";
+				}else{
+					$this->SendEmailGG();
+				}
+			}elseif ($roll === "Test") {
+				if($condicion['gerente_comercial'] == ""){
+					echo "Esta vacio el gerente Comercial no ha firmado";
+				}else{
+					echo "Ejecutar la accion de enviar correo al gerente general";
+					$this->SendEmailGG();
+				}
+			}
+			$condicion->update();
+			// echo "condicion aceptada";
+		}elseif(isset($_GET['idren'])){
+			$idren = $_GET['idren'];
+			$dess = "CONDICIÓN RECHAZADA";
+			$roll = Yii::app()->user->rol;
+			$condicions = Observaciones::model()->findByPk($idren);
+			if($roll === "GerenteComercial"){
+				$condicions->gerente_comercial = $dess ; 
+				$condicions->fechautorizacion = $fecha;
+			}elseif ($roll === "Gerente") {
+				$condicions->gerente_general = $dess ;
+				$condicions->fechautorizacion2 = $fecha;
+			}elseif ($roll === "GerenteCartera") {
+				$condicions->gerente_cartera = $dess ;
+				$condicions->fechautorizacion1 = $fecha;
+			}elseif ($roll === "Test") {
+				// echo "yes it is work";
+			}
+			$condicions->update();
+			// echo "codicion rechazada" ;
+		}else{
+			echo "Error al conectar con el servidor.";
+			echo "<br>";
+			echo $fecha;
+		}
+		
 	}
 	/**
 	 * Creates a new model.
@@ -182,7 +256,7 @@ class ObservacionesController extends Controller
 			 $modelCondicion->save();
 
 
-			$model->id=$modelInformacionPersonal["id"]; 
+			// $model->id=$modelInformacionPersonal["id"]; 
 			$model->descripcion=$modelFamiliar["id"];
             $model->condicionescomerciales=$modelInformacionPersonal["id"]; 
 			$model->condicion=$modelCondicion["id"];
@@ -294,15 +368,52 @@ class ObservacionesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Observaciones('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Observaciones']))
-			$model->attributes=$_GET['Observaciones'];
+		$roll = Yii::app()->user->rol;
+		$nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
+
+		// echo $nameAsesor; 
+
+		// exit;
+
+		if ($roll === "Asesor") {
+			$allobservaciones=Observaciones::model()->findAll(array("condition" => "nombreAsesor = '".$nameAsesor."'","group"=>"nombreCliente","order"=>"fecha desc"));
+			
+		}else{
+			$allobservaciones=Observaciones::model()->findAll(array("group"=>"nombreCliente","order"=>"fecha desc"));	
+		}
+
+	
+
+     
+		//$model=new Observaciones('search');
+		//$model->unsetAttributes();  // clear any default values
+		//if(isset($_GET['Observaciones']))
+			//$model->attributes=$_GET['Observaciones'];
 
 		$this->render('admin',array(
-			'model'=>$model,
+			'allobservaciones'=>$allobservaciones,
+			
 		));
 	}
+
+	public function actionDetalles($nc){
+		$roll = Yii::app()->user->rol;
+		$nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
+		$clientname = $nc;
+		if ($roll === "Asesor") {
+			$allobservaciones=Observaciones::model()->findAll(array("condition" => "nombreAsesor = '".$nameAsesor."' and nombreCliente = '".$clientname."'","order"=>"fecha desc"));
+		}elseif($roll === "Gerente"){
+			$allobservaciones=Observaciones::model()->findAll(array("condition" => "nombreCliente = '".$clientname."' and gerente_comercial != 'CONDICIÓN RECHAZADA' and gerente_cartera != 'CONDICIÓN RECHAZADA'","order"=>"fecha desc"));
+		}else{
+			$allobservaciones=Observaciones::model()->findAll(array("condition" => "nombreCliente = '".$clientname."'","order"=>"fecha desc"));
+		}
+		$this->render('admin',array(
+			'allobservaciones'=>$allobservaciones,'detalles'=>'1'
+			
+		));
+	}
+
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -332,36 +443,124 @@ class ObservacionesController extends Controller
 		}
 	}
 
+	public function SendEmailGG() 
+	{  
+		Yii::import("ext.Mailer.*");
+		$mail=new PHPMailer();
+		$mail->IsSMTP(); 
+		$mail->Host = "74.125.141.108"; // Servidores SMTP
+		$mail->SMTPAuth = true;   // activar la identificacín SMTP
+		$mail->SMTPDebug  = 1; //actival el modo debug del correo para ver los detalles de la conexion
+		$mail->Port = 587; // Puerto de conexion con gmail
+		$mail->SMTPSecure = "tls";	
+		$mail->Username = "espm.ftra.yii@gmail.com";
+		$mail->Password = "Espumas2016";
+
+
+		                   
+		$mail->SetFrom("espm.ftra.yii@gmail.com","Condicion Comercial Espumas Medellin");
+		$mail->Subject="CONDICION COMERCIAL POR APROBAR";  
+
+		/*funcion de copia de correo asignada para envio de correo electronicos a mas de un destinatario*/     					
+
+		$mail->AddAddress('raul.vergara@espumasmedellin.com');
+		$mail->AddBCC('gercomercial@espumasmedellin.com');
+		$mail->AddBCC('auxiliar.control@espumasmedellin.com');
+		$mail->AddBCC('practicante.sistemas@espumasmedellin.com');
+
+
+		//linea de testing
+		// $mail->AddAddress('practicante.sistemas@espumasmedellin.com');
+
+		//-----------------------horario de envio de correo------------------->
+
+		date_default_timezone_set('UTC'); ////
+		$hora=date("H")-5;
+
+		if ($hora>12) {
+		if ($hora>18) {
+		$inicio="Buenas Noches"; 
+		}else{
+		$inicio="Buenas Tardes"; 
+		}
+
+		}else{
+		$inicio="Buenos Dias";
+		}
+		
+
+		//-------------------------------------mensaje*----------------------------->
+
+		$mail->MsgHtml("<h1>".$inicio."</h1><br>
+		
+		Se ha diligenciado una condicion comercial.<br>
+		<img src='http://190.85.125.226/yii/espumred/images/logo.gif'><br>
+		<br>
+		          
+		<br>
+		<a href='http://190.85.125.226/yii/espumred'>Ir a ESPUMRED</a><br>
+
+		");
+						      
+		//------------------------------------------------------------------------------------------------>//
+
+		// $mail->AddAddress($correo,"observaciones");				
+
+		if($mail->send() == false){
+			// $this->redirect(array('admin'),array('notification'=>array('titulo'=>'Error al Enviar','cuerpo'=>'Error al enviar el correo de confirmación')));
+			return false;
+		}else{
+			// $this->redirect(array('admin'),array('notification'=>array('titulo'=>'Exito al Crear','cuerpo'=>'El formato se ha guardado con exito.')));
+			return false;
+		}
+
+
+		}  
+
+
            //funcion para hacer envio directo a correo electronico  //funcion  //
 	             public function actionUploadProfilePicture() {
 				         
 					    $modelUsuario=Usuario::model()->findAll();
-					    $UploadFormModel = new UploadForm; //funcion de envio a correo//
+					    $UploadFormModel = new UploadForm; 
+					         // activ//funcion de envio a correo//
 				       	$arrBusquedad = array();
-						$arrBusquedad=Yii::app()->session['observaciones'];    //definir sesion//
+						$arrBusquedad=Yii::app()->session['observaciones'];
 
                    //---------------------------------------------------------------------------------------->
    
                            $correo=$arrBusquedad["correo"];
-                           //$correo=$arrBusquedad["mail1"];
-                           //$correo=$arrBusquedad["mail2"];
-                           //$correo=$arrBusquedad("auxiliar.sistemas@espumasmedellin.com");
-                           //$correo=$arrBusquedad("sistemas@espumasmedellin.com");
                            
 				   //---------------------------------------------------------------------------------------->  
                         
 					    Yii::import("ext.Mailer.*");
-					    $mail=new PHPMailer();                              
+					    $mail=new PHPMailer();
+					    $mail->IsSMTP(); 
+						$mail->Host = "74.125.141.108"; // Servidores SMTP
+						$mail->SMTPAuth = true;   // activar la identificacín SMTP
+						$mail->SMTPDebug  = 1; //actival el modo debug del correo para ver los detalles de la conexion
+						$mail->Port = 587; // Puerto de conexion con gmail
+						$mail->SMTPSecure = "tls";	
+						$mail->Username = "espm.ftra.yii@gmail.com";
+						$mail->Password = "Espumas2016";
+
+
+						                           
 					    $mail->SetFrom("espm.ftra.yii@gmail.com","Condicion Comercial Espumas Medellin");
 					    $mail->Subject="CONDICION COMERCIAL POR APROBAR";  
                         
 	           /*funcion de copia de correo asignada para envio de correo electronicos a mas de un destinatario*/     					
                         
-                        $mail->addCC('jefe.cartera@espumasmedellin.com');
-                        $mail->addCC('gerente.comercial@espumasmedellin.com');
-                        $mail->addCC('practicante.sistemas@espumasmedellin.com'); 
-	                    $mail->addCC('gercomercial@espumasmedellin.com');
-	                    $mail->addCC('auxiliar.control@espumasmedellin.com');
+                        $mail->AddAddress('gerente.cartera@espumasmedellin.com');
+                        $mail->AddAddress('gerente.comercial@espumasmedellin.com');
+                        // $mail->AddAddress('raul.vergara@espumasmedellin.com');
+	                    $mail->AddBCC('gercomercial@espumasmedellin.com');
+	                    $mail->AddBCC('auxiliar.control@espumasmedellin.com');
+	           			$mail->AddBCC('practicante.sistemas@espumasmedellin.com');
+
+
+	           			//linea de testing
+	           			// $mail->AddAddress('practicante.sistemas@espumasmedellin.com');
 
 	       //-----------------------horario de envio de correo------------------->
 
@@ -389,27 +588,33 @@ class ObservacionesController extends Controller
                     //-------------------------------------mensaje*----------------------------->
 
 						$mail->MsgHtml("<h1>".$inicio."</h1><br>
-							<img src='http://www.espumasmedellin.com/home/skin/frontend/default/hellowired/images/logo.gif'><br>
+							<img src='http://190.85.125.226/yii/espumred/images/logo.gif'><br>
 						    Se ha diligenciado una condicion comercial.<br>
 						    Por favor, visualizarla y darle aceptacion dando click en el nombre del Asesor:<br>
 							<br>
-
-						    <a href='http://192.168.1.8/yii/espumred'><br>
-						      
-						                                  
+				                          
 						    <br>
-							Att: ".$nombre."<br>
+							Att: <a href='http://190.85.125.226/yii/espumred'> ".$nombre." </a><br>
 
 						");
 												      
                    //------------------------------------------------------------------------------------------------>//
 
 						$mail->AddAddress($correo,"observaciones");				
-						echo $correo;
-				        $mail->send();
-			            $this->redirect(array('admin')); 
+				        
+				        if($mail->send() == false){
+							$this->redirect(array('admin'),array('notification'=>array('titulo'=>'Error al Enviar','cuerpo'=>'Error al enviar el correo de confirmación')));
+						}else{
+							$this->redirect(array('admin'),array('notification'=>array('titulo'=>'Exito al Crear','cuerpo'=>'El formato se ha guardado con exito.')));
+						}
+			             
 
                      }  
+
+         public function actionTest(){
+         	Funtions_Global::notifyMeD('Exito al Crear','El formato se ha guardado con exito.');
+         }
+
 
 
 	  /* metodo para hacer es llamar a una vista de errores*/
@@ -435,21 +640,36 @@ class ObservacionesController extends Controller
     }
 	
 //funcion para redirigir hacia la plantilla de condiciones comerciales y mostrarla en pdf
-      public function actionMostrarPlantilla(){
+      public function actionMostrarPlantilla($id){
 
-        $model=new Observaciones;
-        $arrId=Yii::app()->session['id'];
+
+
+  //     	$this->render('view',array(
+		// 	'model'=>$this->loadModel($id),
+		// ));
+		// Yii::setPathOfAlias('theme', Yii::app()->theme->baseUrl);
+		
+
+      	// $directorio = Yii::app()->request->baseUrl;
+        // $arrId=Yii::app()->session['id'];
          # mPDF
         $mPDF1 = Yii::app()->ePdf->mpdf('', '','', '','', '',
         	'', '','', '','P');
-
-        $mPDF1->WriteHTML($this->render('_vistaInforme',array(
-            'model'=>$model,
-        ),true));
+        // $mPDF1->AddPage('L');
+        // $mPDF1->WriteHTML($this->render('_vistaPlantillahead',array('model'=>$this->loadModel($id)),true));
+        // $stylesheet = file_get_contents(Yii::getPathOfAlias('webroot') . '/themes/classic2/css/bootstrap.min.css');
+        // $mPDF1->WriteHTML($stylesheet, 1);
+        $mPDF1->WriteHTML($this->render('_vistaPlantillapdf',array('model'=>$this->loadModel($id)),true));
+        // $mPDF1->WriteHTML($this->render('_vistaPlantillafooter',array('model'=>$this->loadModel($id)),true));
         # Outputs ready PDF
          $mPDF1->Output();
+
+  
 		        
     }
+
+
+    
 //funcion para guardar la id en secion 
       public function actionGuardarId(){
       	Yii::app()->session['id']="";
@@ -761,15 +981,16 @@ public function actionBuscarRetiro()
 
 
     /* metodo para hacer el llamado ala vista mostrarplantillaActualizar.php*/
-         public function actionMostrarRetiro()
+         public function actionGenerarExcel()
     {
-        $model=new Informacionpersonal;
         
-         $this->render('mostrarRetiro',array(
-            'model'=>$model,
-        ));
-    }
+    $model=Observaciones::model()->findAll();
+		Yii::app()->request->sendFile("CondicionComercial.xls",
+			$this->renderPartial('excel',array('model'=>$model,),true)       
+        );
 
+
+    }
 
       /* metodo para hacer el llamado ala vista mostrarplantillaActualizar.php*/
          public function actionMostrarError()

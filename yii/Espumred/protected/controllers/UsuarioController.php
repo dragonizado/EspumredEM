@@ -37,9 +37,9 @@ class UsuarioController extends Controller
                 'expression'=>'Yii::app()->user->rol==="despacho"'
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update', 'admin','eliminar'),
+				'actions'=>array('create','update', 'view', 'admin','eliminar'),
 				'users'=>array('@'),
-                'expression'=>'Yii::app()->user->rol==="admin"'
+                'expression'=>'Yii::app()->user->rol==="admin" || Yii::app()->user->rol==="Test" || Yii::app()->user->rol==="Cartera"'
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -99,6 +99,7 @@ class UsuarioController extends Controller
 		if(isset($_POST['Usuario']))
 		{
 			$model->attributes=$_POST['Usuario'];
+			$model->Password=md5($model->Password);
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

@@ -36,7 +36,7 @@ class ClientesController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'update', 'admin','listarCliente','eliminar'),
 				'users'=>array('@'),
-                'expression'=>'Yii::app()->user->rol==="admin"'
+                'expression'=>'Yii::app()->user->rol==="admin" || Yii::app()->user->rol==="Cartera"'
             ),
 
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -154,13 +154,45 @@ class ClientesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Clientes('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Clientes']))
-			$model->attributes=$_GET['Clientes'];
+		$link = "clientes";
+		$Tabla = "";
+		$AllClients = Clientes::model()->FindAll();
 
+		if(Yii::app()->user->rol==="Cartera"){
+			foreach ($AllClients as $value) {
+					$Tabla .= '<tr>'.
+							 	'<td>'.$value->cod.'</td>'.
+							 	'<td>'.$value->nombreCliente.'</td>'.
+							 	'<td>'.
+							 		// '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->cod.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Más detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>'.
+							 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/update&id='.$value->cod.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Actualizar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>'.
+							 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/eliminar&id='.$value->cod.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>'.
+							 	'</td>'.
+							 '</tr>';
+						}
+		}else{
+		foreach ($AllClients as $value) {
+					$Tabla .= '<tr>'.
+							 	'<td>'.$value->cod.'</td>'.
+							 	'<td>'.$value->nombreCliente.'</td>'.
+							 		// '<td>'.
+							 		// '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->cod.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Más detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>'.
+							 	// 	'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/update&id='.$value->cod.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Actualizar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>'.
+							 	// 	'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/eliminar&id='.$value->cod.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>'.
+							 	// '</td>'.
+							 '</tr>';
+						}
+		}
+		// $model=new Clientes('search');
+		// $model->unsetAttributes();  // clear any default values
+		// if(isset($_GET['Clientes']))
+		// 	$model->attributes=$_GET['Clientes'];
+
+		// $this->render('admin',array(
+		// 	'model'=>$model,
+		// ));
 		$this->render('admin',array(
-			'model'=>$model,
+			'Tabla'=>$Tabla,
 		));
 	}
 

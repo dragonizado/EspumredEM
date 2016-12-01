@@ -28,27 +28,27 @@ class IngresopersonalController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update','adminpersonal', 'admin','index','menu','ingreso',
+				'actions'=>array('create','update', 'view', 'update','ajaxstore','ajaxstores','adminpersonal', 'admin','index','menu','ingreso',
 					'index2','newPhoto','guardar_foto','eliminar'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="porteria"'
 			),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update','adminpersonal', 'admin','index','menu','ingreso',
+				'actions'=>array('create','update', 'view', 'update','ajaxstore','ajaxstores','adminpersonal', 'admin','index','menu','ingreso',
 					'index2','newPhoto','guardar_foto','eliminar'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="recepcion"'
 			),
 
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','view', 'update','adminpersonal' ,'admin','index','menu','ingreso','eliminar'),
+				'actions'=>array('create','update','view', 'update','ajaxstore','ajaxstores','adminpersonal' ,'admin','index','menu','ingreso','eliminar'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="ingresopersonal"'
 			),
 
 
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','view', 'update','adminpersonal' ,'admin','index','menu','ingreso','eliminar'),
+				'actions'=>array('create','update','view', 'update','adminpersonal','ajaxstore','ajaxstores' ,'admin','index','menu','ingreso','eliminar'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="talentohumano"'
 			),
@@ -229,29 +229,59 @@ class IngresopersonalController extends Controller
 	/**
 	 * Manages all models.
 	 */
+	public function actionAjaxstore(){
+		$allingresoAdmin=Ingresopersonal::model()->findAll();	
+		$direccion= "ingresopersonal";
+						foreach ($allingresoAdmin as $value) {
+							echo '<tr>';
+							echo 	'<td>'.$value->nombre.'</td>';
+							echo 	'<td>'.$value->area.'</td>';
+						    echo 	'<td style="max-width:220px;">'.$value->observacion.'</td>';
+							echo 	'<td>'.$value->fecha.'</td>';
+							echo 	'<td>';
+									// '<a href="'.Yii::app()->baseUrl.'/index.php?r=condicionescomerciales/view&id='.$value->id.'" data-toggle="tooltip" data-placement="bottom" title="Ver mas detalles"><img src="'.Yii::app()->theme->baseUrl.'/img/view.png" alt="Ver"></a>';
+							echo 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$direccion.'/view&id='.$value->id.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Ver Mas detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>';
+									// 	'<a href="'.Yii::app()->baseUrl.'/index.php?r=condicionescomerciales/update&id='.$value->id.'" data-toggle="tooltip" data-placement="bottom" title="Editar"><img src="'.Yii::app()->theme->baseUrl.'/img/update.png" alt="Editar"></a>';
+							echo 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$direccion.'/update&id='.$value->id.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Actualizar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>';
+
+							echo        '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$direccion.'/eliminar&id='.$value->id.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>';
+							echo 	'</td>';
+							echo '</tr>';
+						}
+	}
+
+	public function actionAjaxstores(){
+		$allingreso=Ingresopersonal::model()->findAll();
+		$direccion= "ingresopersonal";
+						foreach ($allingreso as $value) {
+							echo '<tr>';
+							echo 	'<td>'.$value->nombre.'</td>';
+							echo 	'<td>'.$value->area.'</td>';
+							echo 	'<td>'.$value->pertenencia.'</td>';
+							echo 	'<td>'.$value->fecha.'</td>';
+							echo 	'<td>';
+									// '<a href="'.Yii::app()->baseUrl.'/index.php?r=condicionescomerciales/view&id='.$value->id.'" data-toggle="tooltip" data-placement="bottom" title="Ver mas detalles"><img src="'.Yii::app()->theme->baseUrl.'/img/view.png" alt="Ver"></a>';
+							echo 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$direccion.'/view&id='.$value->id.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Ver Formulario"><i class="fa fa-search" aria-hidden="true"></i></button></a>';
+									// 	'<a href="'.Yii::app()->baseUrl.'/index.php?r=condicionescomerciales/update&id='.$value->id.'" data-toggle="tooltip" data-placement="bottom" title="Editar"><img src="'.Yii::app()->theme->baseUrl.'/img/update.png" alt="Editar"></a>';
+							echo 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$direccion.'/update&id='.$value->id.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Aceptar Formulario"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>';
+							echo        '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$direccion.'/eliminar&id='.$value->id.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>';
+							echo 	'</td>';
+							echo '</tr>';
+						}
+	}
+
 	public function actionAdmin()
 	{
-		$model=new Ingresopersonal('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Ingresopersonal']))
-			$model->attributes=$_GET['Ingresopersonal'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		
+		$this->render('admin');
 	}
 
 
 	public function actionAdminpersonal()
 	{
-		$model=new Ingresopersonal('search3');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Ingresopersonal']))
-			$model->attributes=$_GET['Ingresopersonal'];
-
-		$this->render('adminFiltro',array(
-			'model'=>$model,
-		));
+	 
+    
+		$this->render('adminFiltro');
 	}
 
 

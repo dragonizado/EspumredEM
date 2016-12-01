@@ -11,8 +11,10 @@
 // 	array('label'=>'Listar Informacionempleado', 'url'=>array('index')),
 // 	array('label'=>'Administrador Informacionempleado', 'url'=>array('admin')),
 // );
+
 ?>
 
 <h1 align="center">Crear Observaciones</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+

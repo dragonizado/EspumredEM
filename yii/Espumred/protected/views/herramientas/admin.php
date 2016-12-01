@@ -1,70 +1,91 @@
-<?php
-/* @var $this HerramientasController */
-/* @var $model Herramientas */
+<style media="screen">
+	.footermediaQuery{
+		position: relative;
+		width:100%;
+		bottom:0px;
+	}
+	.footermediaQuerym{
+		margin-top:9.5%;
+	}
+	.caja{
+		box-shadow: 4px 4px 4px rgba(0,0,0,0.05) !important;
+	}
+	.table>thead>tr>th,
+	.table>tbody>tr>th,
+	.table>tfoot>tr>th,
+	.table>thead>tr>td,
+	.table>tbody>tr>td,
+	.table>tfoot>tr>td
+	{
+		padding: 8px !important;
+		line-height: 1.42857143 !important;
+		vertical-align: top !important;
+		/*border-top: 1px solid #ddd !important;*/
+	}
 
-$this->breadcrumbs=array(
-	'Herramientases'=>array('index'),
-	'Administrador',
-);
+	.table-bordered>thead>tr>th,
+	.table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th,
+	.table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td,
+	.table-bordered>tfoot>tr>td
+	{
+    border: 1px solid #ddd;
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td,
+	.table-striped>tbody>tr:nth-child(odd)>th
+	{
+    background-color: rgba(243, 103, 22, 0.11) !important;
+	}
+	.radius{
+		border-radius: 3px;
+		margin-right: 4px;
+	}
+</style>
 
-$this->menu=array(
-	array('label'=>'Listar Herramientas', 'url'=>array('index')),
-	array('label'=>'Crear Herramientas', 'url'=>array('create')),
-);
+<div class="panel hidden">
+	<div class="panel-body">
+		<h1 style="text-align:center; margin:0;">Administrador Herramientas</h1>
+	</div>
+</div>
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#herramientas-grid').yiiGridView('update', {
-		data: $(this).serialize()
+<div class="loading" style="width:100%; text-align:center; height:55vh; margin-top:10%;">
+	<div>
+		<img src="<?php echo Yii::app()->baseUrl;?>/images/loading_Redondo_1.png" alt="Cargando contenido.." style="position:absolute; z-index:9999;">
+		<img src="<?php echo Yii::app()->baseUrl;?>/images/loading_Redondo_3.png" alt="Cargando contenido.." class="fa-pulse">
+	</div>
+	<!-- <i class="fa fa-spinner fa-pulse fa-5x fa-fw" style="margin-top:10%;"></i><br> -->
+	<span>Cargando contenido...</span>
+</div>
+
+<div class="panel hidden" id="tablaip">
+	<!-- <div class="panel-head" style="text-align:center;">
+		<p>
+			hola mundo
+		</p>
+	</div> -->
+	<div class="panel-body " >
+		<div class="table-responsive">
+			<table class="table table-hover table-striped table-bordered tablas" style="text-align:center; border: 1px solid #dddddd !important;">
+				<thead>
+					<tr>
+						<td>Nombre</td>
+						<td>Descripcion</td>
+						<td>Marca</td>
+						<td>Fecha de Compra</td>						
+						<td>Proveedor</td>
+						<td>Estado</td>
+						<td style="width:100px;">Opciones</td>
+					</tr>
+				</thead>
+				<tbody class="cuerpotabla"></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		ajaxpage("herramientas","ajaxstore");
 	});
-	return false;
-});
-");
-?>
+</script>
 
-<h1>Administrador Herramientas</h1>
-
-<p>
-También puede escribir un operador de comparación (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) al principio de cada uno de los valores de búsqueda para especificar cómo se debe hacer la comparación. 
-</p>
-
-
-<?php echo CHtml::link('Opciones Avanzadas','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'herramientas-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'nombre',
-		'descripcion',
-		'marca',
-		'fechaDeCompra',
-		'proveedor',
-		'estado',
-		/*
-		'fechaDeBaja',
-		'fabricante',
-		*/
-		array(
-			'class' => 'CButtonColumn',
-            // 'template'=>'{delete}{update}{accion_nueva}', // botones a mostrar
-            'updateButtonUrl'=>'Yii::app()->createUrl("/herramientas/update&id=$data->id" )', // url de la acción 'update'
-            'viewButtonUrl'=>'Yii::app()->createUrl("/herramientas/view&id=$data->id" )', // url de la acción 'update'
-            'deleteButtonUrl'=>'Yii::app()->createUrl("/herramientas/eliminar&id=$data->id")', // url de la acción 'delete'
-            'deleteConfirmation'=>'Seguro que quiere eliminar el elemento?', // mensaje de confirmación de borrado
-            'afterDelete'=>'$.fn.yiiGridView.update("admin-grid");', // actualiza el grid después de borrar
-		),
-	),
-)); ?>

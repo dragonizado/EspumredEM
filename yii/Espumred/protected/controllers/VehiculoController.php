@@ -36,19 +36,24 @@ class VehiculoController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar'),
+				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar','funcion'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="porteria"'
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar'),
+				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar','funcion'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="ingresovehiculo"'
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar'),
+				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar','funcion'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="talentohumano"'
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','listar','validadIngreso','guardarId','guardarIngreso','mostrarInforme','menuInicio','eliminar','funcion'),
+				'users'=>array('@'),
+                'expression'=>'Yii::app()->user->rol==="ingresopersonal"'    
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -137,23 +142,43 @@ class VehiculoController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
-	}
+    }
 
+
+    public function actionFuncion()
+    {
+        $AllEmployees = Vehiculo::model()->FindAll();
+		$contador = 0;
+		$link = "vehiculo";
+		foreach ($AllEmployees as $value) {
+					echo '<tr>';
+					echo '<td>'.$value->placa.'</td>';
+					echo '<td>'.$value->modelo.'</td>';
+					echo '<td>'.$value->propietario.'</td>';
+					echo '<td>'.$value->conductor.'</td>';
+					echo '<td>'.$value->ayudante.'</td>';
+					echo '<td>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->placa.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Más detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/update&id='.$value->placa.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/eliminar&id='.$value->placa.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>';
+					echo '</td>';
+					echo '</tr>';
+		}
+		
+	}
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$model=new Vehiculo('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Vehiculo']))
-			$model->attributes=$_GET['Vehiculo'];
-
+		$AllEmployees=Vehiculo::model()->findAll();	
+		
+		
 		$this->render('admin',array(
-			'model'=>$model,
+			'AllEmployees'=>$AllEmployees,
 		));
 	}
-
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

@@ -54,9 +54,10 @@ class FacturacionController extends Controller
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="AdminfacturaGeneral"'
 			),
+
 					array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'admin','index','uploadProfilePicture','upload','informe','updateInfo','mail','prueba',
-					'noSubirFoto','aceptar','listarProveedor','listarProveedor2',),
+					'noSubirFoto','aceptar','listarProveedor','listarProveedor2','cargando'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="recepcion"'
 			),
@@ -270,7 +271,7 @@ class FacturacionController extends Controller
 			'model'=>$model,
 		));
 	}
-
+   
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -470,23 +471,34 @@ class FacturacionController extends Controller
 		));
 	}
 
+ public function actionCargando(){
+  $AllFacturactions = Facturacion::model()->FindAll();
+		$link = "facturacion";
+		foreach ($AllFacturactions as $value) {
+					        echo    '<tr>';
+							echo    '<td>'.$value->id.'</td>';
+							echo 	'<td>'.$value->provedor.'</td>';
+							echo 	'<td>'.$value->numeroFactura.'</td>';
+							echo 	'<td>'.$value->valorFactura.'</td>';
+							echo 	'<td>'.$value->consecutivo.'</td>';
+							echo 	'<td>'.$value->Fecha_Vencimiento.'</td>';
+							echo 	'<td>'.$value->estado.'</td>';
+							echo 	'<td>'.$value->Fecha_Envio.'</td>';
+							echo 	'<td>';
+							echo 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->id.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Más detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>';
+							echo 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/Aceptar&id='.$value->id.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Aceptar"><i class="fa fa-check" aria-hidden="true"></i></button></a>';
+							echo 	'</td>';
+							echo '</tr>';
+						}
+
+
+ }
 
 	//llama a la vista de informes de facturas
-      public function actionInforme(){
-      	$model=new Facturacion('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Facturacion'])){
-			$model->attributes=$_GET['Facturacion'];
-		}
+     public function actionInforme(){
 
-
-
-		$this->render('_vistaInforme',array(
-			'model'=>$model,
-		));
+		 $this->render('_vistaInforme');
 	}
-
-
 
 
 	//llama a la vista de informes de facturas

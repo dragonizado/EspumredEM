@@ -27,6 +27,11 @@ class CondicionController extends Controller
 	public function accessRules()
 	{
 		return array(
+               array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                    'actions'=>array('create','update', 'view', 'admin','eliminar','cargar','updateTodo'),
+                    'users'=>array('@'),
+                'expression'=>'Yii::app()->user->rol==="Test"'
+               ),
 
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'admin','eliminar','cargar','updateTodo'),
@@ -75,7 +80,7 @@ class CondicionController extends Controller
 			$model->attributes=$_POST['Condicion'];
                $Registro=Yii::app()->session['Registro'];		
 
-			     $referencia=$model->referencia;
+			     
                     $referencia1=$model->referencia1;
                     $referencia2=$model->referencia2;
                     $referencia3=$model->referencia3;
@@ -110,8 +115,9 @@ class CondicionController extends Controller
                     $referencia31=$model->referencia31;
                     $referencia32=$model->referencia32;
                     $referencia33=$model->referencia33;
+                    $referencia34=$model->referencia34;
                     
-                    $precioanterior = $model->precioanterior;
+                    
                     $precioanterior1 = $model->precioanterior1;
                     $precioanterior2 = $model->precioanterior2;
                     $precioanterior3 = $model->precioanterior3;
@@ -145,8 +151,9 @@ class CondicionController extends Controller
                     $precioanterior31 = $model->precioanterior31;
                     $precioanterior32 = $model->precioanterior32;
                     $precioanterior33 = $model->precioanterior33;
+                    $precioanterior34 = $model->precioanterior34;
                     
-                    $nuevoprecio =$model->nuevoprecio;
+                    
                     $nuevoprecio1 =$model->nuevoprecio1;
                     $nuevoprecio2 =$model->nuevoprecio2;
                     $nuevoprecio3 =$model->nuevoprecio3;
@@ -180,8 +187,9 @@ class CondicionController extends Controller
                     $nuevoprecio31 =$model->nuevoprecio31;
                     $nuevoprecio32 =$model->nuevoprecio32;
                     $nuevoprecio33 =$model->nuevoprecio33;
+                    $nuevoprecio34=$model->nuevoprecio34;
                     
-                    $piefactura =$model->piefactura;
+                    
                     $piefactura1 =$model->piefactura1;
                     $piefactura2 =$model->piefactura2;
                     $piefactura3 =$model->piefactura3;
@@ -215,8 +223,8 @@ class CondicionController extends Controller
                     $piefactura31 =$model->piefactura31;
                     $piefactura32 =$model->piefactura32;
                     $piefactura33 =$model->piefactura33;
+                    $piefactura34 =$model->piefactura34;
                     
-                    $rebate =$model->rebate;
                     $rebate1 =$model->rebate1;
                     $rebate2 =$model->rebate2;
                     $rebate3 =$model->rebate3;
@@ -250,8 +258,8 @@ class CondicionController extends Controller
                     $rebate31 =$model->rebate31;
                     $rebate32 =$model->rebate32;
                     $rebate33 =$model->rebate33;
+                    $rebate34 =$model->rebate34;
 
-                    $Dias =$model->Dias;   
                     $Dias1 =$model->Dias1;
                     $Dias2 =$model->Dias2;
                     $Dias3 =$model->Dias3;
@@ -285,8 +293,9 @@ class CondicionController extends Controller
                     $Dias31 =$model->Dias31;
                     $Dias32 =$model->Dias32;
                     $Dias33 =$model->Dias33;
+                    $Dias34 =$model->Dias34;   
 
-                    $Sesenta =$model->Sesenta;
+                    
                     $Sesenta1 =$model->Sesenta1;
                     $Sesenta2 =$model->Sesenta2;
                     $Sesenta3 =$model->Sesenta3;
@@ -320,8 +329,8 @@ class CondicionController extends Controller
                     $Sesenta31 =$model->Sesenta31;
                     $Sesenta32 =$model->Sesenta32;
                     $Sesenta33 =$model->Sesenta33;
+                    $Sesenta34 =$model->Sesenta34;
 
-			        $Treinta =$model->Treinta;
 			        $Treinta1 =$model->Treinta1;
 			        $Treinta2 =$model->Treinta2;
 			        $Treinta3 =$model->Treinta3;
@@ -355,8 +364,8 @@ class CondicionController extends Controller
 			        $Treinta31 =$model->Treinta31;
 			        $Treinta32 =$model->Treinta32;
 			        $Treinta33 =$model->Treinta33;
+                       $Treinta34 =$model->Treinta34;
 			        
-			        $Ocho =$model->Ocho;
 			        $Ocho1 =$model->Ocho1;
 			        $Ocho2 =$model->Ocho2;
 			        $Ocho3 =$model->Ocho3;
@@ -390,8 +399,8 @@ class CondicionController extends Controller
 			        $Ocho31 =$model->Ocho31;
 			        $Ocho32 =$model->Ocho32;
 			        $Ocho33 =$model->Ocho33;
+                       $Ocho34 =$model->Ocho34;
 
-			        $Otro =$model->Otro;
 			        $Otro1 =$model->Otro1;
 			        $Otro2 =$model->Otro2;
 			        $Otro3 =$model->Otro3;
@@ -425,6 +434,7 @@ class CondicionController extends Controller
 			        $Otro31 =$model->Otro31;
 			        $Otro32 =$model->Otro32;
 			        $Otro33 =$model->Otro33;
+                       $Otro34 =$model->Otro34;
 
       		$Registro[1]= $model;
       		Yii::app()->session['Registro'] = $Registro;

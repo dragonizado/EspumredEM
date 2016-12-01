@@ -15,7 +15,7 @@ window.onload = cargarPagina;//cargar la primera funcion
 				  var Registros
 				   $.post("<?php echo Yii::app()->request->baseUrl ?>/index.php?r=informacionpersonal/cargar",
 					    function(data) {
-					    	console.log(data);
+					    console.log(data);
 					      var Registro = data;
 					      var index
 					        Registros = $.parseJSON(Registro);
@@ -110,11 +110,6 @@ window.onload = cargarPagina;//cargar la primera funcion
 						
 				        
 			    }
-
-			
-				 
-		
-	
 
 	$(document).on("change","#sexo",function(event){
   /* funcion  se activa cuando hay un cambio en el campo sexo el cual si es femenino esconderia los campos de libreta militar y clase de libreta militar*/

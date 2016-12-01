@@ -1,76 +1,125 @@
-<?php
-/* @var $this InformacionpersonalController */
-/* @var $model Informacionpersonal */
 
-// $this->breadcrumbs=array(
-// 	'Informacionpersonals'=>array('index'),
-// 	'Administrador',
-// );
 
-$this->menu=array(
-	array('label'=>'Buscar Informacionempleado', 'url'=>array('informacionempleado/mostrarEmpleado')),
-	
-);
+<style media="screen">
+	.footermediaQuery{
+		
+		width:100%;
+		bottom:0px;
+	}
+	.footermediaQuerym{
+		margin-top:9.5%;
+	}
+	.caja{
+		box-shadow: 4px 4px 4px rgba(0,0,0,0.05) !important;
+	}
+	.table>thead>tr>th,
+	.table>tbody>tr>th,
+	.table>tfoot>tr>th,
+	.table>thead>tr>td,
+	.table>tbody>tr>td,
+	.table>tfoot>tr>td
+	{
+		padding: 8px !important;
+		line-height: 1.42857143 !important;
+		vertical-align: top !important;
+		border-top: 1px solid #ddd !important;
+	}
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#informacionpersonal-grid').yiiGridView('update', {
-		data: $(this).serialize()
+	.table-bordered>thead>tr>th,
+	.table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th,
+	.table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td,
+	.table-bordered>tfoot>tr>td
+	{
+    border: 1px solid #ddd;
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td,
+	.table-striped>tbody>tr:nth-child(odd)>th
+	{
+    background-color: rgba(243, 103, 22, 0.11) !important;
+	}
+	.radius{
+		border-radius: 3px;
+		margin-right: 4px;
+	}
+</style>
+
+<div class="panel hidden">
+	<div class="panel-body">
+		<h1 style="text-align:center; margin:0;">Administrador de Informacion personal</h1>
+	</div>
+</div>
+
+<div class="loading" style="width:100%; text-align:center; height:55vh; margin-top:10%;">
+	<div>
+		<img src="<?php echo Yii::app()->baseUrl;?>/images/loading_Redondo_1.png" alt="Cargando contenido.." style="position:absolute; z-index:9999;">
+		<img src="<?php echo Yii::app()->baseUrl;?>/images/loading_Redondo_3.png" alt="Cargando contenido.." class="fa-pulse">
+	</div>
+	<!-- <i class="fa fa-spinner fa-pulse fa-5x fa-fw" style="margin-top:10%;"></i><br> -->
+	<span>Cargando contenido...</span>
+</div>
+
+<div class="panel hidden">
+	<!-- <div class="panel-head" style="text-align:center;">
+		<p>
+			hola mundo
+		</p>
+	</div> -->
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-hover table-striped table-bordered tablas" style="text-align:center; border: 1px solid #dddddd !important;">
+				<thead>
+					<tr>
+						<td style="width:110px;">Numero de Documento</td>
+						<td>Nombre</td>
+						<td>Fecha de nacimiento</td>
+						<td>Lugar de nacimiento </td>
+						<td>Sexo</td>						
+						<td>Rh</td>
+						<td style="min-width:100px;">Opciones</td>
+					</tr>
+				</thead>
+				<tbody class="cuerpotabla">
+				
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- modal para traer los datos -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" align="center">
+  <!-- <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		ajaxpage('informacionpersonal','ajaxstore');
 	});
-	return false;
-});
-");
-?>
 
-<h1>Administrador de  Informacion personal</h1>
-
-<p>
-También puede escribir un operador de comparación (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) al principio de cada uno de los valores de búsqueda para especificar cómo se debe hacer la comparación. 
-</p>
-
-<?php echo CHtml::link('Opciones avanzadas','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'informacionpersonal-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'pager'=>array("htmlOptions"=>array("class"=>"pagination")),
-	'columns'=>array(
-		'cc',
-		'nombre',
-		'fechaNacimiento',
-		'lugarNacimiento',
-		'sexo',
-		'rh',
-		/*
-		'estadoCivil',
-		'numeroHijos',
-		'direccionResidencia',
-		'barrio',
-		'municipio',
-		'telefono',
-		'celular',
-		'libretaMilitar',
-		'claseLibretaMilitar',
-		*/
-		array(
-			'class' => 'CButtonColumn',
-            // 'template'=>'{delete}{update}{accion_nueva}', // botones a mostrar
-            'updateButtonUrl'=>'Yii::app()->createUrl("/informacionempleado/update&id=$data->cc" )', // url de la acción 'update'
-            'viewButtonUrl'=>'Yii::app()->createUrl("/informacionempleado/view&id=$data->cc" )', // url de la acción 'update'
-            'deleteButtonUrl'=>'Yii::app()->createUrl("/informacionempleado/eliminar&id=$data->cc")', // url de la acción 'delete'
-            'deleteConfirmation'=>'Seguro que quiere eliminar el elemento?', // mensaje de confirmación de borrado
-            'afterDelete'=>'$.fn.yiiGridView.update("admin-grid");', // actualiza el grid después de borrar
-		),
-	),
-)); ?>
+	function ajaxemployee(value){
+		$.ajax({
+			url:'/yii/Espumred/index.php?r=informacionpersonal/Employees',
+			data:{idemployee:value},
+			type:'get'
+		}).done(function(done){
+			$('#myModal').html(done);
+			$('#myModal').modal();
+		}).error(function(){console.log('Hay un error en el ajax de informacionpersonal admin.');});
+	}
+</script>

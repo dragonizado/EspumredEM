@@ -28,21 +28,21 @@ class ExtensionesController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('mostrarExtensiones','cargar','listarExtension','listarArea'),
+				'actions'=>array('mostrarExtensiones','cargar','listarExtension','listarArea','ajaxstore','ajaxstore2'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'admin','mostrarExtenciones','index','listarExtension','listarArea','cargar','eliminar'),
+				'actions'=>array('create','update', 'view', 'admin','mostrarExtenciones','index','listarExtension','listarArea','cargar','eliminar','ajaxstore','ajaxstore2'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="adminSistema"'
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'admin','mostrarExtenciones','index','listarExtension','listarArea','cargar','eliminar'),
+				'actions'=>array('create','update', 'view', 'admin','mostrarExtenciones','index','listarExtension','listarArea','cargar','eliminar','ajaxstore','ajaxstore2'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="admin"'
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','ajaxstore','ajaxstore2'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -135,21 +135,35 @@ class ExtensionesController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+
+	}
+	public function ActionAjaxstore(){
+	$AllExtensions = Extensiones::model()->FindAll();
+		$contador = 0;
+		$link = "extensiones";
+		foreach ($AllExtensions as $value) {
+					echo '<tr>';
+					echo '<td>'.$value->id.'</td>';
+					echo '<td>'.$value->extension.'</td>';
+					echo '<td>'.$value->area.'</td>';
+					echo '<td>'.$value->nombre.'</td>';
+					echo '<td >'.$value->correoElectronico.'</td>';
+					echo '<td>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->id.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Más detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/update&id='.$value->id.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/eliminar&id='.$value->id.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>';
+					echo '</td>';
+					echo '</tr>';	
 	}
 
+    }
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$model=new Extensiones('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Extensiones']))
-			$model->attributes=$_GET['Extensiones'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+ 
+    $this->render('admin');
 	}
 
 	/**
@@ -180,13 +194,24 @@ class ExtensionesController extends Controller
 		}
 	}
 
+	public function actionAjaxstore2() {
+        $model=Extensiones::model()->findAll();
+		foreach ($model as $value) {
+
+					echo '<tr>';
+					echo '<td>'.$value["extension"].'</td>';
+					echo '<td>'.$value["area"].'</td>';
+					echo '<td>'.$value["nombre"].'</td>';
+					echo '<td>'.$value["correoElectronico"].'</td>';
+					echo '<td>'.$value["skype"].'</td>';
+					echo '</tr>';
+		}
+		var_dump($value);
+    }
+
 	  /* metodo para hacer el llamado ala vista mostrarExtensiones.php*/
          public function actionMostrarExtensiones() {
-        $model=new Extensiones;
-        
-         $this->render('mostrarExtensiones',array(
-            'model'=>$model,
-        ));
+         $this->render('mostrarExtensiones');
     }
 
 

@@ -55,7 +55,7 @@ class Informacionempleado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('id', 'required'),            //es comentario pero se va a activar  // //-----------
+			//array('id', 'required'),          //es comentario pero se va a activar  // //-----------
 			array('informacionPersonal', 'numerical', 'integerOnly'=>true),
 			array('id, codigoNomina, estado, carnet, fechaFinalizacionRetiro,informacionAcademica, informacionFamiliar,
 				numeroCuenta, InformacionVivienda, InformacionEconomica, estadoEstudiantil, seguridadSocial, area,cargo, 
@@ -63,16 +63,14 @@ class Informacionempleado extends CActiveRecord
 				,motivoRetiro,experiencialaboral', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, codigoNomina, estado, carnet, fechaFinalizacionRetiro,informacionAcademica, informacionPersonal,
-				numeroCuenta, informacionFamiliar, InformacionVivienda, InformacionEconomica, estadoEstudiantil, seguridadSocial,
-				 area,cargo, contrato, vehiculo, contactoEmergencia, telefonoContacto,dotacion,
-				 motivoRetiro,experiencialaboral', 'safe', 'on'=>'search'),
-			//array('id','default','value'=>Yii::app()->utils->guid,'setOnEmpty'=>false,'on'=>'insert'), //Es comentario pero se va a activar
-
+			// array('id, codigoNomina, estado, carnet, fechaFinalizacionRetiro,informacionAcademica, informacionPersonal,
+			// 	numeroCuenta, informacionFamiliar, InformacionVivienda, InformacionEconomica, estadoEstudiantil, seguridadSocial,
+			// 	 area,cargo, contrato, vehiculo, contactoEmergencia, telefonoContacto,dotacion,
+			// 	 motivoRetiro,experiencialaboral', 'safe', 'on'=>'search'),
+			//array('id','default','value'=>Yii::app()->utils->guid,'setOnEmpty'=>false,'on'=>'insert'),
 		);
 
 	}
-
 	/**
 	 * @return array relational rules.
 	 */
@@ -82,7 +80,7 @@ class Informacionempleado extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'area0' => array(self::BELONGS_TO, 'Area', 'area'),
-			'cargo' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
+			'cargo0' => array(self::BELONGS_TO, 'Cargos', 'cargo'),
 			'contrato0' => array(self::BELONGS_TO, 'Contrato', 'contrato'),
 			'estadoEstudiantil0' => array(self::BELONGS_TO, 'Estadoestudiantil', 'estadoEstudiantil'),
 			'informacionAcademica0' => array(self::BELONGS_TO, 'Informacionacademica', 'informacionAcademica'),
@@ -92,10 +90,33 @@ class Informacionempleado extends CActiveRecord
 			'informacionVivienda' => array(self::BELONGS_TO, 'Informacionvivienda', 'InformacionVivienda'),
 			'seguridadSocial0' => array(self::BELONGS_TO, 'Seguridadsocial', 'seguridadSocial'),
 			'dotacion' => array(self::BELONGS_TO, 'Dotacion', 'dotacion'),
-
-
 		);
 	}
+
+	// public function behaviors()
+ //    {
+ //        return array(
+ //            'CascadeDeleteBehavior' => array(
+ //                'class' => 'application.components.behaviors.CascadeDeleteBehavior',
+ //                'relations' => array(
+	// 				'contrato0',
+	// 				'estadoEstudiantil0',
+	// 				'informacionAcademica0',
+	// 				'informacionEconomica',
+	// 				'informacionFamiliar0',
+	// 				'informacionPersonal0',
+	// 				'informacionVivienda',
+	// 				'dotacion',
+ //                	),
+ //            )
+ //        );
+ //    }
+
+//     public function beforeDelete(){
+//     foreach($this->location_children as $c)
+//         $c->delete();
+//     return parent::beforeDelete();
+// }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -185,4 +206,7 @@ class Informacionempleado extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
+
 }

@@ -141,6 +141,69 @@
  	
 });
 
+
+//  $('#fechaDeNacimiento').change(function(){
+// 	/* funcion  se activa cuando hay un cambio en el campo sexo*/
+//    		var fecha=document.getElementById("fechaDeNacimiento").value;
+//    		//alert(fecha);
+//      	var fechaActual ="<?php echo date('Y-m-d'); ?>";
+     
+//      	// var fin = fechaActual.getTime() - fecha.getTime();
+//      	var j=0;
+//      	var año="";
+//      	var dia="";
+//      	var mes="";
+//      	var añoactual="";
+//      	var diaactual="";
+//      	var mesactual="";
+// 		for (var i = fecha.length - 1; i >= 0; i--) {
+// 				if (j<4) {
+// 					 año+=fecha[j];
+// 				}if (j>4){
+// 					if (j<7) {
+// 						mes+=fecha[j];
+// 					};
+					 
+// 				}if (j>7) {
+// 					 dia+=fecha[j];
+// 				};
+// 	 	j++;
+// 		};
+
+
+// 		j=0;
+// 		for (var i = fechaActual.length - 1; i >= 0; i--) {
+// 				if (j<4) {
+// 					 añoactual+=fechaActual[j];
+// 				}if (j>4){
+// 					if (j<7) {
+// 						mesactual+=fechaActual[j];
+// 					};
+					 
+// 				}if (j>7) {
+// 					 diaactual+=fechaActual[j];
+// 				};
+// 	 	j++;
+// 		};
+// 		var restaaños =añoactual-año;
+		
+
+// 		if (mesactual<mes) {
+// 				restaaños--;
+// 		};	
+// 		if (mesactual==mes) {
+
+// 			if (diaactual<dia) {	
+// 				restaaños--;
+// 			};
+// 		};
+
+// 		document.getElementById("edad").value=restaaños;
+// });
+
+
+
+
  //funcion para calcular la edad dependiendo de que fecha elige 
  $(document).on("click","#edad",function(event){
   /* funcion  se activa cuando hay un cambio en el campo sexo*/
@@ -199,7 +262,6 @@
 		};
 
 		document.getElementById("edad").value=restaaños;
-
 		// var restames =mesactual-mes;
 		// var restadia =diaactual-dia;
  	// 	alert(añoactual);

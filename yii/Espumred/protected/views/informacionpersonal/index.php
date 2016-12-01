@@ -11,7 +11,6 @@ $this->menu=array(
 	array('label'=>'Administracion de  Informacion personal', 'url'=>array('admin')),
 );
 ?>
-
 <h1 align="center">Informacionpersonal</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(

@@ -79,7 +79,6 @@ Yii::app()->session['Familiar']=$arrayName;
                                       <?php endif ?>
                                         
                                      <!-- logo central de despacho -->
-
                                          <?php if (Yii::app()->user->rol=='talentohumano'): ?>
                                             <div>
                                                 <nav class="navbar navbar-default" role="navigation">
@@ -225,7 +224,7 @@ Yii::app()->session['Familiar']=$arrayName;
                                                     };
 
                                                 };
-												                     }
+												}
                                                           ?><?php
                                                   }
                                                     ?> 
@@ -374,7 +373,7 @@ Yii::app()->session['Familiar']=$arrayName;
                                         <footer> Version 1.0</footer>
                                       <?php endif ?>
 
-   <!-- empieza la vista del rol de administrador-->
+<!-- empieza la vista del rol de administrador-->
 
                       <?php if (Yii::app()->user->rol=='admin'): ?>
                                             <div>
@@ -521,7 +520,8 @@ Yii::app()->session['Familiar']=$arrayName;
                                                           <li><a href="<?php echo Yii::app()->createUrl("lote/admindescargo"); ?>">Crear</a></li>
                                                          <li class="divider"></li>
                                                          <li><a href="<?php echo Yii::app()->createUrl("formacion/admin"); ?>">Administrar</a></li>
-                                                                            
+                                                                              
+                                                         
                                                           </ul>
                                                       </li>
 
@@ -577,7 +577,7 @@ Yii::app()->session['Familiar']=$arrayName;
 
                                                    <div class="navbar-header">
                                                         <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                            data-target=".navbar-ex2-collapse">
+                                                                data-target=".navbar-ex2-collapse">
                                                           <span class="sr-only">Desplegar navegación</span>
                                                           <span class="icon-bar"></span>
                                                           <span class="icon-bar"></span>
@@ -667,11 +667,10 @@ Yii::app()->session['Familiar']=$arrayName;
                                          <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
                                         <footer> Version 1.0</footer>
 
-                                 <?php endif ?>
+                           <?php endif ?>
 					         
-					                  <!--desde aqui empieza usuario modificados recientemente-->
-                            
-					                      <?php if (Yii::app()->user->rol=='Comercio'): ?>
+					
+					                   <?php if (Yii::app()->user->rol=='Comercio'): ?>
                                             <div>
                                                 <nav class="navbar navbar-default" role="navigation">
                                                 <div class="container-fluid">
@@ -686,17 +685,20 @@ Yii::app()->session['Familiar']=$arrayName;
                                                           <span class="icon-bar"></span>
                                                         </button>
                                                        
-                                                      </div> 
+                                                      </div>
                                                      
                                                   <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
                                                     <ul  class="nav navbar-nav">                                    
                                                       <li class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Condiciones Comerciales<span class="caret"></span></a>
                                                         <ul class="dropdown-menu" role="menu">
-                                                           <li><a href="<?php echo Yii::app()->createUrl("condicionescomerciales/create"); ?>">Crear Condiciones Comerciales</a></li>
+                                                           <li><a href="<?php echo Yii::app()->createUrl("condicion/create"); ?>">Crear Condiciones Comerciales</a></li>
                                                           <li class="divider"></li>
                                                              <li><a href="<?php echo Yii::app()->createUrl("condicionescomerciales/admin"); ?>">Mostrar Condiciones Comerciales</a></li>
-   
+
+                           
+                                                        
+                                                            
                                                        </ul>
                                                       </li>
                                                      <li class="dropdown">
@@ -720,10 +722,20 @@ Yii::app()->session['Familiar']=$arrayName;
                                                         <li><a href="<?php echo Yii::app()->createUrl("observaciones/create"); ?>">Crear Observaciones</a></li>
                                                           <li class="divider"></li>
                                                         <li><a href="<?php echo Yii::app()->createUrl("observaciones/admin"); ?>">Administrar Observaciones</a></li>
-                                                          <li class="divider"></li>
-                                                        <li><a href="<?php echo Yii::app()->createUrl("Prueba/create"); ?>">Prueba de formulario</a></li>
                                                           
                                                         
+                                                        </ul>
+                                                      </li>
+                                                        
+                                                      <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="<?php echo Yii::app()->createUrl("observaciones/actualizar"); ?>">Actualizar</a></li>
+                                                          <li class="divider"></li>
+                                                        <li><a href="<?php echo Yii::app()->createUrl("gerente/admin"); ?>">Admin gerente</a></li>
+                                                           <li class="divider"></li>
+                                                        <li><a href="<?php echo Yii::app()->createUrl("observaciones/mostrarPlantilla"); ?>">plantilla</a></li> 
+
                                                           </ul>
                                                       </li>
 
@@ -734,320 +746,28 @@ Yii::app()->session['Familiar']=$arrayName;
                                                 </div><!-- /.container-fluid -->
                                               </nav>
                                          </div>
-                
                                          <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
                                         <footer> Version 1.0</footer>
-
+					
+					
+					
+				
+		
+									
                                         <?php  endif ?>
-                                        
 
-                                   <!--configuracion de Usuario Niyereth-->
+                                         <?php endif ?>
 
-                             
-                                        <?php if (Yii::app()->user->rol=='Revisoria'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">
-                                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Condiciones Comerciales<span class="caret"></span></a>
-                                                  <ul class="dropdown-menu" role="menu">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("observaciones/admin"); ?>">Verificar Condicion Comercial</a></li>
-                                                  <li class="divider"></li>
-                                                  <li><a href="<?php echo Yii::app()->createUrl("clientes/admin"); ?>">Visualizar Cliente</a></li>
-                                                  <li class="divider"></li>
-                                                  <li><a href="<?php echo yii::app()->createUrl("clientes/create"); ?>">Crear Y/o Modificar Cliente</a></li>
-                                                                                                    
-                                                            </ul>
-                                                         </li>
-
-                                                          </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-                                 <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                <footer> Version 1.0</footer>
-
-                                <?php endif ?>
-
-
-                              <!--configuracion de usuario Wilmer-->
-
-
-                                <?php if (Yii::app()->user->rol=='Gerente'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("observaciones/admin"); ?>">Centro de Aceptacion</a></li>
-                                                            </ul>
-                                                         </li>
-
-                                                          </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-                                  <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                  <footer> Version 1.0</footer>
-                                  <?php endif ?>
+                                    <?php if (!isset(Yii::app()->user->rol)): ?>
+                                    <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
+                                    <?php endif ?>
                                   
 
-                                 <?php if (Yii::app()->user->rol=='Qreclamos'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("QuejasReclamos/create"); ?>">Crear Quejas y Reclamos</a></li>
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("QuejasReclamos/admin"); ?>">Ver y Modificar Formato</a></li>
-                                                  
-                                                          </ul>
-                                                      </li>
-
-                                                        </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-                                  <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                  <footer> Version 1.0</footer> 
-                                  <?php endif ?>
-                                 
-                                  <!--creacion de usuario de gerentes para otorgar permisos-->
-
-
-                                  <?php if (Yii::app()->user->rol=='GerenteComercial'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("observaciones/admin"); ?>">Centro de Aceptacion</a></li>
-                                                  <li class="dropdown">
-                                                
-                                                          </ul>
-                                                      </li>
-
-                                                        </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-                                  <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                  <footer> Version 1.0</footer> 
-                                 <?php endif ?>
-                                  
-                                 <?php if (Yii::app()->user->rol=='GerenteCartera'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("observaciones/admin"); ?>">Centro de Aceptacion</a></li>
-                                                  <li class="dropdown">
-                              
-                                                              </ul>
-                                                           </li>
-
-                                                        </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-                                  <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                  <footer> Version 1.0</footer> 
-                                 <?php endif ?>
-                                 
-
-                                 <?php if (Yii::app()->user->rol=='Asesor'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("observaciones/admin"); ?>">Ver Condicion Comercial Aceptada</a></li>
-                                                  <li class="dropdown">
-                                                  <li><a href="<?php echo Yii::app()->createUrl("condicionescomerciales/create"); ?>">Crear Condicion Comercial</a></li>
-                                                  <li class="dropdown">          
-                                                  <li><a href="<?php echo Yii::app()->createUrl("QuejasReclamos/create"); ?>">Crear Quejas, Reclamos y/o Sugerencias</a></li>
-                                                            </ul>
-                                                          </li>
-                                                        </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-
-                                <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                  <footer> Version 1.0</footer> 
-                                  <?php endif ?>
-                                  
-
-                                <?php if (Yii::app()->user->rol=='ServicioCliente'): ?>
-                                                <div>
-                                                <nav class="navbar navbar-default" role="navigation">
-                                                <div class="container-fluid">
-                                                  <!-- Collect the nav links, forms, and other content for toggling -->
-
-                                                   <div class="navbar-header">
-                                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                                data-target=".navbar-ex2-collapse">
-                                                          <span class="sr-only">Desplegar navegación</span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                          <span class="icon-bar"></span>
-                                                        </button>
-                                                       
-                                                      </div>
-                                                     
-
-                                                  <div class="collapse navbar-collapse  navbar-ex2-collapse" id="bs-example-navbar-collapse-1">
-                                                  <ul  class="nav navbar-nav">                                    
-                                                  <li class="dropdown">        
-                                                  <li><a href="<?php echo Yii::app()->createUrl("QuejasReclamos/admin"); ?>">Ver Quejas,Reclamos y/o Sugerencias</a></li>
-                                                            </ul>
-                                                          </li>
-                                                        </ul>
-                                                      </li>                                             
-                                                    </ul>
-                                                  </div><!-- /.navbar-collapse -->
-                                                </div><!-- /.container-fluid -->
-                                              </nav>
-                                         </div>
-
-                                <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                  <footer> Version 1.0</footer> 
-                                  <?php endif ?>
 
 
 
 
-
-
-
-
-
-
-
-
-                                   
-
-
-
-
-                                  <?php endif ?>
-                                  <?php if (!isset(Yii::app()->user->rol)): ?>
-                                  <img src="<?php echo Yii::app()->baseUrl;?>/images/Espumas medellin-logo-central.png" width='350px' height="300px"></a>
-                                
-                                  <?php endif ?>
-
-                                  </div>
+                                    </div>
                                   <div class="col-md-3" style="text-align:center;">
                                   <img src="<?php echo Yii::app()->baseUrl;?>/images/laterales.png" width='320px' height="400px"></a>
                                 </div>
@@ -1056,4 +776,4 @@ Yii::app()->session['Familiar']=$arrayName;
                             </div>
                         </div>
                     </div>
-
+                

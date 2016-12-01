@@ -14,7 +14,6 @@
 
   <?php echo $form->errorSummary($model); ?>
     
-
   <div class="col-md-12">
     <center>
       <p class="note">Los campos con <span class="required">*</span> son requeridos</p>
@@ -35,8 +34,8 @@
       <?php echo $form->error($model,'NombreCliente'); ?>
     </div>
     <div class="col-md-4">
-      <?php echo $form->labelEx($model,'Tipo de Nesecidad*'); ?>
-      <?php echo $form->dropDownList($model,'Firma',array('laboratorio.medellin@espumasmedellin.com'=>'PETICIONES,QUEJAS,RECLAMOS Y SUGERENCIAS',
+      <?php echo $form->labelEx($model,'Tipo de Necesidad*'); ?>
+      <?php echo $form->dropDownList($model,'Firma',array('laboratorio.medellin@espumasmedellin.com'=>'PETICIONES PQRS',
         ),array('id'=>'Firma','size'=>1,'maxlength'=>1 ,'class'=>'form-control')); ?>
       <?php echo $form->error($model,'Firma'); ?>              
     </div>
@@ -54,7 +53,7 @@
       <center>
         <?php echo $form->labelEx($model,'Documentacion o muestras que se adjuntan (Se debe identificar el lote de la espuma)*'); ?>
       </center>
-      <?php echo $form->textArea($model,'Documentacion' ,array('size'=>45,'maxlength'=>45,'class'=>'form-control','id'=>'Documentacion', )); ?>
+      <?php echo $form->textArea($model,'Documentacion' ,array('size'=>45,'maxlength'=>900,'class'=>'form-control','id'=>'Documentacion', )); ?>
       <?php echo $form->error($model,'Documentacion'); ?>
     </div> 
     <div class="col-md-12 CTX">
@@ -69,6 +68,20 @@
     <?php echo CHtml::submitButton($model->isNewRecord ? 'Siguiente' : 'Guardar', array("class"=>"btn btn-primary btn-large","style"=>"margin-top:15px;")); ?>
     <br><br>
   </div>
+
+<?php
+  $this->widget('application.extensions.EAjaxUpload.EAjaxUpload', array(
+                'id' => 'fileUploader',
+                'config' => array(
+                                'action' => Yii::app()->createUrl('/quejasreclamos/upload'),
+                                'allowedExtensions' => array("pdf","mp3","mp4","jpg","jpeg","gif","png","rar","zip"), //array("jpg","jpeg","gif","exe","mov" and etc...
+                                'sizeLimit' => 1 * 1024 * 1024 * 100, // maximum file size in bytes
+                                'minSizeLimit' => 1024, // minimum file size in bytes
+                                'onComplete' => "js:function(id, fileName, responseJSON){ $('#archivo').val(fileName); $('#botones').css('display','inline'); }",
+                           
+                            )
+            ));
+?>
   <div class="col-md-3"></div>
   <?php $this->endWidget(); ?>
 

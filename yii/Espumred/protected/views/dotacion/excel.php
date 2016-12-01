@@ -71,7 +71,7 @@ for ($z=0; $z <count($modelArticulos) ; $z++){?>
 			for ($i=0; $i <count($modelEmpleado) ; $i++) { 
 				$modelDotacion=Dotacion::model()->findByPk($modelEmpleado[$i]["dotacion"]);
 				if ($modelArticulos[$z]["id"]===$modelDotacion["camisa"]||
-					$modelArticulos[$z]["id"]===$modelDotacion["calsado"]||
+					$modelArticulos[$z]["id"]===$modelDotacion["calzado"]||
 					$modelArticulos[$z]["id"]===$modelDotacion ["pantalon"]||
 					$modelArticulos[$z]["id"]===$modelDotacion ["delantal"]||
 					$modelArticulos[$z]["id"]===$modelDotacion ["overol"]||

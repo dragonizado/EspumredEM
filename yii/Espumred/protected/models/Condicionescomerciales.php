@@ -20,7 +20,7 @@ class Condicionescomerciales extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cod, nombreAsesor, nombreCliente, TipologiaCliente, Cambio, negPuntual,vigenciadesde, vigenciahasta', 'required'),
+			array('cod, nombreAsesor, nombreCliente, TipologiaCliente, Cambio, negPuntual,vigenciadesde', 'required'),
 			array('cod', 'numerical', 'integerOnly'=>true),
 			array('cod, nombreAsesor, nombreCliente, TipologiaCliente, Cambio, negPuntual,vigenciadesde, vigenciahasta', 'length', 'max'=>45),
 

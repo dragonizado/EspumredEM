@@ -15,8 +15,23 @@
        
    //          $(this).parent().remove();
  });
+
 </script>  
-    
+
+
+<style type="text/css">
+.CTX
+{
+  text-align: center !important;
+  margin-top:1%; 
+}
+.CTX .form-inline input{
+  width: 86%;
+}
+</style>    
+
+
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -31,14 +46,14 @@
 
   <?php echo $form->errorSummary($model); ?> 
   <div class="col-md-12">
-  <center><p class="note">Los campos con <span class="required">*</span> son requeridos</p><center>
+  <center><p class="note">Los campos con <span class="required">*</span> son requeridos</p></center>
     
 
 
  <?php if (Yii::app()->user->rol=='GerenteComercial'): ?>
   
 
-  <div class="col-md-5">
+  <div class="col-md-5 CTX">
       <?php echo $form->labelEx($model,'Gerente Comercial*'); ?>
       <?php echo $form->dropDownList($model,'gerente_comercial',array('Juan Carlos Rios Gómez'=>'Juan Carlos Rios Gómez',
       ),array('id'=>'gerente_comercial','size'=>1,'maxlength'=>1 ,'class'=>'form-control')); ?>
@@ -47,7 +62,7 @@
   </div>
 
 
-  <div class="col-md-5">  
+  <div class="col-md-5 CTX">  
         <?php echo $form->labelEx($model,'Fecha Autorizacion* '); ?><br>
         <?php 
          /*este metodo de abajo funciona para crear un calendario mas adecuado y armonioso*/
@@ -91,7 +106,7 @@
   <?php if (Yii::app()->user->rol=='GerenteCartera'): ?>
 
 
-    <div class="col-md-5">
+    <div class="col-md-5 CTX">
       <?php echo $form->labelEx($model,'Gerente Cartera*'); ?>
       <?php echo $form->dropDownList($model,'gerente_cartera',array('Luis Alfonso Ortega Almario'=>'Luis Alfonso Ortega Almario',
       ),array('id'=>'gerente_cartera','size'=>1,'maxlength'=>1 ,'class'=>'form-control')); ?>
@@ -100,7 +115,7 @@
     </div>
     
 
-  <div class="col-md-5">  
+  <div class="col-md-5 CTX">  
         <?php echo $form->labelEx($model,'Fecha Autorizacion* '); ?><br>
         <?php 
          /*este metodo de abajo funciona para crear un calendario mas adecuado y armonioso*/
@@ -141,23 +156,22 @@
                             </div>
 
   <?php endif ?>
-
  
+
   
   <?php if (Yii::app()->user->rol=='Gerente'): ?>
 
-    <div class="col-md-4">
+    <div class="col-md-4 CTX">
       <?php echo $form->labelEx($model,'Gerente General*'); ?>
       <?php echo $form->dropDownList($model,'gerente_general',array('Raúl Ignacio Vergara Kerguelen'=>'Raúl Ignacio Vergara Kerguelen',
-      ),array('id'=>'gerente_general','size'=>1,'maxlength'=>1 ,'class'=>'form-control')); ?>
+      ),array('id'=>'gerente_general','size'=>1,'maxlength'=>1 ,'class'=>'form-control')); ?></center>
         
        <?php echo $form->error($model,'gerente_general'); ?>  
-    </div>
+     </div>
 
 
-
-    <div class="col-md-5">  
-        <?php echo $form->labelEx($model,'Fecha Autorizacion* '); ?><br>
+    <div class="col-md-4 CTX">  
+        <?php echo $form->labelEx($model,'Fecha Autorizacion* '); ?>
         <?php 
          /*este metodo de abajo funciona para crear un calendario mas adecuado y armonioso*/
                           if ($model->fechautorizacion2 != '') {
@@ -192,15 +206,19 @@
                                      ));
                      
                                    ?>
-                                    <?php echo $form->error($model,'fechautorizacion2'); ?>                      
+                            
+                            <?php echo $form->error($model,'fechautorizacion2'); ?>
+
+                          </div>    
+                                            
                   <?php endif ?>
                              
-                   </div>
+                 
             
     <br>
     <div class="buttons col-md-24" align="center">
     <br><br><br><br>
-      
+    </br>  
        <?php echo CHtml::submitButton(' << Atras', array("class"=>"btn btn-primary btn-large" ,"id"=>"retroceder")); ?>
        <?php echo CHtml::submitButton($model->isNewRecord ? 'Aceptar' : 'Aceptar', array("class"=>"btn btn-primary btn-large")); ?>
       <br><br><br>

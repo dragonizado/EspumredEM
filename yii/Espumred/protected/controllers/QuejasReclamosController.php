@@ -40,19 +40,20 @@ class QuejasReclamosController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'update', 'admin','listarCiudad','listarArticulo',
 					'listarUsuario','listarCliente','mostrarPlantilla','agregarItem','verArticulos','eliminar',
-					'generarValor','generarDireccion','generarTelefono','uploadProfilePicture','Upload','generarCedula','generarTotal','mostrarSastifactorio','eliminar','listarEmpresas','actualizar','mostrarplantillaActualizar'),
+					'generarValor','generarDireccion','generarTelefono','uploadProfilePicture','Upload','MostrarAviso','generarCedula','generarTotal','mostrarSastifactorio','eliminar','listarEmpresas','actualizar','mostrarplantillaActualizar'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="Qreclamos"'
                 
+                            
         ),
         array('allow', // allow authenticated user to perform 'create' and 'update' actions
-        'actions'=>array('create','uploadProfilePicture','Upload'),
+        'actions'=>array('create','uploadProfilePicture','Upload','MostrarAviso',),
         'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="Asesor"'
 
         ),
          array('allow', // allow authenticated user to perform 'create' and 'update' actions
-        'actions'=>array('create','view','admin'),
+        'actions'=>array('create','view','admin','MostrarAviso'),
         'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="ServicioCliente"'        
                 
@@ -75,10 +76,26 @@ class QuejasReclamosController extends Controller
 	}
 
   public function actionUpload(){
-    $model= new QuejasReclamos;
-    $this->render('upload',array(
-      'model'=>$model,
-    ));
+    Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+        $folder = 'uploads/'; // folder for uploaded files
+        $allowedExtensions = array("pdf","mp3","mp4","jpg","jpeg","gif","png","rar","zip"); //array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 10 * 1024 * 1024; // maximum file size in bytes
+        $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder);
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
+        $fileName = $result['filename']; //GETTING FILE NAME
+
+        echo $return; // it's array 
+
+
+
+    
+    // $model= new QuejasReclamos;
+    // $this->render('upload',array(
+    //   'model'=>$model,
+    // ));
   }
   
 
@@ -97,12 +114,16 @@ class QuejasReclamosController extends Controller
            //---------------------------------------------------------------------------------------->  
                         
               Yii::import("ext.Mailer.*");
-              $mail=new PHPMailer();                              
+              $mail=new PHPMailer();
+              $mail->IsSMTP();                                   // enviar vía SMTP
+              $mail->Host = "190.144.248.198"; // Servidores SMTP
+              $mail->SMTPAuth = false;                                
               $mail->SetFrom("espm.ftra.yii@gmail.com","Quejas y Reclamos EM"); //definir correo por el servidor smtp 
               $mail->Subject="Queja y Reclamo por Revisar";  
-
           /*  funcion de copia de correo asignada para envio de correo electronicos a mas de un destinatario */              
               $mail->addCC('practicante.sistemas@espumasmedellin.com');
+              $mail->addCC('serviciocliente@espumasmedellin.com');
+              
          //----------------------------------------------------------------------------------------->
             
             date_default_timezone_set('UTC');
@@ -239,12 +260,13 @@ class QuejasReclamosController extends Controller
 
 
    /* metodo para hacer es llamar a una vista de errore*/
-         public function actionMostrarSastifactorio()
+         public function actionMostrarAviso()
     {
         $model=new QuejasReclamos;
         
-         $this->render('Sastifactorio',array(
+         $this->render('aviso',array(
             'model'=>$model,
+            
         ));
     }
 
@@ -288,13 +310,11 @@ public function actionMostrarPlantilla(){
 	 */
 	public function actionAdmin()
 	{
-		$model=new QuejasReclamos('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['QuejasReclamos']))
-			$model->attributes=$_GET['QuejasReclamos'];
+		$allquejas=QuejasReclamos::model()->findAll();
 
 		$this->render('admin',array(
-			'model'=>$model,
+			'allquejas'=>$allquejas,
+      
 		));
 	}
 

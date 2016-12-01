@@ -5,7 +5,7 @@ ini_set('date.timezone','America/Bogota');
 $fecha = date("d/m/Y");
 $hora = date("g:i A");       
 //$modeloRegistro=Registroingresovehiculo::model()->findAll();
-$modeloRegistro=Registroingresovehiculo::model()->findAll(array('order' => 'fecha ASC'));
+$modeloRegistro=Registroingresovehiculo::model()->findAll(array('order' => 'fecha DESC'));
 
 ?>
 

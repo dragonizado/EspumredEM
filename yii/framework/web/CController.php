@@ -875,7 +875,7 @@ class CController extends CBaseController
 				echo $output;
 		}
 		else
-			throw new CException(Yii::t('yii','{controller} cannot find the requested view "{view}".',
+			throw new CException(Yii::t('yii','{controller} No se pudo encontrar la vista "{view}".',
 				array('{controller}'=>get_class($this), '{view}'=>$view)));
 	}
 

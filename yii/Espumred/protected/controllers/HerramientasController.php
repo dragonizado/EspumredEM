@@ -29,13 +29,13 @@ class HerramientasController extends Controller
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'update', 'admin','index','mostrarHerramientas',
-					'mostrarInforme','guardarId','eliminar','mostrarError'),
+					'mostrarInforme','guardarId','eliminar','mostrarError','ajaxstore'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="mantenimiento"'
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'view', 'update', 'admin','index','mostrarHerramientas',
-					'mostrarInforme','guardarId','eliminar','mostrarError'),
+					'mostrarInforme','guardarId','eliminar','mostrarError','ajaxstore'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="admin"'
 			),
@@ -131,19 +131,40 @@ class HerramientasController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+    
+    public function actionAjaxstore(){
+		$AllEmployees = Herramientas::model()->FindAll();
+		$contador = 0;
+		$link = "herramientas";
+		foreach ($AllEmployees as $value) {
+					echo '<tr>';
+					echo '<td>'.$value->nombre.'</td>';
+					echo '<td>'.$value->descripcion.'</td>';
+					echo '<td>'.$value->marca.'</td>';
+					echo '<td>'.$value->fechaDeCompra.'</td>';
+					echo '<td>'.$value->proveedor.'</td>';
+					echo '<td>'.$value->estado.'</td>';
+					echo '<td>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->id.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Más detalles"><i class="fa fa-search" aria-hidden="true"></i></button></a>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/update&id='.$value->id.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>';
+					echo '<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/eliminar&id='.$value->id.'" ><button class="radius btn-danger" style=""data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button></a>';
+					echo '</td>';
+					echo '</tr>';
+		}
+		
+	}
+
 
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$model=new Herramientas('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Herramientas']))
-			$model->attributes=$_GET['Herramientas'];
+		$allsetings =Herramientas::model()->FindAll();
+		
 
 		$this->render('admin',array(
-			'model'=>$model,
+			'allsetings'=>$allsetings,
 		));
 	}
 

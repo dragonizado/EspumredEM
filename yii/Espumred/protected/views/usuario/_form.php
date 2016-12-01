@@ -49,7 +49,7 @@
 		<?php echo $form->dropDownList($model,'Rol',array(''=>'','admin'=>'admin','AdminfacturaGeneral'=>'AdminfacturaGeneral',
 			'corte'=>'corte','costo'=>'costo','costoExterno'=>'costoExterno','costoMayorista'=>'costoMayorista','factura'=>'factura',
 			'facturaCompras'=>'facturaCompras','facturaGeneral'=>'facturaGeneral','ingresopersonal'=>'ingresopersonal','mantenimiento'=>'mantenimiento',
-			'porteria'=>'porteria','talentohumano'=>'talentohumano','Comercio'=>'Comercio','Asesor'=>'Asesor','Gerente'=>'Gerente','Revisoria'=>'Revisoria','Qreclamos'=>'Qreclamos','GerenteComercial'=>'GerenteComercial','GerenteCartera'=>'GerenteCartera','recepcion'=>'recepcion','ServicioCliente'=>'ServicioCliente',
+			'porteria'=>'porteria','talentohumano'=>'talentohumano','Cartera'=>'Cartera','Comercio'=>'Comercio','Asesor'=>'Asesor','Gerente'=>'Gerente','Revisoria'=>'Revisoria','Qreclamos'=>'Qreclamos','GerenteComercial'=>'GerenteComercial','GerenteCartera'=>'GerenteCartera','recepcion'=>'recepcion','ServicioCliente'=>'ServicioCliente',
 	  ),array('size'=>1,'maxlength'=>1 ,'id'=>"Rol",'class'=>'form-control','')); ?>
 		<?php echo $form->error($model,'Rol'); ?>
 	</div>

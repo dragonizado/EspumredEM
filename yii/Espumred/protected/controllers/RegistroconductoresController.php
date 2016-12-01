@@ -52,6 +52,13 @@ class RegistroconductoresController extends Controller
 					,'guardar_foto','guardar','guardarId','menu','eliminar'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="talentohumano"'
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update', 'view', 'update', 'admin','index','menu','ingreso'
+					,'guardar_foto','guardar','guardarId','menu','eliminar'),
+				'users'=>array('@'),
+                'expression'=>'Yii::app()->user->rol==="ingresopersonal"'
+
 			),
 
 			 	

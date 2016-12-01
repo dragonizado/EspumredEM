@@ -1,65 +1,109 @@
-<?php
-/* @var $this ClientesController */
-/* @var $model Clientes */
+<style media="screen">
+	.footermediaQuery{
+		
+		width:100%;
+		bottom:0px;
+	}
+	.footermediaQuerym{
+		margin-top:9.5%;
+	}
+	.caja{
+		box-shadow: 4px 4px 4px rgba(0,0,0,0.05) !important;
+	}
+	.table>thead>tr>th,
+	.table>tbody>tr>th,
+	.table>tfoot>tr>th,
+	.table>thead>tr>td,
+	.table>tbody>tr>td,
+	.table>tfoot>tr>td
+	{
+		padding: 8px !important;
+		line-height: 1.42857143 !important;
+		vertical-align: top !important;
+		border-top: 1px solid #ddd !important;
+	}
 
-$this->breadcrumbs=array(
-	'clientes'=>array('index'),
-	'Administrador',
-);
+	.table-bordered>thead>tr>th,
+	.table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th,
+	.table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td,
+	.table-bordered>tfoot>tr>td
+	{
+    border: 1px solid #ddd;
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td,
+	.table-striped>tbody>tr:nth-child(odd)>th
+	{
+    background-color: rgba(243, 103, 22, 0.11) !important;
+	}
+	.radius{
+		border-radius: 3px;
+		margin-right: 4px;
+	}
+</style>
 
-$this->menu=array(
-	//array('label'=>'Listar Cliente', 'url'=>array('index')),
-	array('label'=>'Crear Cliente', 'url'=>array('create')),
-	//array('label'=>'Mostrar Clientes', 'url'=>array('clientes/admin')),
-);
+<div class="panel">
+	<div class="panel-body">
+		<h1 style="text-align:center; margin:0;">Administrador de Clientes</h1>
+	</div>
+</div>
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
+<div class="panel">
+	<!-- <div class="panel-head" style="text-align:center;">
+		<p>
+			hola mundo
+		</p>
+	</div> -->
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-hover table-striped table-bordered" style="text-align:center; border: 1px solid #dddddd !important;" id="tabla">
+				<thead>
+					<tr>
+						<td>Codigo</td>
+						<td>Nombre Cliente</td>
+						<?php 
+							if(Yii::app()->user->rol==="Cartera"){
+								echo "<td>Opciones</td>"; 
+							}
+						 ?>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					echo $Tabla;
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$(function () {
+	$('[data-toggle="tooltip"]').tooltip()
 });
-$('.search-form form').submit(function(){
-	$('#clientes-grid').yiiGridView('update', {
-		data: $(this).serialize()
+		// $('section#Footer').css({'margin-top':'9.5%'});
+		$('body').css({'background-color':'#EBEEEE'});
+		$('.panel').addClass('caja');
+		$('table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td').css({
+			'border':'1px solid #ddd !important'
+		});
+		if ($(window).width() >= 820) {
+			$('section#Footer').removeClass('footermediaQuerym');
+			$('section#Footer').addClass('footermediaQuery');
+		}
+		$(window).resize(function(){
+			 if ($(window).width() >= 820) {
+				 $('section#Footer').removeClass('footermediaQuerym');
+				 $('section#Footer').addClass('footermediaQuery');
+			 }else if($(window).width() <= 766){
+					$('section#Footer').removeClass('footermediaQuery');
+					$('section#Footer').addClass('footermediaQuerym');
+
+			 }
+		});
 	});
-	return false;
-});
-");
-?>
-
-<h1>Administrador de  Clientes</h1>
-Bienvenidos Niyereth y Wilmer, Aqui podran visualizar y/o añadir Clientes con su respectivo Codigo.
-
-</p>
-
-<?php echo CHtml::link('Opciones Avanzadas','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'clientes-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'pager'=>array("htmlOptions"=>array("class"=>"pagination")),
-	'columns'=>array(
-		'cod',
-		'nombreCliente',
-		/*
-		'Empresa',
-		'Fecha_Creacion',
-		'Fecha_Modificacion',
-		*/
-		array(
-			'class' => 'CButtonColumn',
-            // 'template'=>'{delete}{update}{accion_nueva}', // botones a mostrar
-            'updateButtonUrl'=>'Yii::app()->createUrl("/clientes/update&id=$data->cod" )', // url de la acción 'update'
-            'viewButtonUrl'=>'Yii::app()->createUrl("/clientes/view&id=$data->cod" )', // url de la acción 'update'
-            'deleteButtonUrl'=>'Yii::app()->createUrl("/clientes/eliminar&id=$data->cod")', // url de la acción 'delete'
-            'deleteConfirmation'=>'Seguro que quiere eliminar el elemento?', // mensaje de confirmación de borrado
-            'afterDelete'=>'$.fn.yiiGridView.update("admin-grid");', // actualiza el grid después de borrar
-		),
-	),
-)); ?>
+</script>

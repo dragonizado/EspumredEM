@@ -1,13 +1,13 @@
 <?php
 
- class Prueba extends CActiveRecord{
+ class Prestamoequipos extends CActiveRecord{
 
 /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'prueba';
+		return 'prestamoequipos';
 	}
 
   /**
@@ -18,12 +18,13 @@
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, apellido, ciudad', 'required'),		
-
-			array('nombre, apellido, ciudad', 'length', 'max'=>45),
+		array('id, equipo_solicitar, responsable, observaciones,fecha_prestamo, fecha_solicitacion', 'required'),		
+		array('equipo_solicitar, responsable, fecha_prestamo, fecha_solicitacion', 'length', 'max'=>45),
+		array('fecha_solicitacion, fecha_prestamo, firma', 'safe'),	
+		array('observaciones','length', 'max'=>900),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('nombre, apellido, ciudad', 'safe', 'on'=>'search'),
+        array('id,equipo_solicitar, responsable, observaciones,fecha_prestamo, fecha_solicitacion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,10 +49,14 @@
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'nombre' => 'Nombre',
-			'apellido' => 'Apellido',
-			'ciudad' => 'Ciudad',	
+
+		'id'=>'id', 
+		'equipo_solicitar'=>'equipo_solicitar', 
+		'responsable'=>'responsable', 
+		'observaciones'=>'observaciones',
+		'fecha_prestamo'=>'fecha_prestamo', 
+		'fecha_solicitacion'=>'fecha_solicitacion',
+
 		);
 	}
 
@@ -62,9 +67,11 @@ public function search()
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('nombre',$this->nombre,true);
-		$criteria->compare('apellido',$this->apellido,true);
-		$criteria->compare('ciudad',$this->ciudad,true);
+		$criteria->compare('equipo_solicitar',$this->equipo_solicitar,true);
+		$criteria->compare('responsable',$this->responsable,true);
+		$criteria->compare('observaciones',$this->observaciones,true);
+	    $criteria->compare('fecha_prestamo',$this->fecha_prestamo,true);
+		$criteria->compare('fecha_solicitacion',$this->fecha_solicitacion,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

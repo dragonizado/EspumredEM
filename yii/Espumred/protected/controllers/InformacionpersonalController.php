@@ -29,12 +29,12 @@ class InformacionpersonalController extends Controller
 		return array(
 	
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'update','updateTodo', 'admin','listarMunicipio','cargar','eliminar'),
+				'actions'=>array('create','update', 'view', 'update','updateTodo', 'admin','listarMunicipio','cargar','eliminar','Employees'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="admin"'
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'admin','updateTodo','delete','listarMunicipio','cargar','eliminar'),
+				'actions'=>array('create','update', 'view', 'admin','updateTodo','ajaxstore','delete','listarMunicipio','cargar','eliminar','Employees'),
 				'users'=>array('@'),
                 'expression'=>'Yii::app()->user->rol==="talentohumano"'
 			),
@@ -188,21 +188,72 @@ class InformacionpersonalController extends Controller
 
 	}
 
-	
+	public function actionAjaxstore(){
+		$AllInformations = Informacionpersonal::model()->with('municipio0')->FindAll();
+		$link = "informacionempleado";
+		// $model=new Informacionpersonal('search');
+		// $model->unsetAttributes();  // clear any default values
+		// if(isset($_GET['Informacionpersonal']))
+		// 	$model->attributes=$_GET['Informacionpersonal'];
+		// $this->render('admin',array(
+		// 	'model'=>$model,
+		// ));
+		foreach ($AllInformations as $value) {
+					echo '<tr>';
+					echo		 	'<td><a href="#" onclick="ajaxemployee('.$value->cc.')">'.$value->cc.'</a></td>';
+					echo		 	'<td>'.$value->nombre.'</td>';
+					echo		 	'<td>'.$value->fechaNacimiento.'</td>';
+					echo		 	'<td>'.$value->municipio0->nombreMunicipio.'</td>';
+					echo		 	'<td>'.$value->sexo.'</td>';
+					echo		 	'<td>'.$value->rh.'</td>';
+					echo		 	'<td>';
+					echo		 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/view&id='.$value->cc.'" ><button class="btn-info radius" style=""data-toggle="tooltip" data-placement="bottom" title="Subir imagen"><i class="fa fa-camera" aria-hidden="true"></i></button></a>';
+					echo		 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/update&id='.$value->cc.'" ><button class="radius btn-success" style=""data-toggle="tooltip" data-placement="bottom" title="Actualizar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>';
+					echo		 		'<a href="'.Yii::app()->baseUrl.'/index.php?r='.$link.'/guardarId2&id='.$value->cc.'" target="_blank"><button class="radius btn-info" style=""data-toggle="tooltip" data-placement="bottom" title="Ver hoja de vida"><i class="fa fa-eye" aria-hidden="true"></i></button></a>';
+					echo		 	'</td>';
+					echo		 '</tr>';
+						}
+	}
+
+	public function actionEmployees(){
+
+		$allEmployeesfinal = null ;
+
+		if(isset($_GET['idemployee'])){
+			$id = $_GET['idemployee'];
+			$allEmployeesfinal = informacionempleado::model()->with('informacionPersonal0','area0','contrato0','cargo0')->FindAllByPk($id);
+		}else{
+			$allEmployeesfinal = informacionempleado::model()->with('informacionPersonal0','area0','contrato0','cargo0')->FindAllByPk('3383932');
+		}
+		    foreach ($allEmployeesfinal as $value) {
+		    	
+		    	echo '<div class="panel caja" style="width:350px; margin-top:8%;">';
+				echo	'<div class="panel-body">';
+				echo		'<center><img src="'.Yii::app()->baseUrl.'/images/fotos/'.$value->informacionPersonal.'.jpg" alt="No hay Foto" width="120px" height="154.66px"></center>';
+				echo 		'<br>';
+				echo		'<p>';
+				echo			'<strong>Cc:  </strong>'.$value->informacionPersonal.' <br>';
+				echo			'<strong>Nombre Empleado: </strong> '.$value->informacionPersonal0->nombre.'<br>';
+				echo			'<strong>Codigo Nomina:</strong> '.$value->codigoNomina.'<br>';
+				echo			'<strong>Estado:</strong> '.$value->estado.'<br>';
+				echo			'<strong>Carnet:</strong> '.$value->carnet.'<br>';
+				echo			'<strong>Area:</strong> '.$value->area0->nombreArea.'<br>';
+				echo			'<strong>Cargo:</strong> '.$value->cargo0->nombreCargo.'<br>';
+				echo			'<strong>Fecha de inicio del contrato:</strong> <br> '.$value->contrato0->fechaIngreso.'<br>';
+				echo		'</p>';
+				echo		'<hr><button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>';
+				echo	'</div>';
+				echo'</div>';
+		    }
+	}
 
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$model=new Informacionpersonal('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Informacionpersonal']))
-			$model->attributes=$_GET['Informacionpersonal'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		
+		$this->render('admin');
 	}
 
 	/**

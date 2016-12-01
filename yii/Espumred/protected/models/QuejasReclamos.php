@@ -26,8 +26,9 @@ class QuejasReclamos extends CActiveRecord
 			
 	    array('codigo, NombreApellido, Empresa, Hechos, Documentacion, Firma, NombreCliente, Lote', 'required'),
 
-		array('id, codigo, NombreApellido, Empresa, Documentacion, Firma, NombreCliente, Lote', 'length', 'max'=>45),
-		array('Fecha', 'safe'),		
+		array('id, codigo, NombreApellido, Empresa, Firma, NombreCliente, Lote', 'length', 'max'=>45),
+		array('Fecha', 'safe'),
+		array('Documentacion','length','max'=>900),		
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 		array('id, codigo, NombreApellido, Empresa, Documentacion, Fecha, Firma, Hechos, NombreCliente, Lote', 'safe','on'=>'search'),
