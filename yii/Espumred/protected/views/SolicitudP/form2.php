@@ -81,7 +81,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                     <label for="nom_client" class="col-sm-3 control-label">Nombre Cliente</label>
                     <div class="col-sm-9">
                       <!-- <input type="text" class="form-control info" id="nom_client" name="nom_client" placeholder="Pepe" required> -->
-                      <?php 
+                      <?php
 
                       // $value = "hola";
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
@@ -92,8 +92,8 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                  'minLength' => '2',
                                  'showAnim' => 'fold',
                                  'select' => 'js:function(event,ui)
-                                 
-                          { 
+
+                          {
                             // jQuery("#Condicionescomerciales_nombreCliente").val(ui.item["value"]);
                             $("#cod_client").val(ui.item["id"]);
                             // $("#cod_client").prop("disabled",true);
@@ -105,12 +105,12 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                          ));
                        ?>
                     </div>
-                  </div> 
+                  </div>
                   <div class="form-group">
                     <label for="cod_client" class="col-sm-3 control-label ">Código Cliente</label>
                     <div class="col-sm-9">
                         <!-- <input type="text" class="form-control info" id="cod_client" name="cod_client" placeholder="####" required> -->
-                        <?php 
+                        <?php
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                              'name' => 'cod_client',
                              'htmlOptions'=>array('class'=>'form-control'),
@@ -119,8 +119,8 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                  'minLength' => '2',
                                  'showAnim' => 'fold',
                                  'select' => 'js:function(event,ui)
-                                 
-                          { 
+
+                          {
                             // jQuery("#Condicionescomerciales_nombreCliente").val(ui.item["value"]);
                             $("#nom_client").val(ui.item["id"]);
                             // $("#nom_client").prop("disabled",true);
@@ -153,7 +153,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                           <option value="2">Colchones</option>
                           <option value="3">Muebles</option>
                           <option value="4">Otros</option>
-                        </select> 
+                        </select>
                     </div>
                   </div>
 
@@ -163,7 +163,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                          <select id="Apl_bon" name="Apl_bon" class="form-control">
                           <option value="no">No</option>
                           <option value="si">Si</option>
-                        </select> 
+                        </select>
                     </div>
                   </div>
                   <div  class="hidden" id="otros_cap">
@@ -194,9 +194,9 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                     </div>
                   </div>
                   </div>
-                  
+
                   <!--Fin de la parte del pedido-->
-                    
+
                     <!-- botones -->
                     <div class="row" align="center">
                       <!-- <span class="btn btn-primary">Atras</span> -->
@@ -207,7 +207,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                     <input type="hidden" id="valor_total_pedido" name="valor_total_pedido">
                 </form>
               </div>
-              
+
         </div>
         <div id="contenido2" style="display: none;">
               <div class="col-sm-5">
@@ -233,9 +233,9 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                              'minLength' => '2',
                                              'showAnim' => 'fold',
                                              'select' => 'js:function(event,ui)
-                                             
-                                      { 
-                                        
+
+                                      {
+
                                         $("#cod_pro").val(ui.item["id"]);
                                         $("#description").val(ui.item["label"]);
                                         //ajaxcalculator("solicitudP/Ajaxcalculator",ui.item["label"],ui.item["id"]);
@@ -247,7 +247,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                      ));
                               ?>
                               </div>
-                          </div> 
+                          </div>
                           <div class="form-group" >
                               <label for="description" class="col-sm-3 control-label">Descripción</label>
                               <div class="col-sm-9" id="render_description">
@@ -260,8 +260,8 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                          'options' => array(
                                              'minLength' => '2',
                                              'showAnim' => 'fold',
-                                             'select' => 'js:function(event,ui)    
-                                      { 
+                                             'select' => 'js:function(event,ui)
+                                      {
                                         $("#cod_pro").val(ui.item["id"]);
                                         $("#description").val(ui.item["label"]);
                                         //ajaxcalculator("solicitudP/Ajaxcalculator",ui.item["label"],ui.item["id"]);
@@ -277,7 +277,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                             <!--Parte de ajax-->
                           </div>
                           </div>
-                  </div>            
+                  </div>
               </div>
                <!-- / panel preview -->
               <div class="col-sm-6">
@@ -291,13 +291,13 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                           <th>N° Orden</th>
                                           <th>Código Producto</th>
                                           <th>Valor Unitario</th>
-                                          <th>Mas Detalles</th>
+                                          <th>Valor total</th>
                                           <th>Eliminar</th>
                                       </tr>
                                   </thead>
                                   <tbody></tbody> <!-- preview content goes here-->
                               </table>
-                          </div>                            
+                          </div>
                       </div>
                   </div>
                   <div class="row text-right">
@@ -309,16 +309,16 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                       <div class="col-xs-12">
                           <hr style="border:1px dashed #dddddd;">
                           <button type="button" class="btn btn-primary btn-block hidden" id="send_all_form">Enviar todos los pedidos</button>
-                      </div>                
+                      </div>
                   </div>
-              </div>  
+              </div>
                       </div>
                   </div>
               </div>
           </div>
       </div>
 <script>
-
+ var ajaxbaseurl = "<?php echo Yii::app()->baseUrl;?>/";
   $(document).ready(function(){
     $('#btnm1').click(function(){
       $('#inp_bonifi').append('<input type="text" class="form-control info" style="margin-top:16px;" id="inp_bonifi" name="formyiid[bonifi][]">');
@@ -351,37 +351,42 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
        }
 
      });
-    
+
   });
 
 
-function ajaxcalculator(url,datos,v = null){
-
+function ajaxcalculator(url,datos,v = null,vlk = 0, cant = 0, por_desc = 0){
         $.ajax({
-          url:'/yii/espumred/index.php?r='+url,
-          data:{Tajax:"Dragonizado",term:datos,V:v},
+          url:ajaxbaseurl+'index.php?r='+url,
+          data:{Tajax:"Dragonizado",term:datos,V:v,vlk:vlk,cant:cant,por_des:por_desc},
+          dataType:"json",
           type:'get'
           }).done(function(done){
             alert("Resultado de la consulta");
+            alert("valor descuento: "+done["valor_unitario"]);
+            alert("valor  unitario: "+done["valor_descuento"]);
+            alert("valor total: "+done["valor_total"]);
+            alert(done);
           }).error(function(){console.log('Error en el ajax de recuperacion');});
-    
 }
 
 function AjaxPageControl(type){
   var url;
 
-  
+
   url = "SolicitudP/AjaxPageControl";
   $.ajax({
-            url:'/yii/espumred/index.php?r='+url,
+            url: ajaxbaseurl+'index.php?r='+url,
             data:{Tajax:"Dragonizado",type:type},
             dataType:'html',
             type:'get'
             }).done(function(done){
               $("#frmajax").html(done);
-           
+              var n_orn = $("#n_ord_p").text();
+              $("#N_orden").val(n_orn);
+
             }).error(function(){console.log('Error en el ajax de AjaxPageControl ERROR L443');});
-           
+
 }
 
   function MO(id){
@@ -403,17 +408,17 @@ function AjaxPageControl(type){
          AjaxPageControl(0);
     }else if($("#T_Pedido option:selected").val() === "1"){
          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(1); 
+         AjaxPageControl(1);
     }else if($("#T_Pedido option:selected").val() === "2"){
          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(2);   
+         AjaxPageControl(2);
     }else if($("#T_Pedido option:selected").val() === "3"){
          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(3);     
+         AjaxPageControl(3);
     }else if($("#T_Pedido option:selected").val() === "4"){
          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
          AjaxPageControl(4);
-         
+
     }else{
          alert("Error en la pagina web.");
          var confirm = confirm("Recargar la pagina?");
@@ -432,36 +437,36 @@ function AjaxPageControl(type){
         sum += parseFloat($(this).text());
     });
     $(".preview-total").text(sum);
-    $("#valor_total_pedido").val(sum);    
+    $("#valor_total_pedido").val(sum);
 }
 
 
-function validarDatos(codp){   
-  var con = 0;   
-  $(".preview-table > tbody tr").each(function(i, e){     
-    console.log($(e).find("td:eq(3)").find("input").val());     
+function validarDatos(codp){
+  var con = 0;
+  $(".preview-table > tbody tr").each(function(i, e){
+    console.log($(e).find("td:eq(3)").find("input").val());
     if($(e).find("td:eq(1)").text()==codp){
-      con++; 
+      con++;
     }
   });
-  return con==0?true:false; 
+  return con==0?true:false;
 }
 
 function btns1(){
 
       $("#contenido1").slideToggle();
       $("#contenido2").slideToggle();
-   
+
 }
 
 function btns2(){
-     
+
       $("#contenido2").slideToggle();
       $("#contenido1").slideToggle();
     }
 
 
-$(document).on('click', '.input-remove-row', function(){ 
+$(document).on('click', '.input-remove-row', function(){
     var tr = $(this).closest('tr');
     tr.fadeOut(200, function(){
       tr.remove();
@@ -489,16 +494,16 @@ $('#send_all_form').click(function(){
         //     $(this).parent('.form-group').removeClass('has-error');
         //     console.log('yea');
         //   }
-          
+
         // });
 
-        
+
         // form_data["cod_client"] = $('.payment-form input[name="cod_client"]').val();
         // form_data["nom_client"] = $('.payment-form input[name="nom_client"]').val();
         form_data["N_orden"] = $('.payment-form input[name="N_orden"]').val();
         form_data["cod_pro"] = $('.payment-form input[name="cod_pro"]').val();
-        form_data["amount"] = $('.payment-form input[name="amount"]').val();
-        form_data["details-row"] = '<span class="glyphicon glyphicon-list-alt"></span>';
+        form_data["value_unit"] = $('.payment-form input[name="value_unit"]').val();
+        form_data["total_amount"] = $('.payment-form input[name="amount"]').val();
         form_data["remove-row"] = '<span class="glyphicon glyphicon-remove"></span>';
 
         // form_post["cod_cliente2"] = "<input type='hidden' name='cod_cliente2[]' id='cod_cliente2' value='"+ $('.payment-form input[name="cod_client"]').val()+"'>";
@@ -526,10 +531,10 @@ $('#send_all_form').click(function(){
         count_final = count_row + 1;
         $('#contador_fila').val(count_final);
         $('#form_solicitud').append(forms);
-        $('.preview-table > tbody:last').append(row); 
+        $('.preview-table > tbody:last').append(row);
         calc_total();
         $('#send_all_form').removeClass('hidden');
-      
-    } 
 
-</script> 
+    }
+
+</script>
