@@ -484,13 +484,13 @@ class solicitudPController extends Controller
                           </div>   
                           <div class="form-group">
                               <div class="col-sm-4 text-left">
-                              <button type="button" class="btn btn-primary" id="btns2" onclick="btns2()">
-                                <span class="glyphicon glyphicon-arrow-left" >Volver</span>
+                              <button type="button" class="btn btn-default" id="btns2" onclick="btns2()">
+                                <span class="glyphicon glyphicon-arrow-left" ></span>Volver
                               </button>
                               </div>
                               <div class="col-sm-4 text-right">
-                                  <button type="button" class=btn btn-default onclick=ajaxcalculator("solicitudP/Ajaxcalculator",$("#description").val(),$("#cod_pro").val())>
-                                      <span class="glyphicon glyphicon-plus"></span> Calcular
+                                  <button type="button" class="btn btn-default" onclick=ajaxcalculator("solicitudP/Ajaxcalculator",$("#description").val(),$("#cod_pro").val())>
+                                      <span class="fa fa-calculator" aria-hidden="true"></span> Calcular
                                   </button>
                               </div>
                               <div class="col-sm-4 text-right">
