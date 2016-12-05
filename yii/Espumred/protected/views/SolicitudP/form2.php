@@ -217,7 +217,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                           <div class="form-group">
                               <label for="N_orden" class="col-sm-3 control-label">N° orden</label>
                               <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="N_orden" name="N_orden" placeholder="####" required>
+                                  <input type="number" class="form-control info" id="N_orden" name="N_orden" disabled>
                               </div>
                           </div>
                           <div class="form-group">
@@ -227,7 +227,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                 $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                                          'name' => 'cod_pro',
                                          'id' => 'cod_pro',
-                                         'htmlOptions'=>array('class'=>'form-control', 'placeholder'=>'####', 'required'),
+                                         'htmlOptions'=>array('class'=>'form-control finput', 'placeholder'=>'####', 'required'),
                                          'sourceUrl' => $this->createUrl('ListarCodProductos'),
                                          'options' => array(
                                              'minLength' => '2',
@@ -255,7 +255,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                 $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                                          'name' => 'description',
                                          'id' => 'description',
-                                         'htmlOptions'=>array('class'=>'form-control',),
+                                         'htmlOptions'=>array('class'=>'form-control finput',),
                                          'sourceUrl' => $this->createUrl('ListarProductos'),
                                          'options' => array(
                                              'minLength' => '2',
@@ -273,6 +273,66 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                               ?>
                               </div>
                           </div>
+                          <div class="form-group">
+                                                  <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
+                                                  <div class="col-sm-9">
+                                                      <input type="number" class="form-control info finput" id="cantidad" name="cantidad" placeholder="####"  required>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="value_kl" class="col-sm-3 control-label">Valor Kilo</label>
+                                                  <div class="col-sm-9">
+                                                      <input type="number" class="form-control info finput" id="value_kl" name="value_kl" placeholder="####" required>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="descuentoP" class="col-sm-3 control-label">Porcentaje Descuento</label>
+                                                  <div class="col-sm-9">
+                                                      <input type="number" class="form-control info finput" id="descuentoP" name="descuentoP" placeholder="#" >
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="value_descount" class="col-sm-3 control-label">Valor Descuento</label>
+                                                  <div class="col-sm-9">
+                                                      <input type="number" class="form-control info finput" id="value_descount" name="value_descount" disabled>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="value_unit" class="col-sm-3 control-label">Valor Unitario</label>
+                                                <div class="col-sm-9">
+                                                  <input type="number" class="form-control info finput" id="value_unit" name="value_unit" disabled>
+                                                </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="amount" class="col-sm-3 control-label">Valor total</label>
+                                                  <div class="col-sm-9">
+                                                      <input type="number" class="form-control info finput" id="amount" name="amount" disabled>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="date" class="col-sm-3 control-label">Fecha de entrega</label>
+                                                  <div class="col-sm-9">
+                                                      <input type="date" class="form-control info finput" id="date" name="date"  placeholder="##/##/####"required>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <div class="col-sm-4 text-left">
+                                                  <button type="button" class="btn btn-primary" id="btns2" onclick="btns2()">
+                                                    <span class="glyphicon glyphicon-arrow-left" >Volver</span>
+                                                  </button>
+                                                  </div>
+                    															<div class="col-sm-4 text-right">
+                                                      <button type="button" class="btn btn-default" onclick='ajaxcalculator("solicitudP/Ajaxcalculator",$("#description").val(),$("#cod_pro").val(),$("#value_kl").val(),$("#cantidad").val(),$("#descuentoP").val())'>
+                                                          <span class="fa fa-calculator" aria-hidden="true"></span> Calcular
+                                                      </button>
+                                                  </div>
+                                                  <div class="col-sm-4 text-right">
+                                                      <button type="button" class="btn btn-default preview-add-button" id="btnn1" onclick='btnn1()'>
+                                                          <span class="glyphicon glyphicon-plus"></span> Añadir
+                                                      </button>
+                                                  </div>
+                                              </div>
+
                           <div id="frmajax">
                             <!--Parte de ajax-->
                           </div>
@@ -317,6 +377,53 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
               </div>
           </div>
       </div>
+
+
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Actualizar atributos</h4>
+        </div>
+        <div class="modal-body">
+
+                <div class="form-horizontal">
+                  <div class="form-group">
+                      <label for="valor_densidad" class="col-sm-3 control-label">Densidad</label>
+                      <div class="col-sm-9">
+                          <input type="number" class="form-control info finput" id="valor_densidad" name="valor_densidad">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="valor_ancho" class="col-sm-3 control-label">Ancho</label>
+                      <div class="col-sm-9">
+                          <input type="number" class="form-control info finput" id="valor_ancho" name="valor_ancho" >
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="valor_largo" class="col-sm-3 control-label">Largo</label>
+                      <div class="col-sm-9">
+                          <input type="number" class="form-control info finput" id="valor_largo" name="valor_largo">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="valor_calibre" class="col-sm-3 control-label">Calibre</label>
+                      <div class="col-sm-9">
+                          <input type="date" class="form-control info finput" id="valor_calibre" name="valor_calibre">
+                      </div>
+                  </div>
+              </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Aplicar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
  var ajaxbaseurl = "<?php echo Yii::app()->baseUrl;?>/";
   $(document).ready(function(){
@@ -362,11 +469,16 @@ function ajaxcalculator(url,datos,v = null,vlk = 0, cant = 0, por_desc = 0){
           dataType:"json",
           type:'get'
           }).done(function(done){
-            alert("Resultado de la consulta");
-            alert("valor descuento: "+done["valor_unitario"]);
-            alert("valor  unitario: "+done["valor_descuento"]);
-            alert("valor total: "+done["valor_total"]);
-            alert(done);
+          if(done["valor_densidad"] === "" && done["valor_ancho"] === "" && done["valor_largo"] === "" && done["valor_calibre"] === "" ){
+            $("#myModal").modal();
+            $("#value_unit").val(done["valor_unitario"]);
+            $("#value_descount").val(done["valor_descuento"]);
+            $("#amount").val(done["valor_total"]);
+          }else{
+            $("#value_unit").val(done["valor_unitario"]);
+            $("#value_descount").val(done["valor_descuento"]);
+            $("#amount").val(done["valor_total"]);
+          }
           }).error(function(){console.log('Error en el ajax de recuperacion');});
 }
 
@@ -384,7 +496,6 @@ function AjaxPageControl(type){
               $("#frmajax").html(done);
               var n_orn = $("#n_ord_p").text();
               $("#N_orden").val(n_orn);
-
             }).error(function(){console.log('Error en el ajax de AjaxPageControl ERROR L443');});
 
 }
@@ -392,7 +503,6 @@ function AjaxPageControl(type){
   function MO(id){
     $('#'+id).toggleClass('hidden');
   }
-
   $('#Apl_bon').change(function(){
     if($('#Apl_bon option:selected').val() === "si"){
       $('#otros_cap').removeClass('hidden');
@@ -400,7 +510,6 @@ function AjaxPageControl(type){
       $('#otros_cap').addClass('hidden');
     }
   });
-
   $("#T_Pedido").change(function(){
     console.log("SE HA MODIFICADO EL COMBOBOX");
     if($("#T_Pedido option:selected").val() === "0"){
@@ -418,10 +527,8 @@ function AjaxPageControl(type){
     }else if($("#T_Pedido option:selected").val() === "4"){
          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
          AjaxPageControl(4);
-
     }else{
-         alert("Error en la pagina web.");
-         var confirm = confirm("Recargar la pagina?");
+         var confirm = confirm("Error en la pagina web. Recargar la pagina?");
           if(confirm){
            window.reload();
          }else{
@@ -483,6 +590,8 @@ $('#send_all_form').click(function(){
         var form_data = {};
         var form_post = {};
         var count_row = parseInt($('#contador_fila').val());
+        var nn = parseInt($('.payment-form input[name="N_orden"]').val());
+        var numor = (nn + 1);
         var count_final;
         // conds = 0;
         // $('.finput').each(function(){
@@ -529,12 +638,13 @@ $('#send_all_form').click(function(){
           $('<div class="text-'+types+'"></div>').html(value).appendTo(forms);
         });
         count_final = count_row + 1;
+        $('.payment-form input[name="N_orden"]').val(numor);
         $('#contador_fila').val(count_final);
         $('#form_solicitud').append(forms);
         $('.preview-table > tbody:last').append(row);
         calc_total();
         $('#send_all_form').removeClass('hidden');
-
+        $('.finput').val('');
     }
 
 </script>

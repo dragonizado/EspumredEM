@@ -100,13 +100,13 @@ class solicitudPController extends Controller
         	if(isset($_GET["Tajax"])){
         		if($_GET["Tajax"] === "Dragonizado"){
         			if($_GET["type"] === "1"){
-        				$this->frmEspumas();
+        				$this->frmidproduct();
         			}else if($_GET["type"] === "2"){
-        				$this->frmColchones();
+        				$this->frmidproduct();
         			}else if($_GET["type"] === "3"){
-        				$this->frmMuebles();
+        				$this->frmidproduct();
         			}else if($_GET["type"] === "4"){
-        				$this->frmOtros();
+        				$this->frmidproduct();
         			}else if($_GET["type"] === "0"){
 
         			}else{
@@ -153,22 +153,19 @@ class solicitudPController extends Controller
                   $valor_kilo = $_GET["vlk"];
                   $cantidad = $_GET["cant"];
                   $por_descuento = $_GET["por_des"];
-
                   $valor_unitario = $this->calcularValor_unitario($valor_kilo,$densidad,$ancho,$largo,$calibre);
-
                   $descuento = $this->calcularValor_descuento($valor_unitario,$cantidad,$por_descuento);
-
                   $valor_total_p = $this->calcularValor_total($valor_unitario,$cantidad,$descuento);
+									$response = array(
+										"valor_unitario"=>$valor_unitario,
+										"valor_descuento"=>$descuento,
+										"valor_total"=>$valor_total_p,
+										"valor_densidad"=>$densidad,
+										"valor_ancho"=>$ancho,
+										"valor_largo"=>$largo,
+										"valor_calibre"=>$calibre,);
+									echo json_encode($response);
 
-									$response = array("valor_unitario"=>$valor_unitario,"valor_descuento"=>$descuento,"valor_total"=>$valor_total_p,);
-
-								echo json_encode($response);
-
-                  // echo "El valor unitario es: " . $valor_unitario;
-                  // echo "<br>";
-                  // echo "El valor descuento es: " . $descuento;
-                  // echo "<br>";
-                  // echo "El valor total es: " . $valor_total_p;
                 }else if($cadena_xplode[0] === "E.CON"){
 
                 }else{
@@ -479,8 +476,7 @@ class solicitudPController extends Controller
 
 
     public function frmEspumas(){
-			echo '<span id="n_ord_p" class="hidden">'.$this->actionConsultid().'</span>';
-    	echo '<div class="form-group">
+			echo '<div class="form-group">
                               <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
                               <div class="col-sm-9">
                                   <input type="number" class="form-control info finput" id="cantidad" name="cantidad" placeholder="####"  required>
@@ -527,11 +523,12 @@ class solicitudPController extends Controller
     	echo 'Formulario para los muebles';
     }
 
+		public function frmidproduct(){
+			echo '<span id="n_ord_p" class="hidden">'.$this->actionConsultid().'</span>';
+		}
 
 
     public function frmOtros(){
-
-			echo '<span id="n_ord_p" class="hidden">'.$this->actionConsultid().'</span>';
     	echo '<div class="form-group">
                               <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
                               <div class="col-sm-9">
