@@ -9,9 +9,10 @@
 // 	'Login',
 // );
 ?>
+
 <style media="screen">
   body{
-    background-image: url('/yii/espumred/images/back6.png') !important;             
+    background-image: url('<?php echo Yii::app()->baseUrl;?>/images/back6.png') !important;
     background-size: 100% 100%;
     height: 100vh;
 
@@ -45,7 +46,7 @@
   }
 
   .btn-su{
-    margin-left:35%; 
+    margin-left:35%;
   }
 
   .caja .panel-body{
@@ -85,13 +86,13 @@
 </style>
 
 <div class="form">
-  <?php 
+  <?php
     $form=$this->beginWidget('CActiveForm', array(
     'id'=>'login-form',
     'enableClientValidation'=>true,
     'clientOptions'=>array(
       'validateOnSubmit'=>true,
-    ))); 
+    )));
   ?>
 <form>
   <div class="row">
@@ -100,31 +101,31 @@
       <a href="<?php echo Yii::app()->createUrl("site/index"); ?>"><img src="<?php echo Yii::app()->baseUrl;?>/images/logoredondo2.png" width="122px" height="122px" alt="Cargando contenido.." style=" margin-top:10%; z-index:9999;"></a>
       <div class="panel caja">
     <div class="panel-head" style="text-align:center;">
-      <h3>Iniciar Sesión</h3> 
+      <h3>Iniciar Sesión</h3>
     </div>
     <hr>
     <div class="panel-body">
       <p id="textErrormayus" ></p>
       <div >
           <!-- <?# echo $form->labelEx($model,'Nombre Usuario*'); ?> -->
-        <?php 
+        <?php
         if(isset($_GET['user'])){
-        echo $form->textField($model,'username' ,array('size'=>20,'maxlength'=>30, "class"=>"form-control", "placeholder"=>"Nombre Usuario","value"=>$_GET['user'])); 
+        echo $form->textField($model,'username' ,array('size'=>20,'maxlength'=>30, "class"=>"form-control", "placeholder"=>"Nombre Usuario","value"=>$_GET['user']));
 
         }else{
-        echo $form->textField($model,'username' ,array('size'=>20,'maxlength'=>30, "class"=>"form-control", "placeholder"=>"Nombre Usuario")); 
+        echo $form->textField($model,'username' ,array('size'=>20,'maxlength'=>30, "class"=>"form-control", "placeholder"=>"Nombre Usuario"));
         }
         ?>
         <?php echo $form->error($model,'username'); ?>
       </div><br>
-      
+
       <div >
         <!-- <?# echo $form->labelEx($model,'password'); ?> -->
         <?php
         if(isset($_GET['pass'])){
-         echo $form->passwordField($model,'password' ,array('size'=>20,'maxlength'=>20, "class"=>"form-control" , "placeholder"=>"Contraseña", "onkeyup"=>"detectmayus(event);", "value" => $_GET['pass']));  
+         echo $form->passwordField($model,'password' ,array('size'=>20,'maxlength'=>20, "class"=>"form-control" , "placeholder"=>"Contraseña", "onkeyup"=>"detectmayus(event);", "value" => $_GET['pass']));
         }else{
-         echo $form->passwordField($model,'password' ,array('size'=>20,'maxlength'=>20, "class"=>"form-control" , "placeholder"=>"Contraseña", "onkeyup"=>"detectmayus(event);"));           
+         echo $form->passwordField($model,'password' ,array('size'=>20,'maxlength'=>20, "class"=>"form-control" , "placeholder"=>"Contraseña", "onkeyup"=>"detectmayus(event);"));
         }
          ?>
         <?php echo $form->error($model,'password'); ?>
@@ -136,7 +137,7 @@
               <?php echo $form->label($model,'Recuerdame'); ?>
               <?php echo $form->error($model,'rememberMe'); ?>
             </div>
-            
+
           </div>
           <div class="col-md-6 col-xs-6" align="right" style="margin-top:2.5%;">
             <a href="<?php echo Yii::app()->createUrl("site/answers"); ?>" style="margin-right:10%;">¿Necesitas ayuda?</a>
@@ -149,7 +150,7 @@
       <div class="row">
         <div class="col-md-3 hidden-xs"></div>
         <div class="col-md-6 col-xs-12" align="center">
-          <div class="button">  
+          <div class="button">
             <?php echo CHtml::submitButton('Iniciar sesión', array("class"=>"btn btn-primary btn-large")); ?>
           </div>
         </div>
@@ -160,7 +161,7 @@
     </div>
     <div class="col-md-3 hidden-xs"></div>
   </div>
-  
+
 </form>
 <br><br>
   <?php $this->endWidget(); ?>
@@ -193,7 +194,7 @@
     //   $('section#Footer').removeClass('footermediaQuerym');
     //   $('section#Footer').addClass('footermediaQuery');
     // }
-     
+
     // $(window).resize(function(){
     //    if ($(window).width() >= 820) {
     //      $('section#Footer').removeClass('footermediaQuerym');
@@ -213,6 +214,6 @@
       $('#textErrormayus').text('Alerta Bloq Mayús está activo');
     }else{
       $('#textErrormayus').text(' ');
-    } 
+    }
   }
 </script>

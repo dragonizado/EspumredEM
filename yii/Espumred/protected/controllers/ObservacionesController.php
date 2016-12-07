@@ -552,7 +552,8 @@ class ObservacionesController extends Controller
 	           /*funcion de copia de correo asignada para envio de correo electronicos a mas de un destinatario*/     					
                         
                         $mail->AddAddress('gerente.cartera@espumasmedellin.com');
-                        $mail->AddAddress('gerente.comercial@espumasmedellin.com');
+                        // $mail->AddAddress('gerente.comercial@espumasmedellin.com');
+                        $mail->AddAddress('contador2@espumasmedellin.com');
                         // $mail->AddAddress('raul.vergara@espumasmedellin.com');
 	                    $mail->AddBCC('gercomercial@espumasmedellin.com');
 	                    $mail->AddBCC('auxiliar.control@espumasmedellin.com');

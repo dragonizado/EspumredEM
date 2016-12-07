@@ -18,7 +18,7 @@ class solicitudPController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
-                                
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -26,27 +26,27 @@ class solicitudPController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(            
+		return array(
             //permisos de Revisoria
              array('allow',
-            'actions'=>array('view','admin','GenerarExcel','detalles'),					
+            'actions'=>array('view','admin','GenerarExcel','detalles'),
 				    'users'=>array('*'),
                      'expression'=>'Yii::app()->user->rol==="Revisoria"'
-                                        
+
 			),
              //permisos de Asesor
             array('allow', // Permite al usuario autenticado a realizar "crean" y acciones "actualización"
 				'actions'=>array('create','view', 'admin','send','Test',
-					'buscar','mostrarError','regresar','centro','Enviar','mail','updateTodo','Upload','detalles','ListarClientes','ListarClientescod','ListarProductos','ListarCodProductos','AjaxPageControl', 'Ajaxcalculator'),
+					'buscar','mostrarError','regresar','centro','Enviar','mail','updateTodo','Upload','detalles','ListarClientes','ListarClientescod','ListarProductos','ListarCodProductos','AjaxPageControl', 'Ajaxcalculator','Consultid'),
 				    'users'=>array('*'),
-                    'expression'=>'Yii::app()->user->rol==="Asesor" or Yii::app()->user->rol==="Test"' 
+                    'expression'=>'Yii::app()->user->rol==="Asesor" or Yii::app()->user->rol==="Test"'
             ),
 
-             			
+
 			array('deny',// deny all users
 				'users'=>array('*'),
 
-            ),			
+            ),
 		);
 	}
 
@@ -59,9 +59,9 @@ class solicitudPController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
-		
-    } 
-    
+
+    }
+
 
     public function actionRev($id)
     {
@@ -82,7 +82,7 @@ class solicitudPController extends Controller
 
 	 public function actionCreate()
 	 {
-		
+
 
 	   }
 
@@ -99,16 +99,21 @@ class solicitudPController extends Controller
         public function actionAjaxPageControl(){
         	if(isset($_GET["Tajax"])){
         		if($_GET["Tajax"] === "Dragonizado"){
+              $response = array();
         			if($_GET["type"] === "1"){
-        				$this->frmEspumas();
+        				$response = array("formulario" => $this->frmidproduct(),"frmhtml" => $this->frmEspumas());
+                echo json_encode($response);
         			}else if($_GET["type"] === "2"){
-        				$this->frmColchones();
+        				$response = array("formulario" => $this->frmidproduct(),"frmhtml" => $this->frmColchones());
+                echo json_encode($response);
         			}else if($_GET["type"] === "3"){
-        				$this->frmMuebles();
+        				$response = array("formulario" => $this->frmidproduct(),"frmhtml" => $this->frmMuebles());
+                echo json_encode($response);
         			}else if($_GET["type"] === "4"){
-        				$this->frmOtros();
+        				$response = array("formulario" => $this->frmidproduct(),"frmhtml" => $this->frmOtros());
+                echo json_encode($response);
         			}else if($_GET["type"] === "0"){
-
+                echo json_encode("alert('Valor incorrecto en el campo Tipo de Pedido, recarga la pagina para solicionar el problema.')");
         			}else{
         				echo "<span style='color:red; font-size:24;'>ERROR 0000.</span> <br> Se ha alterado el codigo HTML, el servidor no puede procesar esta solicitud.";
         			}
@@ -118,8 +123,24 @@ class solicitudPController extends Controller
         	}else{
         		echo "<span style='color:red; font-size:24;'>ERROR ACCESO DENEGADO.</span> <br> Se ha realizado una solicitud desconocida para el servidor.";
         	}
-        	
+
         }
+
+				public function actionConsultid(){
+					$model = new Pedidos;
+					$criteria = new CDbCriteria;
+					if(Pedidos::model()->findAll())
+					{
+						$criteria->select='max(idtbl_pedidos) AS idtbl_pedidos';
+						$consul = $model->model()->find($criteria);
+						return $consul["idtbl_pedidos"] + 1;
+					}else{
+						$criteria->select='max(idtbl_pedidos) AS idtbl_pedidos';
+						$consul = $model->model()->find($criteria);
+						return $consul["idtbl_pedidos"] + 1;
+					}
+
+				}
 
         public function actionAjaxcalculator(){
           if (isset($_GET["Tajax"])) {
@@ -127,34 +148,35 @@ class solicitudPController extends Controller
               if (isset($_GET["term"]) && isset($_GET["V"])) {
                 $cadena = $_GET["term"];
                 $var_id = $_GET["V"];
-                $consul = Productopedidos::model()->findAll(array("condition"=>"idtbl_Productos = '".$var_id."'"));                
+                $consul = Productopedidos::model()->findAll(array("condition"=>"idtbl_Productos = '".$var_id."'"));
                 $cadena_xplode = explode(" ", $cadena);
                 if($cadena_xplode[0] === "LAM"){
                   $densidad = str_replace(",", ".",$consul[0]["densidad"]);
                   $ancho = str_replace(",", ".",$consul[0]["ancho"]);
                   $largo =  str_replace(",", ".",$consul[0]["largo"]);
                   $calibre = str_replace(",", ".",$consul[0]["calibre"]);
-                  $valor_kilo = 15.902;
-                  $cantidad = 15;
-                  $por_descuento = 0.04;
-
+                  $valor_kilo = $_GET["vlk"];
+                  $cantidad = $_GET["cant"];
+                  $por_descuento = $_GET["por_des"];
                   $valor_unitario = $this->calcularValor_unitario($valor_kilo,$densidad,$ancho,$largo,$calibre);
-
                   $descuento = $this->calcularValor_descuento($valor_unitario,$cantidad,$por_descuento);
-
                   $valor_total_p = $this->calcularValor_total($valor_unitario,$cantidad,$descuento);
+									$response = array(
+										"valor_unitario"=>$valor_unitario,
+										"valor_descuento"=>$descuento,
+										"valor_total"=>$valor_total_p,
+										"valor_densidad"=>$densidad,
+										"valor_ancho"=>$ancho,
+										"valor_largo"=>$largo,
+										"valor_calibre"=>$calibre,);
+									echo json_encode($response);
 
-                  echo "El valor unitario es: " . $valor_unitario;
-                  echo "<br>";
-                  echo "El valor descuento es: " . $descuento;
-                  echo "<br>";
-                  echo "El valor total es: " . $valor_total_p;
                 }else if($cadena_xplode[0] === "E.CON"){
-                  
+                    echo "No hay formulas asociadas a esta solicitud.";
                 }else{
                   echo "No hay formulas disponibles para la solicitud.";
                 }
-                
+
             }else{
                 echo "<span style='color:red; font-size:24;'>ERROR 0000.</span> <br> El servidor no puede procesar esta solicitud, porque no se pudo validad el origen de la misma.";
               }
@@ -162,9 +184,9 @@ class solicitudPController extends Controller
               echo "<span style='color:red; font-size:24;'>ERROR 500.</span> <br> Se ha realizado una solicitud desconocida para el servidor.";
             }
           }else{
-           echo "<span style='color:red; font-size:24;'>ERROR ACCESO DENEGADO.</span> <br> Se ha realizado una solicitud desconocida para el servidor."; 
+           echo "<span style='color:red; font-size:24;'>ERROR ACCESO DENEGADO.</span> <br> Se ha realizado una solicitud desconocida para el servidor.";
           }
-          
+
         }
 
         public function calcularValor_unitario($vk,$den,$anc,$lar,$cal){
@@ -181,7 +203,8 @@ class solicitudPController extends Controller
           $valor_unitario = $vlunit;
           $valor_cantidad = $can;
           $valor_descuento = $pordes;
-          $valor_total = $valor_unitario * $valor_cantidad * $valor_descuento;
+					$op1 = $valor_unitario * $valor_cantidad;
+          $valor_total = $op1 * $valor_descuento / 100;
           return $valor_total;
         }
 
@@ -277,15 +300,15 @@ class solicitudPController extends Controller
 	 * @param integer $id the ID of the model to be updated
 	 */
 
-//--------------------------------------------------------------------//	
-	
+//--------------------------------------------------------------------//
+
 	public function actionUpdate($id)
 	{
-		
-         
+
+
 		$this->render('update',array(
 			'model'=>$model,
-			
+
 		));
 	}
 //---------------------------------------------------------------------
@@ -301,7 +324,7 @@ class solicitudPController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-		
+
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
@@ -310,10 +333,10 @@ class solicitudPController extends Controller
 	 */
 	public function actionIndex()
 	{
-		
+
 		$dataProvider = new CActiveDataProvider('Observaciones', array(
        'criteria' => array('order' => 'condicionescomerciales ASC'),
-       
+
        'pagination' => array('pageSize' => 20,))
       );
 		$this->render('index',array(
@@ -326,11 +349,11 @@ class solicitudPController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		
+
 
 		$this->render('admin',array(
 			'allobservaciones'=>$allobservaciones,
-			
+
 		));
 	}
 
@@ -368,7 +391,7 @@ class solicitudPController extends Controller
     //funcion para hacer envio directo a correo electronico  //funcion  //
 	public function actionUploadProfilePicture() {
 			$this->renderPartial('formato');
-	     }  
+	     }
 
  public function actionTest(){
  	// $this->actionUploadProfilePicture();
@@ -390,26 +413,26 @@ class solicitudPController extends Controller
 		$this->render('send',array(
 			'model'=>$this->loadModel($id),
 		));
-		
-    } 
-		
-		
-	//accion que se utiliza para buscar empleado y redirigiendolo ala vista view 
+
+    }
+
+
+	//accion que se utiliza para buscar empleado y redirigiendolo ala vista view
 	public function actionBuscar()
 	{
 		 $arrBusquedad = array();
-		 $arrBusquedad= Yii::app()->session['texto'];  
-		
-		//funcion original 
+		 $arrBusquedad= Yii::app()->session['texto'];
+
+		//funcion original
 		 if ($arrBusquedad[1]=="cod") {
 		 	 	 $modelEmpleado=Observaciones::model()->findByPk($arrBusquedad[0]);
 		 	 	if (!empty($modelEmpleado)) {
 		 	 // $model=Informacionempleado::model()->findByPk($arrBusquedad[0]);
 		 	$dataProvider = new CActiveDataProvider('informacionEmpleado', array( //--->definir variable
-                  
+
                     'criteria' => array(
-                    'condition' => 'id ="' .$arrBusquedad[0]. '"',                    
-                    
+                    'condition' => 'id ="' .$arrBusquedad[0]. '"',
+
                 	),
                     'pagination' => array(
                     'pageSize' => 20,
@@ -422,21 +445,21 @@ class solicitudPController extends Controller
 		 }else{
 		 	$id="";
 		 		$model=Condicionescomerciales::model()->findAll();
-		 		for ($i=0; $i <count($model) ; $i++) { 
+		 		for ($i=0; $i <count($model) ; $i++) {
 		 		  if ($model[$i]["nombreCliente"]==$arrBusquedad[0]) {
 		 				$id=$model[$i]["cod"];
-		 			
+
 		 			}
-		 			
+
 		 		};
 		 		 $modelEmpleado=Observaciones::model()->findByPk($id);
 		 	if (!empty($modelEmpleado)) {
- 
+
 		 	$dataProvider = new CActiveDataProvider('informacionEmpleado', array(  //------>definir variable
-                  
+
                     'criteria' => array(
-                    'condition' => 'condicionescomerciales ="' .$id. '"',                    
-                    
+                    'condition' => 'condicionescomerciales ="' .$id. '"',
+
                 	),
                     'pagination' => array(
                     'pageSize' => 20,
@@ -448,145 +471,51 @@ class solicitudPController extends Controller
 					};
 
 		 }
-			
-		
+
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
 
 	}
-    
+
 
     public function frmEspumas(){
-    	echo '<div class="form-group">
-                              <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="cantidad" name="cantidad" placeholder="####"  required>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="value_kl" class="col-sm-3 control-label">Valor Kilo</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="value_kl" name="value_kl" placeholder="####" required>
-                              </div> 
-                          </div>
-                          <div class="form-group">
-                              <label for="descuentoP" class="col-sm-3 control-label">Porcentaje Descuento</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="descuentoP" name="descuentoP" placeholder="#" >
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="date" class="col-sm-3 control-label">Fecha de entrega</label>
-                              <div class="col-sm-9">
-                                  <input type="date" class="form-control info finput" id="date" name="date"  placeholder="##/##/####"required>
-                              </div>
-                          </div>   
-                          <div class="form-group">
-                              <div class="col-sm-4 text-left">
-                              <button type="button" class="btn btn-default" id="btns2" onclick="btns2()">
-                                <span class="glyphicon glyphicon-arrow-left" ></span>Volver
-                              </button>
-                              </div>
-                              <div class="col-sm-4 text-right">
-                                  <button type="button" class="btn btn-default" onclick=ajaxcalculator("solicitudP/Ajaxcalculator",$("#description").val(),$("#cod_pro").val())>
-                                      <span class="fa fa-calculator" aria-hidden="true"></span> Calcular
-                                  </button>
-                              </div>
-                              <div class="col-sm-4 text-right">
-                                  <button type="button" class="btn btn-default preview-add-button" id="btnn1" onclick="btnn1()">
-                                      <span class="glyphicon glyphicon-plus"></span> Añadir
-                                  </button>
-                              </div>
-                          </div>
-                      ';
+      $responseespumas = array("disabled"=>array('value_unit','value_descount','amount'));
+      return $responseespumas;
     }
 
     public function frmColchones(){
-    	echo 'Formulario para los colchones.';
+    	$responsecolchones = array("disabled"=>array('value_unit','value_descount','amount'),"oculto"=>array('group-vk'));
+      return $responsecolchones;
     }
 
     public function frmMuebles(){
-    	echo 'Formulario para los muebles';
+    	$responsemueble = array("disabled"=>array('value_unit','value_descount','amount'),"oculto"=>array('group-vk'));
+      return $responsemueble;
     }
+
+		public function frmidproduct(){
+			return '<span id="n_ord_p" class="hidden">'.$this->actionConsultid().'</span>';
+		}
+
 
     public function frmOtros(){
-			 
-
-    	echo '<div class="form-group">
-                              <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="cantidad" name="cantidad" placeholder="####"  required>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="value_kl" class="col-sm-3 control-label">Valor Kilo</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="value_kl" name="value_kl" placeholder="####" required>
-                              </div> 
-                          </div>
-                          <div class="form-group">
-                              <label for="value_unit" class="col-sm-3 control-label">Valor Unitario</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="value_unit" name="value_unit" placeholder="####"  required>
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label for="descuentoP" class="col-sm-3 control-label">Porcentaje Descuento</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="descuentoP" name="descuentoP" placeholder="#" >
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="value_descount" class="col-sm-3 control-label">Valor Descuento</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="value_descount" name="value_descount" placeholder="####" >
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="amount" class="col-sm-3 control-label">Valor total</label>
-                              <div class="col-sm-9">
-                                  <input type="number" class="form-control info finput" id="amount" name="amount" placeholder="####" required>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="date" class="col-sm-3 control-label">Fecha de entrega</label>
-                              <div class="col-sm-9">
-                                  <input type="date" class="form-control info finput" id="date" name="date"  placeholder="##/##/####"required>
-                              </div>
-                          </div>   
-                          <div class="form-group">
-                              <div class="col-sm-6 text-left">
-                              <button type="button" class="btn btn-primary" id="btns2" onclick="btns2()">
-                                <span class="glyphicon glyphicon-arrow-left" >Volver</span>
-                              </button>
-                              </div>
-                              <div class="col-sm-6 text-right">
-                                  <button type="button" class="btn btn-default preview-add-button" id="btnn1" onclick="btnn1()">
-                                      <span class="glyphicon glyphicon-plus"></span> Añadir
-                                  </button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>            
-              </div> 
-             ';
-
-    	
+    	$responseotros = array();
+      return $responseotros;
     }
 
 
 
- 
- 
+
+
 
 
       /* metodo para hacer el llamado ala vista mostrarplantillaActualizar.php*/
          public function actionMostrarError()
     {
         $model=new Observaciones;
-        
+
          $this->render('error',array(
             'model'=>$model,
         ));

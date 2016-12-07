@@ -10,7 +10,8 @@
 	if(Yii::app()->user->rol == 'GerenteCartera'){ 
 		$gns = "Luis Alfonso Ortega Almario";
 	}else if (Yii::app()->user->rol == 'GerenteComercial') {
-		$gns = "Juan Carlos Rios Gómez";
+		// $gns = "Juan Carlos Rios Gómez";
+		$gns = "Tomas Enrique Villegas Giraldo";
 	}else if (Yii::app()->user->rol == 'Gerente') {
 		$gns = "Raúl Ignacio Vergara Kerguelen";
 	}else if (Yii::app()->user->rol == 'Test') {
