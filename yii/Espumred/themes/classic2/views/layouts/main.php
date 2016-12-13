@@ -509,6 +509,8 @@
                           array('label'=>'Mostrar Condiciones Comerciales','url'=>array('condicionescomerciales/admin')),
                           array('itemOptions'=>array('class'=>'divider')),
                           array('label'=>'Condicion Comercial', 'url'=>array('/observaciones/admin')),                         
+                          array('itemOptions'=>array('class'=>'divider')),
+                          array('label'=>'Alzas', 'url'=>array('/condicionescomerciales/alza')),                         
                           )),
                         array(
                         'label'=>'Clientes',

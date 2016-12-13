@@ -174,7 +174,7 @@
 									<td>Nombre Asesor</td>
 									<td>Nombre cliente</td>
 									<?php
-									if(Yii::app()->user->rol == 'Revisoria'){
+									if(Yii::app()->user->rol == 'Revisoria' || Yii::app()->user->rol == 'Asesor'){
 										echo "<td>Fecha</td>";
 									} 
 									 ?>
@@ -507,7 +507,7 @@
 				echo					'</thead>';
 				echo 					'<tbody>';
 									$nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
-									$condaceptadas = Observaciones::model()->findAll(array("condition"=>"NombreAsesor = '".$nameAsesor."' and gerente_cartera != '' and gerente_comercial != '' and gerente_general != '' "));
+									$condaceptadas = Observaciones::model()->findAll(array("condition"=>"NombreAsesor = '".$nameAsesor."' and gerente_cartera != '' and gerente_comercial != '' and gerente_general != '' and estado = 'Vigente' "));
 									foreach ($condaceptadas as  $valueconacep) {
 										echo '<tr>';
 										echo '<td>'.$valueconacep->NombreAsesor.'</td>';
@@ -790,7 +790,7 @@
 				echo						'</tr>';
 				echo					'</thead>';
 				echo 					'<tbody>';
-									$condaceptadas = Observaciones::model()->findAll(array("condition"=>" gerente_cartera != '' and gerente_comercial != '' and gerente_general != '' "));
+									$condaceptadas = Observaciones::model()->findAll(array("condition"=>" gerente_cartera != '' and gerente_comercial != '' and gerente_general != '' and estado = 'Vigente'"));
 									foreach ($condaceptadas as  $valueconacep) {
 										echo '<tr>';
 										echo '<td>'.$valueconacep->NombreAsesor.'</td>';

@@ -47,6 +47,7 @@ class Observaciones extends CActiveRecord
 		return array(
 			'descripcion0' => array(self::BELONGS_TO, 'Descripcion', 'descripcion'),
 			'Condicionescomerciales0' => array(self::BELONGS_TO, 'Condicionescomerciales', 'condicionescomerciales'),
+			'condicion0' => array(self::BELONGS_TO, 'Condicion', 'condicion'),
 			'gerentecomercial0' => array(self::BELONGS_TO, 'Gerente', 'gerente_comercial'),
 			'gerentecartera0' => array(self::BELONGS_TO, 'Gerente', 'gerente_cartera'),
 			'gerentegeneral0' => array(self::BELONGS_TO, 'Gerente', 'gerente_general'),
