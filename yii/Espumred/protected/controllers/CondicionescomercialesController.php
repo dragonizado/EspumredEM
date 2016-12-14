@@ -219,19 +219,22 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 	}
 
 	public function actionAlza(){
-		$Observaciones = Observaciones::model()->with('condicion0')->findAll(array('condition'=>' gerente_comercial != "" AND  gerente_comercial != "CONDICIÓN RECHAZADA"  AND  gerente_cartera != "" AND gerente_cartera != "CONDICIÓN RECHAZADA" AND gerente_general != "" AND gerente_general != "CONDICIÓN RECHAZADA"'));
+		$Observaciones = Observaciones::model()->with('condicion0','Condicionescomerciales0')->findAll(array('condition'=>' gerente_comercial != "" AND  gerente_comercial != "CONDICIÓN RECHAZADA"  AND  gerente_cartera != "" AND gerente_cartera != "CONDICIÓN RECHAZADA" AND gerente_general != "" AND gerente_general != "CONDICIÓN RECHAZADA"'));
 		// $Observaciones = Observaciones::model()->with('condicion0')->findByPk(30);
 		$contador = 0;
 		$p = 0;
+		$null = "";
 		$Condicion_array = array();
 		$Condicion_info = array();
 		$incremento = 1.10;
 		
+		exit;		
 		foreach ($Observaciones as $value) {
-			echo "el id de  la consulta es: ----------------->".$value->id."<br>";
-
+			if($value->Condicionescomerciales0["TipologiaCliente"] == "CORSETERO"){
+				echo "nada";
+			}else{
 			//Informacion de la condicion comercial esta es sacada de la tabla de Observaciones
-			
+			$Condicion_info["identificador"] = $value->id;
 			$Condicion_info["Observaciones"] = $value->observaciones;
 			$Condicion_info["Fecha"] = $value->fecha;
 			$Condicion_info["Gerente_Comercial"] = $value->gerente_comercial;
@@ -252,9 +255,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_R = "referencia".$i;
 				if($i == 0){
-					$Condicion_array["Referencia"][$i] = ($value->condicion0->referencia == "")? "null":$value->condicion0->referencia; 
+					$Condicion_array["Referencia"][$i] = ($value->condicion0->referencia == "")? $null:$value->condicion0->referencia; 
 				}else{
-					$Condicion_array["Referencia"][$i] = ($value->condicion0->$nombre_R == "")? "null":$value->condicion0->$nombre_R; 
+					$Condicion_array["Referencia"][$i] = ($value->condicion0->$nombre_R == "")? $null:$value->condicion0->$nombre_R; 
 					
 				}
 				
@@ -265,9 +268,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "precioanterior".$i;
 				if($i == 0){
-					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->precioanterior == "")? "null":$value->condicion0->precioanterior; 
+					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->precioanterior == "")? $null:$value->condicion0->precioanterior; 
 				}else{
-					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -279,9 +282,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "nuevoprecio".$i;
 				if($i == 0){
-					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->nuevoprecio == "")? "null":$value->condicion0->nuevoprecio; 
+					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->nuevoprecio == "")? $null:$value->condicion0->nuevoprecio; 
 				}else{
-					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -292,9 +295,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "piefactura".$i;
 				if($i == 0){
-					$Condicion_array["Pie_Factura"][$i] = ($value->condicion0->piefactura == "")? "null":$value->condicion0->piefactura; 
+					$Condicion_array["Pie_Factura"][$i] = ($value->condicion0->piefactura == "")? $null:$value->condicion0->piefactura; 
 				}else{
-					$Condicion_array["Pie_Factura"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Pie_Factura"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -305,9 +308,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "rebate".$i;
 				if($i == 0){
-					$Condicion_array["Rebate"][$i] = ($value->condicion0->rebate == "")? "null":$value->condicion0->rebate; 
+					$Condicion_array["Rebate"][$i] = ($value->condicion0->rebate == "")? $null:$value->condicion0->rebate; 
 				}else{
-					$Condicion_array["Rebate"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Rebate"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -318,9 +321,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "Dias".$i;
 				if($i == 0){
-					$Condicion_array["Dias"][$i] = ($value->condicion0->Dias == "")? "null":$value->condicion0->Dias; 
+					$Condicion_array["Dias"][$i] = ($value->condicion0->Dias == "")? $null:$value->condicion0->Dias; 
 				}else{
-					$Condicion_array["Dias"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Dias"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -331,9 +334,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "Sesenta".$i;
 				if($i == 0){
-					$Condicion_array["Sesenta"][$i] = ($value->condicion0->Sesenta == "")? "null":$value->condicion0->Sesenta; 
+					$Condicion_array["Sesenta"][$i] = ($value->condicion0->Sesenta == "")? $null:$value->condicion0->Sesenta; 
 				}else{
-					$Condicion_array["Sesenta"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Sesenta"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -344,9 +347,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "Treinta".$i;
 				if($i == 0){
-					$Condicion_array["Treinta"][$i] = ($value->condicion0->Treinta == "")? "null":$value->condicion0->Sesenta; 
+					$Condicion_array["Treinta"][$i] = ($value->condicion0->Treinta == "")? $null:$value->condicion0->Sesenta; 
 				}else{
-					$Condicion_array["Treinta"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Treinta"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -357,9 +360,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "Ocho".$i;
 				if($i == 0){
-					$Condicion_array["Ocho"][$i] = ($value->condicion0->Ocho == "")? "null":$value->condicion0->Ocho; 
+					$Condicion_array["Ocho"][$i] = ($value->condicion0->Ocho == "")? $null:$value->condicion0->Ocho; 
 				}else{
-					$Condicion_array["Ocho"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Ocho"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -370,9 +373,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "Otro".$i;
 				if($i == 0){
-					$Condicion_array["Otro"][$i] = ($value->condicion0->Otro == "")? "null":$value->condicion0->Otro; 
+					$Condicion_array["Otro"][$i] = ($value->condicion0->Otro == "")? $null:$value->condicion0->Otro; 
 				}else{
-					$Condicion_array["Otro"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+					$Condicion_array["Otro"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -385,6 +388,7 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			$this->aplAlza($Condicion_array,$Condicion_info,$incremento);
 			
 			$contador++;
+			}
 		}
 
 		echo "estas en el controlador de condicones comerciales, en el metodo Alza <br>";
@@ -392,6 +396,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 	}
 
 	public function aplAlza($v,$info,$pord){
+		$modelo_Observacion = new Observaciones;
+		$modelo_Condicion = new Condicion;
+
 		$referencia_db = array();
 		$precio_anterior_db = array();
 		$precio_nuevo_db = array();
@@ -402,45 +409,13 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 		$treinta_db = array();
 		$ocho_db = array();
 		$otros_db = array();
-
-			echo "La Observacion es: <strong>".$info["Observaciones"]."</strong><br>";
-			echo "La Fecha es: <strong>".$info["Fecha"]."</strong><br>";
-			echo "La firma del gerente comercial es: <strong>".$info["Gerente_Comercial"]."</strong><br>";
-			echo "La firma del gerente cartera es: <strong>".$info["Gerente_Cartera"]."</strong><br>";
-			echo "La firma del gerente general es: <strong>".$info["Gerente_General"]."</strong><br>";
-			echo "La fecha de autorizacion es: <strong>".$info["Fecha"]."</strong><br>";
-			echo "La fecha de autorizacion 1 es: <strong>".$info["Fecha1"]."</strong><br>";
-			echo "La fecha de autorizacion 2 es: <strong>".$info["Fecha2"]."</strong><br>";
-			echo "La Descripcion es: <strong>".$info["Descripcion"]."</strong><br>";
-			echo "El nombre del asesor es: <strong>".$info["Nombre_Asesor"]."</strong><br>";
-			echo "El id de la condicion comercial es: <strong>".$info["Condiciones_Comerciales"]."</strong><br>";
-			echo "El correo es: <strong>".$info["Correo"]."</strong><br>";
-			echo "El nombre del cliente es: <strong>".$info["Nombre_Cliente"]."</strong><br>";
-			echo "El estado es: <strong>".$info["Estado"]."</strong><br>";
-
-		echo "<table style='border:1px solid;'>";
-		echo "<thead>";
-		echo	"<tr>";
-		echo		"<td align='center' style='border: 1px solid #030303'>Referencia</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>Precio Anterior</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>Nuevo Precio</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>Pie Factura</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>Rebate</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>Dias</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>60</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>30</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>08</td>";
-		echo		"<td align='center' style='border: 1px solid #030303'>otro</td>";
-		echo	"</tr>";
-		echo "<thead>";
-		echo "<tbody>";
 		foreach ($v["Nuevo_Precio"] as $key => $value) {
 			if($value != "null"){	
 				$precio_nuevo_db[$key] = $this->porcentajeplus($value,$pord,3);
 				$precio_anterior_db[$key] = $value;
 			}else{
-				$precio_nuevo_db[$key] = "&nbsp;";
-				$precio_anterior_db[$key] = "&nbsp;";
+				$precio_nuevo_db[$key] = "";
+				$precio_anterior_db[$key] = "";
 			}
 			$referencia_db[$key] = $v["Referencia"][$key];
 			$pie_factura_db[$key] = $v["Pie_Factura"][$key];
@@ -464,8 +439,38 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			echo "<td align='center' style='border: 1px solid #030303'>".$otros_db[$key]."</td>"; 
 			echo "<tr>";
 		}
-		echo "</tbody>";
-		echo "</table>";
+
+		try {
+			$modelo_Condicion->save();
+		} catch (CException $ec) {
+			echo "Error al guardar la condicion con el alza del ".$pord."%.<br> El id de la consulta es: <strong>".$info["identificador"]."</strong>.<br>".$ec;
+			exit;
+		}
+		
+			try {
+				$criteria=new CDbCriteria;
+     			$criteria->select='max(id) as id';
+				$ultima_condicion = Condicion::model()->find($criteria);
+				$modelo_Observacion->observaciones = $info["Observaciones"];
+				$modelo_Observacion->fecha = $info["Fecha"];
+				$modelo_Observacion->gerente_comercial = $info["Gerente_Comercial"];
+				$modelo_Observacion->gerente_cartera = $info["Gerente_Cartera"];
+				$modelo_Observacion->gerente_general = $info["Gerente_General"];
+				$modelo_Observacion->fechautorizacion = $info["Fecha"];
+				$modelo_Observacion->fechautorizacion1 = $info["Fecha1"];
+				$modelo_Observacion->fechautorizacion2 = $info["Fecha2"];
+				$modelo_Observacion->descripcion = $info["Descripcion"];
+				$modelo_Observacion->NombreAsesor = $info["Nombre_Asesor"];
+				$modelo_Observacion->condicionescomerciales = $info["Condiciones_Comerciales"];
+				$modelo_Observacion->correo = $info["Correo"];
+				$modelo_Observacion->NombreCliente = $info["Nombre_Cliente"];
+				$modelo_Observacion->condicion = $ultima_condicion;
+				$modelo_Observacion->estado = "Vigente";
+				$modelo_Observacion->save();
+			} catch (CException $e) {
+				echo "Error al ingresar los valores al sistema <br>.".$e;
+				exit;
+			}
 	}
 
 	public function porcentajeplus($Cantidad,$porcentaje,$decimales){
