@@ -219,7 +219,7 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 	}
 
 	public function actionAlza(){
-		$Observaciones = Observaciones::model()->with('condicion0','Condicionescomerciales0')->findAll(array('condition'=>' gerente_comercial != "" AND  gerente_comercial != "CONDICIÓN RECHAZADA"  AND  gerente_cartera != "" AND gerente_cartera != "CONDICIÓN RECHAZADA" AND gerente_general != "" AND gerente_general != "CONDICIÓN RECHAZADA"'));
+		$Observaciones = Observaciones::model()->with('condicion0','Condicionescomerciales0')->findAll(array('condition'=>' gerente_comercial != "" AND  gerente_comercial != "CONDICIÓN RECHAZADA"  AND  gerente_cartera != "" AND gerente_cartera != "CONDICIÓN RECHAZADA" AND gerente_general != "" AND gerente_general != "CONDICIÓN RECHAZADA" AND estado != "Vigente"'));
 		// $Observaciones = Observaciones::model()->with('condicion0')->findByPk(30);
 		$contador = 0;
 		$p = 0;
@@ -227,11 +227,10 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 		$Condicion_array = array();
 		$Condicion_info = array();
 		$incremento = 1.10;
-		
-		exit;		
+		$corseteros_omitidos = 0;	
 		foreach ($Observaciones as $value) {
 			if($value->Condicionescomerciales0["TipologiaCliente"] == "CORSETERO"){
-				echo "nada";
+				$corseteros_omitidos++;
 			}else{
 			//Informacion de la condicion comercial esta es sacada de la tabla de Observaciones
 			$Condicion_info["identificador"] = $value->id;
@@ -249,8 +248,420 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			$Condicion_info["Correo"] = $value->correo;
 			$Condicion_info["Nombre_Cliente"] = $value->NombreCliente;
 			$Condicion_info["Estado"] = $value->estado;
+
 			
-			//Referencia
+			if(is_object($value->condicion0)){
+				//Referencia
+				for ($i = 0; $i < 36; $i++){
+					$nombre_R = "referencia".$i;
+					if($i == 0){
+						$Condicion_array["Referencia"][$i] = ($value->condicion0->referencia == "")? $null:$value->condicion0->referencia; 
+					}else{
+						$Condicion_array["Referencia"][$i] = ($value->condicion0->$nombre_R == "")? $null:$value->condicion0->$nombre_R; 
+						
+					}
+					
+				}
+
+				//Precio anterior
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "precioanterior".$i;
+					if($i == 0){
+						$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->precioanterior == "")? "null":$value->condicion0->precioanterior; 
+					}else{
+						$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+
+				//Condicion precio nuevo.........
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "nuevoprecio".$i;
+					if($i == 0){
+						$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->nuevoprecio == "")? "null":$value->condicion0->nuevoprecio; 
+					}else{
+						$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				//Pie Factura
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "piefactura".$i;
+					if($i == 0){
+						$Condicion_array["Pie_Factura"][$i] = ($value->condicion0->piefactura == "")? $null:$value->condicion0->piefactura; 
+					}else{
+						$Condicion_array["Pie_Factura"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				// Rebate
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "rebate".$i;
+					if($i == 0){
+						$Condicion_array["Rebate"][$i] = ($value->condicion0->rebate == "")? $null:$value->condicion0->rebate; 
+					}else{
+						$Condicion_array["Rebate"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				//dias
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Dias".$i;
+					if($i == 0){
+						$Condicion_array["Dias"][$i] = ($value->condicion0->Dias == "")? $null:$value->condicion0->Dias; 
+					}else{
+						$Condicion_array["Dias"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				//60
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Sesenta".$i;
+					if($i == 0){
+						$Condicion_array["Sesenta"][$i] = ($value->condicion0->Sesenta == "")? $null:$value->condicion0->Sesenta; 
+					}else{
+						$Condicion_array["Sesenta"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				//30
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Treinta".$i;
+					if($i == 0){
+						$Condicion_array["Treinta"][$i] = ($value->condicion0->Treinta == "")? $null:$value->condicion0->Sesenta; 
+					}else{
+						$Condicion_array["Treinta"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				//08
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Ocho".$i;
+					if($i == 0){
+						$Condicion_array["Ocho"][$i] = ($value->condicion0->Ocho == "")? $null:$value->condicion0->Ocho; 
+					}else{
+						$Condicion_array["Ocho"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+
+				//otros
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Otro".$i;
+					if($i == 0){
+						$Condicion_array["Otro"][$i] = ($value->condicion0->Otro == "")? $null:$value->condicion0->Otro; 
+					}else{
+						$Condicion_array["Otro"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+						
+					}
+					
+				}
+			}else{
+				//Referencia
+				for ($i = 0; $i < 36; $i++){
+					$nombre_R = "referencia".$i;
+					if($i == 0){
+						$Condicion_array["Referencia"][$i] = ($value->condicion0["referencia"] == "")? $null:$value->condicion0["referencia"]; 
+					}else{
+						$Condicion_array["Referencia"][$i] = ($value->condicion0[$nombre_R] == "")? $null:$value->condicion0[$nombre_R]; 
+						
+					}
+					
+				}
+
+				//Precio anterior
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "precioanterior".$i;
+					if($i == 0){
+						$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0["precioanterior"] == "")? "null":$value->condicion0["precioanterior"]; 
+					}else{
+						$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0[$nombre_P] == "")? "null":$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+
+				//Condicion precio nuevo.........
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "nuevoprecio".$i;
+					if($i == 0){
+						$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0["nuevoprecio"] == "")? "null":$value->condicion0["nuevoprecio"]; 
+					}else{
+						$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0[$nombre_P] == "")? "null":$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				//Pie Factura
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "piefactura".$i;
+					if($i == 0){
+						$Condicion_array["Pie_Factura"][$i] = ($value->condicion0["piefactura"] == "")? $null:$value->condicion0["piefactura"]; 
+					}else{
+						$Condicion_array["Pie_Factura"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				// Rebate
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "rebate".$i;
+					if($i == 0){
+						$Condicion_array["Rebate"][$i] = ($value->condicion0["rebate"] == "")? $null:$value->condicion0["rebate"]; 
+					}else{
+						$Condicion_array["Rebate"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				//dias
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Dias".$i;
+					if($i == 0){
+						$Condicion_array["Dias"][$i] = ($value->condicion0["Dias"] == "")? $null:$value->condicion0["Dias"]; 
+					}else{
+						$Condicion_array["Dias"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				//60
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Sesenta".$i;
+					if($i == 0){
+						$Condicion_array["Sesenta"][$i] = ($value->condicion0["Sesenta"] == "")? $null:$value->condicion0["Sesenta"]; 
+					}else{
+						$Condicion_array["Sesenta"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				//30
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Treinta".$i;
+					if($i == 0){
+						$Condicion_array["Treinta"][$i] = ($value->condicion0["Treinta"] == "")? $null:$value->condicion0["Treinta"]; 
+					}else{
+						$Condicion_array["Treinta"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				//08
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Ocho".$i;
+					if($i == 0){
+						$Condicion_array["Ocho"][$i] = ($value->condicion0["Ocho"] == "")? $null:$value->condicion0["Ocho"]; 
+					}else{
+						$Condicion_array["Ocho"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+
+				//otros
+
+				for ($i = 0; $i < 36; $i++){
+					$nombre_P = "Otro".$i;
+					if($i == 0){
+						$Condicion_array["Otro"][$i] = ($value->condicion0["Otro"] == "")? $null:$value->condicion0["Otro"]; 
+					}else{
+						$Condicion_array["Otro"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+						
+					}
+					
+				}
+			}
+			
+			
+			// var_dump($Condicion_array);
+			// exit;
+
+			$this->aplAlza($Condicion_array,$Condicion_info,$incremento);
+			
+			$contador++;
+			}
+		}
+
+		
+		echo "El numero de condiciones con el nuevo alza son: ".$contador."<br>";
+		echo "El numero de clientes con condiciones corseteras no afectadas son: ".$corseteros_omitidos."<br>";
+	}
+
+	public function notobjectfrm($null,$value){
+		//Referencia
+			
+			for ($i = 0; $i < 36; $i++){
+				$nombre_R = "referencia".$i;
+				if($i == 0){
+					$Condicion_array["Referencia"][$i] = ($value->condicion0["referencia"] == "")? $null:$value->condicion0["referencia"]; 
+				}else{
+					$Condicion_array["Referencia"][$i] = ($value->condicion0[$nombre_R] == "")? $null:$value->condicion0[$nombre_R]; 
+					
+				}
+				
+			}
+
+			//Precio anterior
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "precioanterior".$i;
+				if($i == 0){
+					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0["precioanterior"] == "")? "null":$value->condicion0["precioanterior"]; 
+				}else{
+					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0[$nombre_P] == "")? "null":$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+
+			//Condicion precio nuevo.........
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "nuevoprecio".$i;
+				if($i == 0){
+					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0["nuevoprecio"] == "")? "null":$value->condicion0["nuevoprecio"]; 
+				}else{
+					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0[$nombre_P] == "")? "null":$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			//Pie Factura
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "piefactura".$i;
+				if($i == 0){
+					$Condicion_array["Pie_Factura"][$i] = ($value->condicion0["piefactura"] == "")? $null:$value->condicion0["piefactura"]; 
+				}else{
+					$Condicion_array["Pie_Factura"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			// Rebate
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "rebate".$i;
+				if($i == 0){
+					$Condicion_array["Rebate"][$i] = ($value->condicion0["rebate"] == "")? $null:$value->condicion0["rebate"]; 
+				}else{
+					$Condicion_array["Rebate"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			//dias
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "Dias".$i;
+				if($i == 0){
+					$Condicion_array["Dias"][$i] = ($value->condicion0["Dias"] == "")? $null:$value->condicion0["Dias"]; 
+				}else{
+					$Condicion_array["Dias"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			//60
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "Sesenta".$i;
+				if($i == 0){
+					$Condicion_array["Sesenta"][$i] = ($value->condicion0["Sesenta"] == "")? $null:$value->condicion0["Sesenta"]; 
+				}else{
+					$Condicion_array["Sesenta"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			//30
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "Treinta".$i;
+				if($i == 0){
+					$Condicion_array["Treinta"][$i] = ($value->condicion0["Treinta"] == "")? $null:$value->condicion0["Treinta"]; 
+				}else{
+					$Condicion_array["Treinta"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			//08
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "Ocho".$i;
+				if($i == 0){
+					$Condicion_array["Ocho"][$i] = ($value->condicion0["Ocho"] == "")? $null:$value->condicion0["Ocho"]; 
+				}else{
+					$Condicion_array["Ocho"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+
+			//otros
+
+			for ($i = 0; $i < 36; $i++){
+				$nombre_P = "Otro".$i;
+				if($i == 0){
+					$Condicion_array["Otro"][$i] = ($value->condicion0["Otro"] == "")? $null:$value->condicion0["Otro"]; 
+				}else{
+					$Condicion_array["Otro"][$i] = ($value->condicion0[$nombre_P] == "")? $null:$value->condicion0[$nombre_P]; 
+					
+				}
+				
+			}
+	}
+
+	public function objectfrm($null,$value){
+		//Referencia
 			
 			for ($i = 0; $i < 36; $i++){
 				$nombre_R = "referencia".$i;
@@ -268,9 +679,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "precioanterior".$i;
 				if($i == 0){
-					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->precioanterior == "")? $null:$value->condicion0->precioanterior; 
+					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->precioanterior == "")? "null":$value->condicion0->precioanterior; 
 				}else{
-					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+					$Condicion_array["Precio_Anterior"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -282,9 +693,9 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			for ($i = 0; $i < 36; $i++){
 				$nombre_P = "nuevoprecio".$i;
 				if($i == 0){
-					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->nuevoprecio == "")? $null:$value->condicion0->nuevoprecio; 
+					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->nuevoprecio == "")? "null":$value->condicion0->nuevoprecio; 
 				}else{
-					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->$nombre_P == "")? $null:$value->condicion0->$nombre_P; 
+					$Condicion_array["Nuevo_Precio"][$i] = ($value->condicion0->$nombre_P == "")? "null":$value->condicion0->$nombre_P; 
 					
 				}
 				
@@ -380,19 +791,6 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 				}
 				
 			}
-
-
-			// var_dump($Condicion_array);
-			// exit;
-
-			$this->aplAlza($Condicion_array,$Condicion_info,$incremento);
-			
-			$contador++;
-			}
-		}
-
-		echo "estas en el controlador de condicones comerciales, en el metodo Alza <br>";
-		echo "y el total de las condiciones que cumplen con el criterio es: ". $contador;
 	}
 
 	public function aplAlza($v,$info,$pord){
@@ -426,18 +824,43 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 			$ocho_db[$key] = $v["Ocho"][$key];
 			$otros_db[$key] = $v["Otro"][$key];
 
-			echo "<tr>";
-			echo "<td align='center' style='border: 1px solid #030303'>".$referencia_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$precio_anterior_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$precio_nuevo_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$pie_factura_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$rebate_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$dias_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$sesenta_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$treinta_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$ocho_db[$key]."</td>"; 
-			echo "<td align='center' style='border: 1px solid #030303'>".$otros_db[$key]."</td>"; 
-			echo "<tr>";
+
+			if($key == 0){
+				$modelo_Condicion->referencia = $referencia_db[$key]; 
+				$modelo_Condicion->precioanterior = $precio_anterior_db[$key]; 
+				$modelo_Condicion->nuevoprecio = $precio_nuevo_db[$key]; 
+				$modelo_Condicion->piefactura = $pie_factura_db[$key]; 
+				$modelo_Condicion->rebate = $rebate_db[$key]; 
+				$modelo_Condicion->Dias = $dias_db[$key]; 
+				$modelo_Condicion->Sesenta = $sesenta_db[$key]; 
+				$modelo_Condicion->Treinta = $treinta_db[$key]; 
+				$modelo_Condicion->Ocho = $ocho_db[$key]; 
+				$modelo_Condicion->Otro = $otros_db[$key];
+			}else{
+				$nombre_R = "referencia".$key;
+				$nombre_P1 = "precioanterior".$key;
+				$nombre_P2 = "nuevoprecio".$key;
+				$nombre_P = "piefactura".$key;
+				$nombre_Rb = "rebate".$key;
+				$nombre_D = "Dias".$key;
+				$nombre_60 = "Sesenta".$key;
+				$nombre_30 = "Treinta".$key;
+				$nombre_08 = "Ocho".$key;
+				$nombre_OT = "Otro".$key;
+				
+				$modelo_Condicion->$nombre_R = $referencia_db[$key];
+				$modelo_Condicion->$nombre_P1 = $precio_anterior_db[$key]; 
+				$modelo_Condicion->$nombre_P2 = $precio_nuevo_db[$key]; 
+				$modelo_Condicion->$nombre_P = $pie_factura_db[$key]; 
+				$modelo_Condicion->$nombre_Rb = $rebate_db[$key]; 
+				$modelo_Condicion->$nombre_D = $dias_db[$key]; 
+				$modelo_Condicion->$nombre_60 = $sesenta_db[$key]; 
+				$modelo_Condicion->$nombre_30 = $treinta_db[$key]; 
+				$modelo_Condicion->$nombre_08 = $ocho_db[$key]; 
+				$modelo_Condicion->$nombre_OT = $otros_db[$key]; 
+			}
+			 
+	
 		}
 
 		try {
@@ -464,7 +887,7 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 				$modelo_Observacion->condicionescomerciales = $info["Condiciones_Comerciales"];
 				$modelo_Observacion->correo = $info["Correo"];
 				$modelo_Observacion->NombreCliente = $info["Nombre_Cliente"];
-				$modelo_Observacion->condicion = $ultima_condicion;
+				$modelo_Observacion->condicion = $ultima_condicion["id"];
 				$modelo_Observacion->estado = "Vigente";
 				$modelo_Observacion->save();
 			} catch (CException $e) {
