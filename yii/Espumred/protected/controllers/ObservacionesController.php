@@ -153,7 +153,7 @@ class ObservacionesController extends Controller
 				$condicion->gerente_comercial = $nombre ; 
 				$condicion->fechautorizacion = $fecha;
 				if($condicion['gerente_cartera'] == ""){
-					echo "Esta vacio el gerente cartera no ha firmado";
+					echo "Esta vacio, el gerente cartera no ha firmado";
 				}else{
 					$this->SendEmailGG();
 				}
@@ -165,13 +165,13 @@ class ObservacionesController extends Controller
 				$condicion->gerente_cartera = $nombre ;
 				$condicion->fechautorizacion1 = $fecha;
 				if($condicion['gerente_comercial'] == ""){
-					echo "Esta vacio el gerente comercial no ha firmado";
+					echo "Esta vacio, el gerente comercial no ha firmado";
 				}else{
 					$this->SendEmailGG();
 				}
 			}elseif ($roll === "Test") {
 				if($condicion['gerente_comercial'] == ""){
-					echo "Esta vacio el gerente Comercial no ha firmado";
+					echo "Esta vacio el, gerente Comercial no ha firmado";
 				}else{
 					echo "Ejecutar la accion de enviar correo al gerente general";
 					$this->SendEmailGG();
