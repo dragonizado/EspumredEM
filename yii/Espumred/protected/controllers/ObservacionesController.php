@@ -160,6 +160,7 @@ class ObservacionesController extends Controller
 			}elseif ($roll === "Gerente") {
 				$condicion->gerente_general = $nombre ;
 				$condicion->fechautorizacion2 = $fecha;
+				$condicion->estado = "Vigente";
 			}elseif ($roll === "GerenteCartera") {
 				$condicion->gerente_cartera = $nombre ;
 				$condicion->fechautorizacion1 = $fecha;

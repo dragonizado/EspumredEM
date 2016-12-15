@@ -231,7 +231,7 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 		foreach ($Observaciones as $value) {
 			if($value->Condicionescomerciales0["TipologiaCliente"] == "CORSETERO"){
 				$corseteros_omitidos++;
-			}else{
+			}else if($value->Condicionescomerciales0["TipologiaCliente"] == "JESUS"){
 			//Informacion de la condicion comercial esta es sacada de la tabla de Observaciones
 			$Condicion_info["identificador"] = $value->id;
 			$Condicion_info["Observaciones"] = $value->observaciones;
@@ -525,6 +525,10 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 		
 		echo "El numero de condiciones con el nuevo alza son: ".$contador."<br>";
 		echo "El numero de clientes con condiciones corseteras no afectadas son: ".$corseteros_omitidos."<br>";
+	}
+
+	public function corseteros(){
+		
 	}
 
 	
