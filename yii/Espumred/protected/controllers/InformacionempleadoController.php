@@ -179,14 +179,11 @@ class InformacionempleadoController extends Controller
 				$model->dotacion=$modelDotacion["id"];
 				$model->experiencialaboral=$modelExperiencialaboral["id"];
 				// echo $model->id;
-				var_dump($model);
-           		$resultado = $model->save();
-				if($resultado == true){             //id   //dependiendo se quita cc   
+				try {
+					$model->save();
 					$this->redirect(array('view','id'=>$model->id));
-					//$this->var_dump(['informacionempleado']); -----------por si algo queda pendiente su activacion
-					//var_dump($modelinformacionpersonal);exit   //id
-				}else{
-				    echo "<h1>Error al guardar la informacion</h1>";
+				} catch (CException $e) {
+					echo "<h1>Error al guardar la informacion</h1>";
 				    echo "<br>";
 				    echo "<br>";
 				  
@@ -196,7 +193,14 @@ class InformacionempleadoController extends Controller
 				    echo "<br>";
 				    echo "<br>";
 				    var_dump($model);
+				    echo "<br>";
+				    echo "<br>";
+				    echo "<br>";
+				    echo "<br>";
+				    echo "Error de consola.".$e;
+
 				}
+           		
 			}else{
 				echo "Hay informacion sin llenar";
 
