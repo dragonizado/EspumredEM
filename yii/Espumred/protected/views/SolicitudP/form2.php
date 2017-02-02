@@ -49,6 +49,25 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
     margin-right: 4px;
   }
 </style>
+<script type="text/javascript">
+  function format(input)
+{
+  console.log("este es el valor que ingresa al metodo format: "+input);
+  var num = input.value.replace(/\./g,'');
+  console.log("este es el valor que toma la variable num al principio de la funcion format: "+num);
+  if(!isNaN(num))
+  {
+    num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+    console.log("Este es el valor #1 de la variable num en la funcion format:"+num);
+    num = num.split('').reverse().join('').replace(/^[\.]/,'');
+    console.log("este es el segundo valor de la variable num: "+num);
+    input.value = num;
+  }else{ 
+    alert('Solo se permiten numeros');
+    input.value = input.value.replace(/[^\d\.]*/g,'');
+  }
+} 
+</script>
 
 <div class="panel ">
   <div class="panel-body">
@@ -86,7 +105,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                       // $value = "hola";
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                              'name' => 'nom_client',
-                             'htmlOptions'=>array('class'=>'form-control'),
+                             'htmlOptions'=>array('class'=>'form-control frmauto1'),
                              'sourceUrl' => $this->createUrl('ListarClientes'),
                              'options' => array(
                                  'minLength' => '2',
@@ -97,7 +116,13 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                             // jQuery("#Condicionescomerciales_nombreCliente").val(ui.item["value"]);
                             $("#cod_client").val(ui.item["id"]);
                             // $("#cod_client").prop("disabled",true);
-
+                              if($("#T_Pedido option:selected").val() != "0"){
+                              if(validatefrmp1("frmauto1")== true){
+                                $("span#btns1").attr({"onclick":"btns1()","disabled":false});
+                               }else{
+                                console.log("El campo no cumple con los estandares necesarios para continuar.");
+                               }  
+                            }
                            }',
                                  'search' => 'js:function(event, ui)
                           { jQuery("#Condicionescomerciales_nombreCliente").val(0); }'
@@ -113,7 +138,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                         <?php
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                              'name' => 'cod_client',
-                             'htmlOptions'=>array('class'=>'form-control'),
+                             'htmlOptions'=>array('class'=>'form-control frmauto1'),
                              'sourceUrl' => $this->createUrl('ListarClientescod'),
                              'options' => array(
                                  'minLength' => '2',
@@ -124,6 +149,14 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                             // jQuery("#Condicionescomerciales_nombreCliente").val(ui.item["value"]);
                             $("#nom_client").val(ui.item["id"]);
                             // $("#nom_client").prop("disabled",true);
+                            if($("#T_Pedido option:selected").val() != "0"){
+                              if(validatefrmp1("frmauto1")== true){
+                                $("span#btns1").attr({"onclick":"btns1()","disabled":false});
+                               }else{
+                                console.log("El campo no cumple con los estandares necesarios para continuar.");
+                               }  
+                            }
+                            
 
                            }',
                                  'search' => 'js:function(event, ui)
@@ -152,7 +185,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                           <option value="1">Espumas</option>
                           <option value="2">Colchones</option>
                           <option value="3">Muebles</option>
-                          <!-- <option value="4">Otros</option> -->
+                          <option value="4">Otros</option>
                         </select>
                     </div>
                   </div>
@@ -211,16 +244,17 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
         </div>
         <div id="contenido2" style="display: none;">
               <div class="col-sm-5">
-                  <h4>Añadir pedido:</h4>
+                  <h4>Añadir pedido: <strong><span id="Tp2"></span></strong></h4>
                   <div class="panel panel-default">
                       <div class="panel-body form-horizontal payment-form">
-                          <div class="form-group">
+                          <div class="form-group  control-p2" id="group-no">
                               <label for="N_orden" class="col-sm-3 control-label">N° orden</label>
                               <div class="col-sm-9">
-                                  <input type="number" class="form-control info" id="N_orden" name="N_orden" disabled>
+                                  <input type="number" class="form-control info" id="N_orden" name="N_orden" >
+                                  <!-- <input type="number" class="form-control info" id="N_orden" name="N_orden" disabled> --> <!-- esta linea esta comentada por si sale algun cambio. -->
                               </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group  control-p2" id="group-cp">
                               <label for="cod_pro" class="col-sm-3 control-label">Código Producto</label>
                               <div class="col-sm-9" id="render_cod_pro">
                               <?php
@@ -248,7 +282,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                               ?>
                               </div>
                           </div>
-                          <div class="form-group" >
+                          <div class="form-group  control-p2" id="group-ds">
                               <label for="description" class="col-sm-3 control-label">Descripción</label>
                               <div class="col-sm-9" id="render_description">
                               <?php
@@ -273,43 +307,47 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                               ?>
                               </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group  control-p2" id="group-ca">
                                                   <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
                                                   <div class="col-sm-9">
                                                       <input type="number" class="form-control info finput" id="cantidad" name="cantidad" placeholder="####"  required>
                                                   </div>
                                               </div>
-                                              <div class="form-group" id="group-vk">
+                                              <div class="form-group  control-p2" id="group-vk">
                                                   <label for="value_kl" class="col-sm-3 control-label">Valor Kilo</label>
                                                   <div class="col-sm-9">
-                                                      <input type="number" class="form-control info finput" id="value_kl" name="value_kl" placeholder="####" required>
+                                                      <input type="number" class="form-control info finput" id="value_kl" name="value_kl" onkeyup="format(this)" placeholder="####" required>
                                                   </div>
                                               </div>
-                                              <div class="form-group">
+                                              <div class="form-group  control-p2" id="group-pd">
                                                   <label for="descuentoP" class="col-sm-3 control-label">Porcentaje Descuento</label>
                                                   <div class="col-sm-9">
-                                                      <input type="number" class="form-control info finput" id="descuentoP" name="descuentoP" placeholder="#" >
+                                                      <input type="number" class="form-control info finput control-p2" id="descuentoP" name="descuentoP" placeholder="#" >
                                                   </div>
                                               </div>
-                                              <div class="form-group">
+                                              <div class="form-group  control-p2" id="group-vd">
                                                   <label for="value_descount" class="col-sm-3 control-label">Valor Descuento</label>
                                                   <div class="col-sm-9">
-                                                      <input type="number" class="form-control info finput" id="value_descount" name="value_descount" >
+                                                      <input type="text" class="form-control info finput" id="value_descountf" name="value_descountf" >
+
+                                                      <input type="numbre" class="form-control info finput" id="value_descount" name="value_descount" >
                                                   </div>
                                               </div>
-                                              <div class="form-group">
+                                              <div class="form-group  control-p2" id="group-vu">
                                                 <label for="value_unit" class="col-sm-3 control-label">Valor Unitario</label>
                                                 <div class="col-sm-9">
-                                                  <input type="number" class="form-control info finput" id="value_unit" name="value_unit" >
+                                                  <input type="text" class="form-control info finput" id="value_unitf" name="value_unitf" >
+                                                  <input type="numbre" class="form-control info finput" id="value_unit" name="value_unit" >
                                                 </div>
                                               </div>
-                                              <div class="form-group">
+                                              <div class="form-group  control-p2" id="group-vt">
                                                   <label for="amount" class="col-sm-3 control-label">Valor total</label>
                                                   <div class="col-sm-9">
+                                                      <input type="text" class="form-control info finput" id="amountf" name="amountf" >
                                                       <input type="number" class="form-control info finput" id="amount" name="amount" >
                                                   </div>
                                               </div>
-                                              <div class="form-group">
+                                              <div class="form-group  control-p2" id="group-fe">
                                                   <label for="date" class="col-sm-3 control-label">Fecha de entrega</label>
                                                   <div class="col-sm-9">
                                                       <input type="date" class="form-control info finput" id="date" name="date"  placeholder="##/##/####"required>
@@ -322,12 +360,12 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                                                   </button>
                                                   </div>
                     															<div class="col-sm-4 text-right">
-                                                      <button type="button" class="btn btn-default" onclick='ajaxcalculator("solicitudP/Ajaxcalculator",$("#description").val(),$("#cod_pro").val(),$("#value_kl").val(),$("#cantidad").val(),$("#descuentoP").val())'>
+                                                      <button type="button" class="btn btn-default" onclick='ajaxcalculator("solicitudP/Ajaxcalculator",$("#description").val(),$("#cod_pro").val(),$("#value_kl").val(),$("#cantidad").val(),$("#descuentoP").val(),$("#value_unit").val())'>
                                                           <span class="fa fa-calculator" aria-hidden="true"></span> Calcular
                                                       </button>
                                                   </div>
                                                   <div class="col-sm-4 text-right">
-                                                      <button type="button" class="btn btn-default preview-add-button" id="btnn1" onclick='btnn1()'>
+                                                      <button type="button" class="btn btn-default preview-add-button hidden bbts" id="btnn1" onclick='btnn1()'>
                                                           <span class="glyphicon glyphicon-plus"></span> Añadir
                                                       </button>
                                                   </div>
@@ -393,25 +431,25 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
                   <div class="form-group">
                       <label for="valor_densidad" class="col-sm-3 control-label">Densidad</label>
                       <div class="col-sm-9">
-                          <input type="number" class="form-control info finput" id="valor_densidad" name="valor_densidad">
+                          <input type="number" class="form-control info finput" id="valor_densidadm" name="valor_densidad">
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="valor_ancho" class="col-sm-3 control-label">Ancho</label>
                       <div class="col-sm-9">
-                          <input type="number" class="form-control info finput" id="valor_ancho" name="valor_ancho" >
+                          <input type="number" class="form-control info finput" id="valor_anchom" name="valor_ancho" >
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="valor_largo" class="col-sm-3 control-label">Largo</label>
                       <div class="col-sm-9">
-                          <input type="number" class="form-control info finput" id="valor_largo" name="valor_largo">
+                          <input type="number" class="form-control info finput" id="valor_largom" name="valor_largo">
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="valor_calibre" class="col-sm-3 control-label">Calibre</label>
                       <div class="col-sm-9">
-                          <input type="date" class="form-control info finput" id="valor_calibre" name="valor_calibre">
+                          <input type="number" class="form-control info finput" id="valor_calibrem" name="valor_calibre">
                       </div>
                   </div>
               </div>
@@ -419,7 +457,7 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Aplicar Cambios</button>
+          <button type="button" class="btn btn-primary" onclick="updateatrr()">Aplicar Cambios</button>
         </div>
       </div>
     </div>
@@ -462,26 +500,55 @@ $nameAsesor = Yii::app()->user->Nombre . Yii::app()->user->Apellido;
   });
 
 
-function ajaxcalculator(url,datos,v = null,vlk = 0, cant = 0, por_desc = 0){
+function ajaxcalculator(url,datos,v = null,vlk = 0, cant = 0, por_desc = 0,vuni = 0){
         $.ajax({
           url:ajaxbaseurl+'index.php?r='+url,
-          data:{Tajax:"Dragonizado",term:datos,V:v,vlk:vlk,cant:cant,por_des:por_desc},
+          data:{Tajax:"Dragonizado",term:datos,V:v,vlk:vlk,cant:cant,por_des:por_desc,vuni:vuni},
           dataType:"json",
           type:'get'
           }).done(function(done){
           if(done["valor_densidad"] === "" && done["valor_ancho"] === "" && done["valor_largo"] === "" && done["valor_calibre"] === "" ){
             $("#myModal").modal();
-            $("#value_unit").val(done["valor_unitario"]);
+            if($("#T_Pedido option:selected").val() != "1"){
+              $("#value_unit").val(done["valor_unitario"]);
+            }
             $("#value_descount").val(done["valor_descuento"]);
             $("#amount").val(done["valor_total"]);
           }else{
             $("#value_unit").val(done["valor_unitario"]);
             $("#value_descount").val(done["valor_descuento"]);
             $("#amount").val(done["valor_total"]);
+            // Valor de money_format
+            $("#value_unitf").val(done["valor_unitariof"]);
+            $("#value_descountf").val(done["valor_descuentof"]);
+            $("#amountf").val(done["valor_totalf"]);
+            $(".bbts").removeClass('hidden');
           }
-          }).error(function(){console.log('Error en el ajax calculator linea 465.');});
+          }).error(function(){console.log('Error en el ajax calculator linea 496.');});
 }
 
+function updateatrr(){
+  url = "solicitudP/UpdateAtrr";
+  var dens,anch,larg,cali ;
+  dens = $("#valor_densidadm").val();
+  anch = $("#valor_anchom").val();
+  larg = $("#valor_largom").val();
+  cali = $("#valor_calibrem").val();
+    $.ajax({
+          url:ajaxbaseurl+'index.php?r='+url,
+          data:{Tajax:"Dragonizado",dens:dens,anch:anch,larg:larg,cali:cali},
+          dataType:"json",
+          type:'get'
+          }).done(function(done){
+            alert("Actualización con exito.");
+          }).error(function(){
+            console.log("Hay un error al actualizar los atributos del producto.");
+          });
+  }
+
+function colocarped(){
+  $("#Tp2").text($("#T_Pedido option:selected").text());
+}
 function AjaxPageControl(type){
   var url;
   url = "SolicitudP/AjaxPageControl";
@@ -492,11 +559,14 @@ function AjaxPageControl(type){
             type:'get'
             }).done(function(done){
               $("#frmajax").html(done["formulario"]);
-              var n_orn = $("#n_ord_p").text();
-              $("#N_orden").val(n_orn);
-              $('.finput').removeClass('hidden');
-              $('.finput').attr({'disabled':false});
+              // var n_orn = $("#n_ord_p").text();
+              // $("#N_orden").val(n_orn); //Estas dos lineas son las que ponen el id que viene de la bd en Nº Orden
+              // $('.finput').removeClass('hidden');
+              // $('.finput').attr({'disabled':false});
               if(done["frmhtml"] instanceof Object){
+                $(".control-p2>div>input").attr({"disabled":false});
+                $(".control-p2>div>input").removeClass("hidden");
+                $(".control-p2").removeClass("hidden");
                 $.each(done["frmhtml"],function(clave,valor){
                   console.log("La clave es: "+ clave +" El valor es: "+valor);
                   if(clave === "disabled"){
@@ -508,7 +578,7 @@ function AjaxPageControl(type){
                     $("#"+valor2).addClass("hidden");
                     });
                   }else{
-                    console.log("La respuesta del servidor no cuenta con atributos disponibles.");
+                    console.log("El servidor no cuenta con atributos disponibles.");
                   }
                 });  
               }else{
@@ -532,20 +602,48 @@ function AjaxPageControl(type){
   $("#T_Pedido").change(function(){
     console.log("SE HA MODIFICADO EL COMBOBOX");
     if($("#T_Pedido option:selected").val() === "0"){
-         $("span#btns1").attr({"onclick":"null","disabled":true});
-         AjaxPageControl(0);
+         if(validatefrmp1("frmauto1")== true){
+          $("span#btns1").attr({"onclick":"null","disabled":true});
+          // AjaxPageControl(0);
+         }else{
+          console.log("El campo no cumple con los estandares necesarios para continuar.");
+         }
     }else if($("#T_Pedido option:selected").val() === "1"){
-         $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(1);
+         if(validatefrmp1("frmauto1")== true){
+          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
+          AjaxPageControl(1);
+         }else{
+          console.log("El campo no cumple con los estandares necesarios para continuar.");
+         }
+         
     }else if($("#T_Pedido option:selected").val() === "2"){
-         $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(2);
+         if(validatefrmp1("frmauto1")== true){
+          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
+          AjaxPageControl(2);
+         }else{
+          console.log("El campo no cumple con los estandares necesarios para continuar.");
+         }
+
+         // console.log("Ocultar el valor kilo cuando esta en lenceria(Otros), muebles, Colchones. Linea 578");
+         
     }else if($("#T_Pedido option:selected").val() === "3"){
-         $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(3);
+         
+         if(validatefrmp1("frmauto1")== true){
+          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
+          AjaxPageControl(3);
+         }else{
+          console.log("El campo no cumple con los estandares necesarios para continuar.");
+         }
+         
     }else if($("#T_Pedido option:selected").val() === "4"){
-         $("span#btns1").attr({"onclick":"btns1()","disabled":false});
-         AjaxPageControl(4);
+         
+         if(validatefrmp1("frmauto1")== true){
+          $("span#btns1").attr({"onclick":"btns1()","disabled":false});
+          AjaxPageControl(4);
+         }else{
+          console.log("El campo no cumple con los estandares necesarios para continuar.");
+         }
+         
     }else{
          var confirm = confirm("Error en la pagina web. Recargar la pagina?");
           if(confirm){
@@ -556,6 +654,26 @@ function AjaxPageControl(type){
      }
      console.log("el valor del objeto seleccionado es: "+ $("#T_Pedido option:selected").val());
   });
+
+  function validatefrmp1(classn){
+    var result = 0;
+    $("."+classn).each(function(index,valor){
+      if($(this).val() == ""){
+        result = result + 1;
+      }else{
+        console.log("el campo "+$(this).attr("id")+" es correcto.");
+      }
+      console.log("Esta es el index del campo:  "+index+"  Este es el valor:   "+$(this).val());
+    });
+    if(result > 0){
+      return false;
+    }else{
+      return true;
+    }
+
+  }
+
+
 
   function calc_total(){
     var sum = 0;
@@ -582,6 +700,7 @@ function btns1(){
 
       $("#contenido1").slideToggle();
       $("#contenido2").slideToggle();
+      colocarped();
 
 }
 
@@ -594,9 +713,12 @@ function btns2(){
 
 $(document).on('click', '.input-remove-row', function(){
     var tr = $(this).closest('tr');
+    var index = $(this).index() - 2;
+    
     tr.fadeOut(200, function(){
       tr.remove();
-      calc_total()
+      calc_total();
+      $("#textico"+index).remove();
   });
 });
 
@@ -609,8 +731,8 @@ $('#send_all_form').click(function(){
         var form_data = {};
         var form_post = {};
         var count_row = parseInt($('#contador_fila').val());
-        var nn = parseInt($('.payment-form input[name="N_orden"]').val());
-        var numor = (nn + 1);
+        // var nn = parseInt($('.payment-form input[name="N_orden"]').val());
+        // var numor = (nn + 1);
         var count_final;
         // conds = 0;
         // $('.finput').each(function(){
@@ -657,7 +779,7 @@ $('#send_all_form').click(function(){
           $('<div class="text-'+types+'"></div>').html(value).appendTo(forms);
         });
         count_final = count_row + 1;
-        $('.payment-form input[name="N_orden"]').val(numor);
+        // $('.payment-form input[name="N_orden"]').val(numor); //campo para adjuntar al numero de orden
         $('#contador_fila').val(count_final);
         $('#form_solicitud').append(forms);
         $('.preview-table > tbody:last').append(row);

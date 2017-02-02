@@ -115,7 +115,7 @@ class solicitudPController extends Controller
         			}else if($_GET["type"] === "0"){
                 echo json_encode("alert('Valor incorrecto en el campo Tipo de Pedido, recarga la pagina para solicionar el problema.')");
         			}else{
-        				echo "<span style='color:red; font-size:24;'>ERROR 0000.</span> <br> Se ha alterado el codigo HTML, el servidor no puede procesar esta solicitud.";
+        				echo "<span style='color:red; font-size:24;'>ERROR 0000.</span> <br> Se ha alterado la estructura HTML, el servidor no puede procesar esta solicitud.";
         			}
         		}else{
         			echo "<span style='color:red; font-size:24;'>ERROR 500.</span> <br> Se ha realizado una solicitud desconocida para el servidor.";
@@ -146,6 +146,7 @@ class solicitudPController extends Controller
           if (isset($_GET["Tajax"])) {
             if ($_GET["Tajax"] === "Dragonizado") {
               if (isset($_GET["term"]) && isset($_GET["V"])) {
+                setlocale(LC_MONETARY, 'en_US');
                 $cadena = $_GET["term"];
                 $var_id = $_GET["V"];
                 $consul = Productopedidos::model()->findAll(array("condition"=>"idtbl_Productos = '".$var_id."'"));
@@ -159,12 +160,20 @@ class solicitudPController extends Controller
                   $cantidad = $_GET["cant"];
                   $por_descuento = $_GET["por_des"];
                   $valor_unitario = $this->calcularValor_unitario($valor_kilo,$densidad,$ancho,$largo,$calibre);
+                  $valor_unitariof = money_format('%!.3n', $valor_unitario);
                   $descuento = $this->calcularValor_descuento($valor_unitario,$cantidad,$por_descuento);
+                  $descuentof = money_format('%!.3n', $descuento) ;
                   $valor_total_p = $this->calcularValor_total($valor_unitario,$cantidad,$descuento);
+                  $valor_total_pf = money_format('%!.3n', $valor_total_p);
 									$response = array(
 										"valor_unitario"=>$valor_unitario,
-										"valor_descuento"=>$descuento,
-										"valor_total"=>$valor_total_p,
+                    "valor_descuento"=>$descuento,
+                    "valor_total"=>$valor_total_p,
+                    //Valor de money_format
+                    "valor_unitariof"=>$valor_unitariof,
+										"valor_descuentof"=>$descuentof,
+										"valor_totalf"=>$valor_total_pf,
+                    //fin del valor money_format
 										"valor_densidad"=>$densidad,
 										"valor_ancho"=>$ancho,
 										"valor_largo"=>$largo,
@@ -174,7 +183,32 @@ class solicitudPController extends Controller
                 }else if($cadena_xplode[0] === "E.CON"){
                     echo "No hay formulas asociadas a esta solicitud.";
                 }else{
-                  echo "No hay formulas disponibles para la solicitud.";
+                  $valor_unitario = $_GET["vuni"];
+                  $cantidad = $_GET["cant"];
+                  $por_descuento = $_GET["por_des"];
+                  $densidad = "Null";
+                  $ancho = "Null";
+                  $largo =  "Null";
+                  $calibre = "Null";
+                  $valor_unitariof = money_format('%!.3n', $valor_unitario);
+                  $descuento = $this->calcularValor_descuento($valor_unitario,$cantidad,$por_descuento);
+                  $descuentof = money_format('%!.3n', $descuento);
+                  $valor_total_p = $this->calcularValor_total($valor_unitario,$cantidad,$descuento);
+                  $valor_total_pf = money_format('%!.3n', $valor_total_p);
+                  $response = array(
+                    "valor_unitario"=>$valor_unitario,
+                    "valor_descuento"=>$descuento,
+                    "valor_total"=>$valor_total_p,
+                    //Valor de money_format
+                    "valor_unitariof"=>$valor_unitariof,
+                    "valor_descuentof"=>$descuentof,
+                    "valor_totalf"=>$valor_total_pf,
+                    //fin del valor money_format
+                    "valor_densidad"=>$densidad,
+                    "valor_ancho"=>$ancho,
+                    "valor_largo"=>$largo,
+                    "valor_calibre"=>$calibre,);
+                  echo json_encode($response);
                 }
 
             }else{
@@ -479,19 +513,32 @@ class solicitudPController extends Controller
 
 	}
 
+    //funciones para renderizar los campos del formulario dependiendo el pedido.
+    //ids de los campos del formulario (grupos incluyendo labels).
+    // numero de orden = group-no
+    // codigo producto = group-cp
+    // descripcion = group-de
+    // cantidad = group-ca 
+    // valor kilo = group-vk
+    // porcentaje descuento = group-pd
+    // valor descuento = group-vd
+    // valor unitario = group-vu
+    // valor total = group-vt
+    // fecha de entrega = group-fe
+
 
     public function frmEspumas(){
-      $responseespumas = array("disabled"=>array('value_unit','value_descount','amount'));
+      $responseespumas = array("disabled"=>array('value_unitf','value_descountf','amountf'),"oculto"=>array('value_unit','value_descount','amount'));
       return $responseespumas;
     }
 
     public function frmColchones(){
-    	$responsecolchones = array("disabled"=>array('value_unit','value_descount','amount'),"oculto"=>array('group-vk'));
+    	$responsecolchones = array("disabled"=>array('value_descountf','amountf'),"oculto"=>array('group-vk','value_descount','value_unitf','amount'));
       return $responsecolchones;
     }
 
     public function frmMuebles(){
-    	$responsemueble = array("disabled"=>array('value_unit','value_descount','amount'),"oculto"=>array('group-vk'));
+    	$responsemueble = array("disabled"=>array('value_descountf','amountf'),"oculto"=>array('group-vk','value_descount','value_unitf','amount'));
       return $responsemueble;
     }
 
@@ -501,7 +548,7 @@ class solicitudPController extends Controller
 
 
     public function frmOtros(){
-    	$responseotros = array();
+    	$responseotros = array("oculto"=>array('group-vk','value_unitf','value_descountf','amountf'));
       return $responseotros;
     }
 

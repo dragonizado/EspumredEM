@@ -3,6 +3,7 @@
   function  notifyMedos(titulo,cuerpo)  {  
     if  (!("Notification"  in  window))  {   
         alert("Este navegador no soporta notificaciones de escritorio");  
+        alert(cuerpo);
     }  
     else  if  (Notification.permission  ===  "granted")  {
         var  options  =   {
@@ -11,6 +12,10 @@
             dir :   "ltr"
         };
         var  notification  =  new  Notification(titulo, options);
+        var audio = new Audio('/yii/espumred/themes/classic2/Songs/efecto_de_ondas.mp3');
+        audio.play();
+        // console.log('Se ha impreso la notificacion: titulo:  '+titulo+'   cuerpo:  '+options['body'])
+
     }  
     else  if  (Notification.permission  !==  'denied')  {
         Notification.requestPermission(function (permission)  {
@@ -19,16 +24,28 @@
             }
             if  (permission  ===  "granted")  {
                 var  options  =   {
-                    body:   "Descripción o cuerpo de la notificación",
+                    body:   "Ya se puede recibir notificaciones de espumred",
                 icon:   "/yii/espumred/images/logoredondo2.png",
                 dir :   "ltr"
                 };     
-                var  notification  =  new  Notification("Hola :D", options);
+                var  notification  =  new  Notification("Excelente", options);
+                var audio = new Audio('/yii/espumred/themes/classic2/Songs/efecto_de_ondas.mp3');
+                audio.play();
             }   
         });  
     }
 }
+// notifyMedos('hola mundo','como estan este es mi primer respiro.');
 </script>
+<?php 
+  if (isset($_GET['notification']) && $_GET['notification'] != "") {
+    // echo $_GET['notification'];
+    echo "<script type=text/javascript>notifyMedos('".$_GET['t']."','".$_GET['c']."')</script>";
+  }else{
+    // echo ("No hay notificaciones");
+  }
+  
+ ?>
 <?php
 $cont=0;
 $cont2=0;

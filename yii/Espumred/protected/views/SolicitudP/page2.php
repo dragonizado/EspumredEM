@@ -15,6 +15,7 @@ if($apli_bon != "otros"){
 // $all_form = $_POST['Formyiis'];
 $htmls = "";
 $fecha_cargue = date('d/m/Y');
+setlocale(LC_MONETARY, 'en_US');
 
 
 
@@ -1173,19 +1174,31 @@ $htmls .= "<table border=0 cellpadding=0 cellspacing=0 width=1342 style='border-
 
 $i = 0;
   foreach ($_POST['Formyiis']['N_orden2'] as $value) {
+    // echo $_POST['Formyiis']['value_kl2'][$i];
+    $N_orden2 = (isset($_POST['Formyiis']['N_orden2'][$i]) && $_POST['Formyiis']['N_orden2'][$i] != "")?$_POST['Formyiis']['N_orden2'][$i]:"Vacio";
+    $cod_prod2 = (isset($_POST['Formyiis']['cod_prod2'][$i]) && $_POST['Formyiis']['cod_prod2'][$i] != "")?$_POST['Formyiis']['cod_prod2'][$i]:"Vacio";
+    $description2 = (isset($_POST['Formyiis']['description2'][$i]) && $_POST['Formyiis']['description2'][$i] != "")?$_POST['Formyiis']['description2'][$i]:"Vacio";
+    $cantidad2 = (isset($_POST['Formyiis']['cantidad2'][$i]) && $_POST['Formyiis']['cantidad2'][$i] != "")?$_POST['Formyiis']['cantidad2'][$i]:"0";
+    $value_unit2 = (isset($_POST['Formyiis']['value_unit2'][$i]) && $_POST['Formyiis']['value_unit2'][$i] != "")?money_format('%!.3n',$_POST['Formyiis']['value_unit2'][$i]):"0";
+    $value_kl2 = (isset($_POST['Formyiis']['value_kl2'][$i]) && $_POST['Formyiis']['value_kl2'][$i] != "")? money_format('%!.3n',$_POST['Formyiis']['value_kl2'][$i]):"0";
+    $descuentoP2 = (isset($_POST['Formyiis']['descuentoP2'][$i]) && $_POST['Formyiis']['descuentoP2'][$i] != "")?$_POST['Formyiis']['descuentoP2'][$i]:"0";
+    $value_descount2 = (isset($_POST['Formyiis']['value_descount2'][$i]) && $_POST['Formyiis']['value_descount2'][$i] != "")?number_format($_POST['Formyiis']['value_descount2'][$i]):"0";
+    $amount2 = (isset($_POST['Formyiis']['amount2'][$i]) && $_POST['Formyiis']['amount2'][$i] != "")?money_format('%!.3n',$_POST['Formyiis']['amount2'][$i]):"0";
+    $date2 = (isset($_POST['Formyiis']['date2'][$i]) && $_POST['Formyiis']['date2'][$i] != "")?$_POST['Formyiis']['date2'][$i]:$fecha_cargue;
+    
 $htmls .= "
-
+      
 <tr height=24 style='mso-height-source:userset;height:18.0pt'>
-  <td height=24 class=xl69 width=106 style='height:18.0pt;border-top:none; width:80pt'>&nbsp;".$_POST['Formyiis']['N_orden2'][$i]."</td>
-  <td class=xl70 width=129 style='border-top:none;border-left:none;width:97pt'>&nbsp;".$_POST['Formyiis']['cod_prod2'][$i]."</td>
-  <td colspan=2 class=xl92 width=180 style='border-right:.5pt solid black; border-left:none;width:136pt'>&nbsp;".$_POST['Formyiis']['description2'][$i]."</td>
-  <td class=xl70 width=69 style='border-top:none;border-left:none;width:52pt'>&nbsp;".$_POST['Formyiis']['cantidad2'][$i]."</td>
-  <td class=xl71 width=111 style='border-top:none;border-left:none;width:83pt'>&nbsp;$".number_format($_POST['Formyiis']['value_unit2'][$i])."</td>
-  <td class=xl71 width=97 style='border-top:none;border-left:none;width:73pt'>&nbsp;$".number_format($_POST['Formyiis']['value_kl2'][$i])."</td>
-  <td class=xl72 width=82 style='border-top:none;border-left:none;width:62pt'>&nbsp;".$_POST['Formyiis']['descuentoP2'][$i]."%</td>
-  <td class=xl71 width=109 style='border-top:none;border-left:none;width:82pt'>&nbsp;$".number_format($_POST['Formyiis']['value_descount2'][$i])."</td>
-  <td class=xl71 width=130 style='border-top:none;border-left:none;width:98pt'>&nbsp;$".number_format($_POST['Formyiis']['amount2'][$i])."</td>
-  <td class=xl77 width=121 style='border-top:none;border-left:none;width:91pt'>&nbsp;".$_POST['Formyiis']['date2'][$i]."</td>
+  <td height=24 class=xl69 width=106 style='height:18.0pt;border-top:none; width:80pt'>&nbsp;".$N_orden2."</td>
+  <td class=xl70 width=129 style='border-top:none;border-left:none;width:97pt'>&nbsp;".$cod_prod2."</td>
+  <td colspan=2 class=xl92 width=180 style='border-right:.5pt solid black; border-left:none;width:136pt'>&nbsp;".$description2."</td>
+  <td class=xl70 width=69 style='border-top:none;border-left:none;width:52pt'>&nbsp;".$cantidad2."</td>
+  <td class=xl71 width=111 style='border-top:none;border-left:none;width:83pt;word-break:break-all;'>&nbsp;$".$value_unit2."</td>
+  <td class=xl71 width=97 style='border-top:none;border-left:none;width:73pt;word-break:break-all;'>&nbsp;$".$value_kl2."</td>
+  <td class=xl72 width=82 style='border-top:none;border-left:none;width:62pt;word-break:break-all;'>&nbsp;".$descuentoP2."%</td>
+  <td class=xl71 width=109 style='border-top:none;border-left:none;width:82pt;word-break:break-all;'>&nbsp;$".$value_descount2."</td>
+  <td class=xl71 width=130 style='border-top:none;border-left:none;width:98pt;word-break:break-all;'>&nbsp;$".$amount2."</td>
+  <td class=xl77 width=121 style='border-top:none;border-left:none;width:91pt;word-break:break-all;'>&nbsp;".$date2."</td>
   <td class=xl68>&nbsp;</td>
   <td class=xl68>&nbsp;</td>
  </tr>";
@@ -1202,7 +1215,7 @@ $htmls .= "
   <td class=xl110 width=111 style='width:83pt'>&nbsp;</td>
   <td colspan=3 class=xl122 width=288 style='border-right:1.0pt solid black;
   width:217pt'>VALOR TOTAL DEL PEDIDO</td>
-  <td class=xl124 width=130 style='border-left:none;width:98pt'>$".number_format($_POST['valor_total_pedido'])."</td>
+  <td class=xl124 width=130 style='border-left:none;width:98pt'>$".money_format('%!.3n',$_POST['valor_total_pedido'])."</td>
   <td class=xl137 width=121 style='width:91pt'>&nbsp;</td>
   <td class=xl121>&nbsp;</td>
   <td class=xl68>&nbsp;</td>
@@ -1246,13 +1259,13 @@ $htmls .= "
     
    $htmls .= "<tr height=25 style='mso-height-source:userset;height:18.75pt'>
     <td height=25 class=xl141 width=106 style='height:18.75pt;width:80pt'>Bonificación N°1.</td>
-    <td class=xl142 width=129 style='width:97pt'>&nbsp;".$_POST['formyiid']['bonifi'][$o]."</td>
+    <td class=xl142 width=129 style='width:97pt'>&nbsp;".(isset($_POST['formyiid']['bonifi'][$o]))?$_POST['formyiid']['bonifi'][$o]:" "."</td>
     <td class=xl149 width=90 style='width:68pt'>Referencia:</td>
-    <td class=xl143>&nbsp;".$_POST['formyiid']['Ref'][$o]."</td>
+    <td class=xl143>&nbsp;".(isset($_POST['formyiid']['Ref'][$o]))?$_POST['formyiid']['Ref'][$o]:" "."</td>
     <td class=xl149 width=69 style='width:52pt'>Código:</td>
-    <td colspan=3 class=xl144>&nbsp;".$_POST['formyiid']['cod'][$o]."</td>
+    <td colspan=3 class=xl144>&nbsp;".(isset($_POST['formyiid']['cod'][$o]))?$_POST['formyiid']['cod'][$o]:" "."</td>
     <td class=xl149 width=109 style='width:82pt'>Cantidad</td>
-    <td class=xl145>&nbsp;".$_POST['formyiid']['cant'][$o]."</td>
+    <td class=xl145>&nbsp;".(isset($_POST['formyiid']['cant'][$o]))?$_POST['formyiid']['cant'][$o]:" "."</td>
     <td class=xl137 width=121 style='width:91pt'>&nbsp;</td>
     <td class=xl121>&nbsp;</td>
     <td class=xl68>&nbsp;</td>
@@ -1391,6 +1404,7 @@ $htmls .=" <![if supportMisalignedColumns]>
   //     $mail->AddCC('auditor@espumasmedellin.com');
   //     $mail->AddCC('practicante.sistemas@espumasmedellin.com');
       $mail->AddAddress('practicante.sistemas@espumasmedellin.com');
+      $mail->AddAddress('auxiliar.sistemas@espumasmedellin.com');
 
       $mail->isHTML(true);
 
@@ -1403,18 +1417,19 @@ $htmls .=" <![if supportMisalignedColumns]>
       // $mail->AddAddress($correo,"observaciones"); No descomentar.        
           
           if($mail->send() == false){
-            // echo "No envio";
-
-            // echo "<br>";
+            echo $mail->ErrorInfo;
+            echo "No envio";
+            echo "<br>";
+            echo $htmls;
 
             // echo "<a href='/yii/espumred/index.php?r=solicitudP/Test'>Volver</a>";
-            $this->redirect(array('site/index'),array('notification'=>array('titulo'=>'Error al Enviar','cuerpo'=>'Error al enviar el correo de confirmación')));
+            // $this->redirect(array('site/index&notification=error&t=Error al Enviar&c=Error al enviar el correo de confirmación'));
           }else{
-            //  echo "si envio";
-            // echo "<br>";
-
+             echo "si envio";
+            echo "<br>";
+            echo $htmls;
             // echo "<a href='/yii/espumred/index.php?r=solicitudP/Test'>Volver</a>";
-             $this->redirect(array('site/index'),array('notification'=>array('titulo'=>'Exito al Enviar','cuerpo'=>'El formato se ha enviado con exito.')));
+             // $this->render(array('site/index'),array('notification'=>array('titulo'=>'Exito al Enviar','cuerpo'=>'El formato se ha enviado con exito.')));
           }
 
   ?>
