@@ -529,21 +529,36 @@ function ajaxcalculator(url,datos,v = null,vlk = 0, cant = 0, por_desc = 0,vuni 
 
 function updateatrr(){
   url = "solicitudP/UpdateAtrr";
-  var dens,anch,larg,cali ;
+  var dens,anch,larg,cali,url2,descr,cod_pro22,cand22,desc22,val_uni22;
+
   dens = $("#valor_densidadm").val();
   anch = $("#valor_anchom").val();
   larg = $("#valor_largom").val();
   cali = $("#valor_calibrem").val();
+  url2 = "solicitudP/Ajaxcalculator";
+  descr = $("#description").val();
+  cod_pro22 = $("#cod_pro").val();
+  val_kl22 = $("#value_kl").val();
+  cand22 = $("#cantidad").val();
+  desc22 = $("#descuentoP").val();
+  val_uni22 = $("#value_unit").val();
+
+  if(dens != "" && anch != "" && larg != "" && cali != ""){
     $.ajax({
           url:ajaxbaseurl+'index.php?r='+url,
-          data:{Tajax:"Dragonizado",dens:dens,anch:anch,larg:larg,cali:cali},
+          data:{Tajax:"Dragonizado",dens:dens,anch:anch,larg:larg,cali:cali,cod:cod_pro22},
           dataType:"json",
           type:'get'
           }).done(function(done){
             alert("Actualización con exito.");
+            ajaxcalculator(url2,descr,cod_pro22,val_kl22,cand22,desc22,val_uni22);
+            $("#myModal").modal('hidden');
           }).error(function(){
             console.log("Hay un error al actualizar los atributos del producto.");
           });
+  }else{
+    alert("hay datos sin llenar.");
+  }
   }
 
 function colocarped(){

@@ -1,5 +1,5 @@
 <?php 
-class productopedidos extends CActiveRecord
+class Productopedidos extends CActiveRecord
 {
 	public function tablename(){
 		return 'tbl_productos';

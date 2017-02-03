@@ -37,7 +37,7 @@ class solicitudPController extends Controller
              //permisos de Asesor
             array('allow', // Permite al usuario autenticado a realizar "crean" y acciones "actualización"
 				'actions'=>array('create','view', 'admin','send','Test',
-					'buscar','mostrarError','regresar','centro','Enviar','mail','updateTodo','Upload','detalles','ListarClientes','ListarClientescod','ListarProductos','ListarCodProductos','AjaxPageControl', 'Ajaxcalculator','Consultid'),
+					'buscar','mostrarError','regresar','centro','Enviar','mail','updateTodo','Upload','detalles','ListarClientes','ListarClientescod','ListarProductos','ListarCodProductos','AjaxPageControl', 'Ajaxcalculator','Consultid','UpdateAtrr'),
 				    'users'=>array('*'),
                     'expression'=>'Yii::app()->user->rol==="Asesor" or Yii::app()->user->rol==="Test"'
             ),
@@ -85,6 +85,29 @@ class solicitudPController extends Controller
 
 
 	   }
+
+     public function actionUpdateAtrr(){
+      if(isset($_GET['Tajax']) && $_GET['Tajax'] === 'Dragonizado'){
+        if($_GET['dens'] != "" && $_GET['anch'] != "" && $_GET['larg'] != "" && $_GET['cali'] != ""){
+          $model = Productopedidos::model()->find(array("condition"=>"idtbl_Productos = '".$_GET['cod']."'"));
+          $model->ancho = $_GET['anch'];
+          $model->largo = $_GET['larg'];
+          $model->calibre = $_GET['cali'];
+          $model->densidad = $_GET['dens'];
+          try {
+            $model->save();
+            echo json_encode("Se han guardado correctamente");
+          } catch (Exception $e) {
+            echo json_encode("No se pudo guardar los atributos del producto");
+          }
+          
+        }else{
+          echo "Hay campos sin llenar";
+        }
+      }else{
+        echo "<span style='color:red; font-size:24;'>ERROR ACCESO DENEGADO.</span> <br> Se ha realizado una solicitud desconocida para el servidor.";
+      }
+     }
 
        public function actionMail()
        {
